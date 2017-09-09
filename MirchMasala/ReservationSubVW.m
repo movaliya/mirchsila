@@ -20,7 +20,7 @@
     self.backView.layer.masksToBounds = NO;
     self.backView.layer.shadowOffset = CGSizeMake(0, 1);
     self.backView.layer.shadowRadius = 1.0;
-    self.backView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
     self.backView.layer.shadowOpacity = 0.5;
     // Do any additional setup after loading the view.
 }
@@ -33,17 +33,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
