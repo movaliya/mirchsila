@@ -8,6 +8,7 @@
 
 #import "NewsVW.h"
 #import "NewsCell.h"
+#import "NewsFullView.h"
 
 @interface NewsVW ()
 {
@@ -88,7 +89,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NewsFullView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsFullView"];
+    [self.navigationController pushViewController:vcr animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath

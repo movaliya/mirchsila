@@ -13,10 +13,42 @@
 @end
 
 @implementation NewsFullView
+@synthesize NewsImg,NewsTitle_LBL,NewsDes_LBL,NewsDate_LBL,BackView,ViewHight;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NewsDes_LBL.text=@"This is a sample description";
+    BackView.layer.masksToBounds = NO;
+    BackView.layer.shadowOffset = CGSizeMake(0, 1);
+    BackView.layer.shadowRadius = 1.0;
+    BackView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
+    BackView.layer.shadowOpacity = 0.5;
+    
+    
+    CGFloat labelSize = [self getLabelHeight:NewsDes_LBL];
+    if (labelSize>18)
+    {
+        ViewHight.constant=ViewHight.constant+labelSize;
+    }
+
+}
+
+- (CGFloat)getLabelHeight:(UILabel*)label
+{
+    CGSize constraint = CGSizeMake(label.frame.size.width, CGFLOAT_MAX);
+    CGSize size;
+    
+    NSStringDrawingContext *context = [[NSStringDrawingContext alloc] init];
+    CGSize boundingBox = [label.text boundingRectWithSize:constraint
+                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                               attributes:@{NSFontAttributeName:label.font}
+                                                  context:context].size;
+    
+    size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height));
+    
+    return size.height;
 }
 
 - (void)didReceiveMemoryWarning
@@ -24,4 +56,8 @@
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)Back_Click:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
