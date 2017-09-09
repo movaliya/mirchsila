@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsVW : UIViewController
-
+{
+    
+}
+@property (strong, nonatomic) IBOutlet UITableView *News_TBL;
 @end

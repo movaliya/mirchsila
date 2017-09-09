@@ -7,35 +7,93 @@
 //
 
 #import "NewsVW.h"
+#import "NewsCell.h"
 
 @interface NewsVW ()
-
+{
+    NSMutableArray *ImageNameSection;
+}
 @end
 
 @implementation NewsVW
+@synthesize News_TBL;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
+
+    
+    static NSString *CellIdentifier = @"NewsCell";
+    UINib *nib = [UINib nibWithNibName:@"NewsCell" bundle:nil];
+    [News_TBL registerNib:nib forCellReuseIdentifier:CellIdentifier];
+    News_TBL.estimatedRowHeight = 220;
+    News_TBL.rowHeight = UITableViewAutomaticDimension;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)backBtn_action:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 5.0f;
 }
-*/
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *v = [UIView new];
+    [v setBackgroundColor:[UIColor clearColor]];
+    return v;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return ImageNameSection.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"NewsCell";
+    NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell=nil;
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
+    cell.NewsIMG.image=[UIImage imageNamed:[ImageNameSection objectAtIndex:indexPath.row]];
+    
+    cell.NewsTitle_LBL.text=@"Good Morning Update";
+    cell.Date_LBL.text=@"2017-07-03";    
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return  cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return 75.0f;
+}
 
 @end

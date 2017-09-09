@@ -4405,14 +4405,29 @@
                                     <constraint firstItem="w2I-3q-fIT" firstAttribute="leading" secondItem="TeP-eM-RGi" secondAttribute="trailing" constant="20" id="oT4-Xe-qIV"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CTk-lu-vOt">
+                                <rect key="frame" x="0.0" y="70" width="320" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fIz-hj-svw" id="B6i-gi-aVS"/>
+                                    <outlet property="delegate" destination="fIz-hj-svw" id="8Vc-kj-K7T"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CTk-lu-vOt" firstAttribute="leading" secondItem="H47-c1-wEd" secondAttribute="leading" id="Asn-YQ-HhS"/>
                             <constraint firstItem="XRH-M5-SYY" firstAttribute="leading" secondItem="H47-c1-wEd" secondAttribute="leading" id="BrY-1Z-4cD"/>
                             <constraint firstItem="XRH-M5-SYY" firstAttribute="top" secondItem="H47-c1-wEd" secondAttribute="top" id="H8S-Yo-YPq"/>
+                            <constraint firstAttribute="trailing" secondItem="CTk-lu-vOt" secondAttribute="trailing" id="Ocb-9w-Zd1"/>
                             <constraint firstAttribute="trailing" secondItem="XRH-M5-SYY" secondAttribute="trailing" id="S06-iF-AO4"/>
+                            <constraint firstItem="YTd-j6-azb" firstAttribute="top" secondItem="CTk-lu-vOt" secondAttribute="bottom" id="VTH-U6-w14"/>
+                            <constraint firstItem="CTk-lu-vOt" firstAttribute="top" secondItem="XRH-M5-SYY" secondAttribute="bottom" id="YB5-0y-LYU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="News_TBL" destination="CTk-lu-vOt" id="BXF-Q7-AL6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnI-WQ-HQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4619,7 +4634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOz-JF-xCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.5" y="280.98591549295776"/>
+            <point key="canvasLocation" x="1849" y="281"/>
         </scene>
         <!--Reservation SubVW-->
         <scene sceneID="eHy-QT-QaA">
@@ -4876,7 +4891,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W26-Vp-eNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711.875" y="280.98591549295776"/>
+            <point key="canvasLocation" x="2488" y="281"/>
+        </scene>
+        <!--News Full View-->
+        <scene sceneID="yIB-nB-2IN">
+            <objects>
+                <viewController storyboardIdentifier="NewsFullView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="K7d-Lh-aAv" customClass="NewsFullView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Ch-8u-D4M"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ikc-oM-ni4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B6U-hc-kto">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWF-AC-aog">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySQ-0y-eK4">
+                                        <rect key="frame" x="0.0" y="20" width="50" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="YnX-QH-rzl"/>
+                                            <constraint firstAttribute="height" constant="43" id="ffl-qv-ILd"/>
+                                        </constraints>
+                                        <state key="normal" title="   " image="WhiteBackBtn"/>
+                                        <connections>
+                                            <action selector="backBtn_Action:" destination="K7d-Lh-aAv" eventType="touchUpInside" id="AuY-g6-L91"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reservation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1U-dR-9sq">
+                                        <rect key="frame" x="70" y="29.5" width="109" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.77647058820000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="CGd-6n-1h5"/>
+                                    <constraint firstItem="ySQ-0y-eK4" firstAttribute="centerY" secondItem="j1U-dR-9sq" secondAttribute="centerY" id="KXX-hC-gKo"/>
+                                    <constraint firstItem="j1U-dR-9sq" firstAttribute="leading" secondItem="ySQ-0y-eK4" secondAttribute="trailing" constant="20" id="cFA-vn-iNc"/>
+                                    <constraint firstItem="ySQ-0y-eK4" firstAttribute="leading" secondItem="XWF-AC-aog" secondAttribute="leading" id="sVR-cv-QbD"/>
+                                    <constraint firstAttribute="bottom" secondItem="ySQ-0y-eK4" secondAttribute="bottom" constant="7" id="zK8-wT-cgv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XWF-AC-aog" secondAttribute="trailing" id="1p0-VP-h6d"/>
+                            <constraint firstItem="XWF-AC-aog" firstAttribute="leading" secondItem="B6U-hc-kto" secondAttribute="leading" id="33c-Q8-Pl2"/>
+                            <constraint firstItem="XWF-AC-aog" firstAttribute="top" secondItem="B6U-hc-kto" secondAttribute="top" id="n1J-nL-MG9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SHY-eJ-V4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1129" y="281"/>
         </scene>
     </scenes>
     <resources>

@@ -157,6 +157,9 @@
 		B15F7A851E6C3964004A4D32 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F7A721E6C3964004A4D32 /* UIProgressView+AFNetworking.m */; };
 		B15F7A861E6C3964004A4D32 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F7A741E6C3964004A4D32 /* UIRefreshControl+AFNetworking.m */; };
 		B15F7A871E6C3964004A4D32 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F7A761E6C3964004A4D32 /* UIWebView+AFNetworking.m */; };
+		B1BE0CBD1F64222900DD052A /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE0CBB1F64222900DD052A /* NewsCell.m */; };
+		B1BE0CBE1F64222900DD052A /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1BE0CBC1F64222900DD052A /* NewsCell.xib */; };
+		B1BE0CC11F642A0800DD052A /* NewsFullView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE0CC01F642A0800DD052A /* NewsFullView.m */; };
 		B1C4EBAB1E6B069C00111837 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C4EBAA1E6B069C00111837 /* CoreLocation.framework */; };
 		B1C4EBAD1E6B06CE00111837 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C4EBAC1E6B06CE00111837 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
@@ -435,6 +438,11 @@
 		B15F7A741E6C3964004A4D32 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		B15F7A751E6C3964004A4D32 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		B15F7A761E6C3964004A4D32 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		B1BE0CBA1F64222900DD052A /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		B1BE0CBB1F64222900DD052A /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		B1BE0CBC1F64222900DD052A /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		B1BE0CBF1F642A0800DD052A /* NewsFullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFullView.h; sourceTree = "<group>"; };
+		B1BE0CC01F642A0800DD052A /* NewsFullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFullView.m; sourceTree = "<group>"; };
 		B1C4EBAA1E6B069C00111837 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B1C4EBAC1E6B06CE00111837 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -561,6 +569,9 @@
 				537130FA1F63C06800211643 /* CVCell.h */,
 				537130FB1F63C06800211643 /* CVCell.m */,
 				537130FC1F63C06800211643 /* CVCell.xib */,
+				B1BE0CBA1F64222900DD052A /* NewsCell.h */,
+				B1BE0CBB1F64222900DD052A /* NewsCell.m */,
+				B1BE0CBC1F64222900DD052A /* NewsCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -606,6 +617,8 @@
 				537131041F63CE9000211643 /* GalleryVW.m */,
 				537131061F63D2E800211643 /* NewsVW.h */,
 				537131071F63D2E800211643 /* NewsVW.m */,
+				B1BE0CBF1F642A0800DD052A /* NewsFullView.h */,
+				B1BE0CC01F642A0800DD052A /* NewsFullView.m */,
 				537131091F63D8F700211643 /* ReservationVW.h */,
 				5371310A1F63D8F700211643 /* ReservationVW.m */,
 				5371310C1F63DCE900211643 /* ReservationSubVW.h */,
@@ -1040,6 +1053,7 @@
 				53BBBD171E853A6900E4DC73 /* Icon-App-20x20@3x.png in Resources */,
 				53BBBCFE1E853A5C00E4DC73 /* iTunesArtwork@3x.png in Resources */,
 				53BBBD221E853A6900E4DC73 /* Icon-App-60x60@3x.png in Resources */,
+				B1BE0CBE1F64222900DD052A /* NewsCell.xib in Resources */,
 				53BBBCFD1E853A5C00E4DC73 /* iTunesArtwork@2x.png in Resources */,
 				53BBBD2A1E853A6900E4DC73 /* Icon-Small-50x50@2x.png in Resources */,
 				53BBBD261E853A6900E4DC73 /* Icon-App-76x76@2x.png in Resources */,
@@ -1132,6 +1146,7 @@
 				B15F7A131E6C3665004A4D32 /* IQToolbar.m in Sources */,
 				B15F7A161E6C3665004A4D32 /* UIColor+KVNContrast.m in Sources */,
 				B15F7A171E6C3665004A4D32 /* UIImage+KVNEmpty.m in Sources */,
+				B1BE0CC11F642A0800DD052A /* NewsFullView.m in Sources */,
 				B15F7A121E6C3665004A4D32 /* IQTitleBarButtonItem.m in Sources */,
 				5307923F1E6FE124005426ED /* CCKFNavDrawer.m in Sources */,
 				B15F7A2D1E6C3665004A4D32 /* SDWebImagePrefetcher.m in Sources */,
@@ -1155,6 +1170,7 @@
 				537130FD1F63C06800211643 /* CVCell.m in Sources */,
 				B15F7A0F1E6C3665004A4D32 /* IQTextView.m in Sources */,
 				B15F7A7E1E6C3964004A4D32 /* AFURLRequestSerialization.m in Sources */,
+				B1BE0CBD1F64222900DD052A /* NewsCell.m in Sources */,
 				530BFA4A1E791B3C00AE5502 /* CheckOut_AddressVIEW.m in Sources */,
 				530EA8F41E6DA77F00A61A88 /* SubitemCell.m in Sources */,
 				530EA8EF1E6DA68D00A61A88 /* SubItemView.m in Sources */,
