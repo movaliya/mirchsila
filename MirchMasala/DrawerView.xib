@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="DrawerView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" tag="24" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ayb-lG-IQ5">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-v4-3jx">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="480"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-1E-P1A">
+                            <rect key="frame" x="18" y="31" width="26" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="cjJ-Kn-Cfo"/>
+                                <constraint firstAttribute="width" constant="26" id="gy6-RZ-tdG"/>
+                            </constraints>
+                            <state key="normal" image="OrangeBack"/>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="LGf-Kt-JYz">
+                            <rect key="frame" x="55.5" y="60" width="130" height="130"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="130" id="4m1-LJ-ZR8"/>
+                                <constraint firstAttribute="width" constant="130" id="pZ1-86-dWv"/>
+                            </constraints>
+                        </imageView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-hw-wWg">
+                            <rect key="frame" x="0.0" y="211" width="240" height="269"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="adJ-1E-P1A" firstAttribute="leading" secondItem="tXO-v4-3jx" secondAttribute="leading" constant="18" id="2lc-Cu-Tae"/>
+                        <constraint firstItem="ucE-hw-wWg" firstAttribute="leading" secondItem="tXO-v4-3jx" secondAttribute="leading" id="5A4-AQ-JdH"/>
+                        <constraint firstItem="LGf-Kt-JYz" firstAttribute="top" secondItem="tXO-v4-3jx" secondAttribute="top" constant="60" id="7R8-iA-jOL"/>
+                        <constraint firstAttribute="trailing" secondItem="ucE-hw-wWg" secondAttribute="trailing" id="832-MK-uDo"/>
+                        <constraint firstItem="LGf-Kt-JYz" firstAttribute="centerX" secondItem="tXO-v4-3jx" secondAttribute="centerX" id="WHL-7k-7hk"/>
+                        <constraint firstItem="adJ-1E-P1A" firstAttribute="top" secondItem="tXO-v4-3jx" secondAttribute="top" constant="31" id="Y0L-yb-hit"/>
+                        <constraint firstAttribute="bottom" secondItem="ucE-hw-wWg" secondAttribute="bottom" id="gfE-1p-FHD"/>
+                        <constraint firstItem="ucE-hw-wWg" firstAttribute="top" secondItem="LGf-Kt-JYz" secondAttribute="bottom" constant="21" id="o7G-GN-Jvt"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ayb-lG-IQ5" secondAttribute="bottom" id="9GJ-Bf-vYJ"/>
+                <constraint firstAttribute="trailing" secondItem="ayb-lG-IQ5" secondAttribute="trailing" id="BTI-lu-aQE"/>
+                <constraint firstItem="ayb-lG-IQ5" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="NIu-kf-jCB"/>
+                <constraint firstItem="tXO-v4-3jx" firstAttribute="width" secondItem="ayb-lG-IQ5" secondAttribute="width" multiplier="0.75" id="VvX-7y-Uzf"/>
+                <constraint firstItem="tXO-v4-3jx" firstAttribute="top" secondItem="1" secondAttribute="top" id="Xro-bS-HYO"/>
+                <constraint firstItem="ayb-lG-IQ5" firstAttribute="top" secondItem="1" secondAttribute="top" id="fgo-s8-QP0"/>
+                <constraint firstAttribute="bottom" secondItem="tXO-v4-3jx" secondAttribute="bottom" id="fzI-Gm-FBB"/>
+                <constraint firstItem="tXO-v4-3jx" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="wHN-jn-b0y"/>
+            </constraints>
+            <connections>
+                <outlet property="Back_BTN" destination="adJ-1E-P1A" id="6BK-FJ-bmL"/>
+                <outlet property="drawerTableView" destination="ucE-hw-wWg" id="UN4-Hz-JGY"/>
+            </connections>
+            <point key="canvasLocation" x="81.5" y="310.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LoginLogo" width="156" height="150"/>
+        <image name="OrangeBack" width="42" height="43"/>
+    </resources>
+</document>
