@@ -20,7 +20,7 @@
     self.BackView.layer.masksToBounds = NO;
     self.BackView.layer.shadowOffset = CGSizeMake(0, 1);
     self.BackView.layer.shadowRadius = 1.0;
-    self.BackView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.BackView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
     self.BackView.layer.shadowOpacity = 0.5;
     
     // Do any additional setup after loading the view.

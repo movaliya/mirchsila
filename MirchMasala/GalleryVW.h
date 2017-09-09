@@ -10,4 +10,5 @@
 
 @interface GalleryVW : UIViewController
 
+@property (strong, nonatomic) IBOutlet UICollectionView *IMGCollection;
 @end

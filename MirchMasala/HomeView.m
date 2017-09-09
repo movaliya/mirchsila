@@ -197,15 +197,15 @@
     CGSize mElementSize;
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        mElementSize = CGSizeMake(70, 100);
+        mElementSize = CGSizeMake(90, 120);
     }
     else if (IS_IPHONE_6)
     {
-        mElementSize = CGSizeMake(140, 140);
+        mElementSize = CGSizeMake(105, 140);
     }
-    else if (IS_IPHONE_6P)
+    else
     {
-        mElementSize = CGSizeMake(150, 150);
+        mElementSize = CGSizeMake(120, 150);
     }
     return mElementSize;
 }
@@ -213,8 +213,21 @@
     return 2.0;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 20.0;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        return 12.0;
+    }
+    else if (IS_IPHONE_6)
+    {
+        return 10.0;
+    }
+    else if (IS_IPHONE_6P)
+    {
+        return 15.0;
+    }
+    return 15.0;
 }
 
 // Layout: Set Edges
@@ -223,18 +236,18 @@
 {
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        return UIEdgeInsetsMake(15,25,10,25);  // top, left, bottom, right
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
     }
     else if (IS_IPHONE_6)
     {
-        return UIEdgeInsetsMake(15,28,10,28);  // top, left, bottom, right
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
     }
     else if (IS_IPHONE_6P)
     {
-        return UIEdgeInsetsMake(15,33,10,33);  // top, left, bottom, right
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
     }
     
-    return UIEdgeInsetsMake(15,25,10,25);  // top, left, bottom, right
+    return UIEdgeInsetsMake(10,15,10,15);  // top, left, bottom, right
 }
 
 
