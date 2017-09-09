@@ -12,7 +12,6 @@
 		530792411E6FE124005426ED /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307923B1E6FE124005426ED /* DrawerView.m */; };
 		530792421E6FE124005426ED /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307923D1E6FE124005426ED /* MenuCell.m */; };
 		530792431E6FE124005426ED /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5307923E1E6FE124005426ED /* MenuCell.xib */; };
-		530792461E6FE415005426ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530792441E6FE415005426ED /* Main.storyboard */; };
 		5307924A1E702274005426ED /* CartGrandTotalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530792481E702274005426ED /* CartGrandTotalCell.m */; };
 		5307924B1E702274005426ED /* CartGrandTotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530792491E702274005426ED /* CartGrandTotalCell.xib */; };
 		5307989C1E79947A005BA050 /* successMessageVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307989B1E79947A005BA050 /* successMessageVW.m */; };
@@ -73,7 +72,8 @@
 		537131051F63CE9000211643 /* GalleryVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 537131041F63CE9000211643 /* GalleryVW.m */; };
 		537131081F63D2E800211643 /* NewsVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 537131071F63D2E800211643 /* NewsVW.m */; };
 		5371310B1F63D8F700211643 /* ReservationVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5371310A1F63D8F700211643 /* ReservationVW.m */; };
-		5371310E1F63DCE900211643 /* ReservationSubVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5371310D1F63DCE900211643 /* ReservationSubVW.m */; };
+		537131111F6411CA00211643 /* ReservationSubVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 537131101F6411CA00211643 /* ReservationSubVW.m */; };
+		537131131F64120700211643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537131121F64120700211643 /* Main.storyboard */; };
 		53BBBCFC1E853A5C00E4DC73 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BBBCF91E853A5C00E4DC73 /* iTunesArtwork@1x.png */; };
 		53BBBCFD1E853A5C00E4DC73 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BBBCFA1E853A5C00E4DC73 /* iTunesArtwork@2x.png */; };
 		53BBBCFE1E853A5C00E4DC73 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BBBCFB1E853A5C00E4DC73 /* iTunesArtwork@3x.png */; };
@@ -195,7 +195,6 @@
 		5307923C1E6FE124005426ED /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		5307923D1E6FE124005426ED /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		5307923E1E6FE124005426ED /* MenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
-		530792451E6FE415005426ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		530792471E702274005426ED /* CartGrandTotalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartGrandTotalCell.h; sourceTree = "<group>"; };
 		530792481E702274005426ED /* CartGrandTotalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartGrandTotalCell.m; sourceTree = "<group>"; };
 		530792491E702274005426ED /* CartGrandTotalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartGrandTotalCell.xib; sourceTree = "<group>"; };
@@ -288,8 +287,9 @@
 		537131071F63D2E800211643 /* NewsVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsVW.m; sourceTree = "<group>"; };
 		537131091F63D8F700211643 /* ReservationVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationVW.h; sourceTree = "<group>"; };
 		5371310A1F63D8F700211643 /* ReservationVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationVW.m; sourceTree = "<group>"; };
-		5371310C1F63DCE900211643 /* ReservationSubVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationSubVW.h; sourceTree = "<group>"; };
-		5371310D1F63DCE900211643 /* ReservationSubVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationSubVW.m; sourceTree = "<group>"; };
+		5371310F1F6411CA00211643 /* ReservationSubVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationSubVW.h; sourceTree = "<group>"; };
+		537131101F6411CA00211643 /* ReservationSubVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationSubVW.m; sourceTree = "<group>"; };
+		537131121F64120700211643 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		53BBBCF91E853A5C00E4DC73 /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		53BBBCFA1E853A5C00E4DC73 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		53BBBCFB1E853A5C00E4DC73 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
@@ -608,8 +608,8 @@
 				537131071F63D2E800211643 /* NewsVW.m */,
 				537131091F63D8F700211643 /* ReservationVW.h */,
 				5371310A1F63D8F700211643 /* ReservationVW.m */,
-				5371310C1F63DCE900211643 /* ReservationSubVW.h */,
-				5371310D1F63DCE900211643 /* ReservationSubVW.m */,
+				5371310F1F6411CA00211643 /* ReservationSubVW.h */,
+				537131101F6411CA00211643 /* ReservationSubVW.m */,
 				530EA8ED1E6DA68D00A61A88 /* SubItemView.h */,
 				530EA8EE1E6DA68D00A61A88 /* SubItemView.m */,
 				530EA8FC1E6DB64700A61A88 /* cartView.h */,
@@ -627,7 +627,7 @@
 				530979E01E74276A00385083 /* ProfileView.m */,
 				530BA8E11E7C5ACA002FDCA2 /* ShoppingPolicy_View.h */,
 				530BA8E21E7C5ACA002FDCA2 /* ShoppingPolicy_View.m */,
-				530792441E6FE415005426ED /* Main.storyboard */,
+				537131121F64120700211643 /* Main.storyboard */,
 				5310CC001E6AADE700091333 /* CommanClass */,
 				5310CBEB1E6A957800091333 /* Assets.xcassets */,
 				5310CBFF1E6AAD2200091333 /* MirchMasala.pch */,
@@ -1016,7 +1016,6 @@
 				530BEF7B1E718D8000614BF8 /* OrderDetailLowerCell.xib in Resources */,
 				530EA8F51E6DA77F00A61A88 /* SubitemCell.xib in Resources */,
 				530C39BB1E6BE47C0073AA78 /* Logo.png in Resources */,
-				530792461E6FE415005426ED /* Main.storyboard in Resources */,
 				53BBBCFC1E853A5C00E4DC73 /* iTunesArtwork@1x.png in Resources */,
 				53BBBD1A1E853A6900E4DC73 /* Icon-App-29x29@3x.png in Resources */,
 				5310CBEF1E6A957800091333 /* LaunchScreen.storyboard in Resources */,
@@ -1031,6 +1030,7 @@
 				53BBBD281E853A6900E4DC73 /* Icon-App-83.5x83.5@2x.png in Resources */,
 				5307924B1E702274005426ED /* CartGrandTotalCell.xib in Resources */,
 				530792431E6FE124005426ED /* MenuCell.xib in Resources */,
+				537131131F64120700211643 /* Main.storyboard in Resources */,
 				5310CBEC1E6A957800091333 /* Assets.xcassets in Resources */,
 				53BBBD191E853A6900E4DC73 /* Icon-App-29x29@2x.png in Resources */,
 				537131021F63C1B000211643 /* gallery.png in Resources */,
@@ -1137,7 +1137,7 @@
 				B15F7A2D1E6C3665004A4D32 /* SDWebImagePrefetcher.m in Sources */,
 				530EA9021E6DBB1000A61A88 /* CartTableCell.m in Sources */,
 				530EA8FE1E6DB64700A61A88 /* cartView.m in Sources */,
-				5371310E1F63DCE900211643 /* ReservationSubVW.m in Sources */,
+				537131111F6411CA00211643 /* ReservationSubVW.m in Sources */,
 				B15F7A111E6C3665004A4D32 /* IQPreviousNextView.m in Sources */,
 				5371310B1F63D8F700211643 /* ReservationVW.m in Sources */,
 				B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */,
@@ -1174,14 +1174,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		530792441E6FE415005426ED /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				530792451E6FE415005426ED /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5310CBED1E6A957800091333 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
