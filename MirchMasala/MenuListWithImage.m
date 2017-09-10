@@ -18,11 +18,11 @@
 @end
 
 @implementation MenuListWithImage
-@synthesize IMGCollection;
+@synthesize IMGCollection,categoryName,CategoryId;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     
     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
     TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Chiken",@"Tandoori",@"Masala",@"Ringa",@"Bateta",@"Oroo rotala", nil];
@@ -112,6 +112,8 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark Collection view layout things
+#pragma mark COLLECTION VIEW
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -122,7 +124,8 @@
     return 6;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
     // Setup cell identifier
     static NSString *cellIdentifier = @"cvCell";
@@ -150,7 +153,8 @@
     return cell;
     
 }
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
     
 }
@@ -215,14 +219,6 @@
     
     return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

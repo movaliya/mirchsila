@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SubitemCellWithIMG">
+            <rect key="frame" x="0.0" y="0.0" width="179" height="222"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="179" height="222"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart.png" translatesAutoresizingMaskIntoConstraints="NO" id="Msi-HZ-2MW">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="222"/>
+                    </imageView>
+                    <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODG-LI-ZDX">
+                        <rect key="frame" x="0.0" y="182" width="179" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quH-U9-3cw">
+                                <rect key="frame" x="5" y="10" width="169" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="2fg-fW-yPk"/>
+                            <constraint firstItem="quH-U9-3cw" firstAttribute="centerY" secondItem="ODG-LI-ZDX" secondAttribute="centerY" id="3VP-CL-zpL"/>
+                            <constraint firstAttribute="trailing" secondItem="quH-U9-3cw" secondAttribute="trailing" constant="5" id="4It-A3-1jy"/>
+                            <constraint firstItem="quH-U9-3cw" firstAttribute="leading" secondItem="ODG-LI-ZDX" secondAttribute="leading" constant="5" id="Son-UW-0T0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Msi-HZ-2MW" secondAttribute="bottom" id="ESz-DL-qm3"/>
+                <constraint firstAttribute="trailing" secondItem="ODG-LI-ZDX" secondAttribute="trailing" id="PYp-h2-PaB"/>
+                <constraint firstItem="ODG-LI-ZDX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cay-eB-yTY"/>
+                <constraint firstAttribute="bottom" secondItem="ODG-LI-ZDX" secondAttribute="bottom" id="f3l-WO-H6H"/>
+                <constraint firstItem="Msi-HZ-2MW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iVP-As-OYz"/>
+                <constraint firstAttribute="trailing" secondItem="Msi-HZ-2MW" secondAttribute="trailing" id="nrY-8R-Eh1"/>
+                <constraint firstItem="Msi-HZ-2MW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xxs-Fw-Jc0"/>
+            </constraints>
+            <size key="customSize" width="179" height="222"/>
+            <connections>
+                <outlet property="ItemIMG" destination="Msi-HZ-2MW" id="mjy-VS-eKG"/>
+                <outlet property="ItemTitel_LBL" destination="quH-U9-3cw" id="Uvq-5T-gYR"/>
+            </connections>
+            <point key="canvasLocation" x="99.5" y="90"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="cart.png" width="100" height="150"/>
+    </resources>
+</document>

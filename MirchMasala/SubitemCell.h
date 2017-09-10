@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *Quatity_LBL;
 @property (strong, nonatomic) IBOutlet UIButton *Cart_BTN;
 
+@property (strong, nonatomic) IBOutlet UIView *BackView;
 @end

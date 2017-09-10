@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *CategoryTitleLBL;
 
 @property (weak, nonatomic) IBOutlet UITableView *ItemTableView;
+@property (strong, nonatomic) IBOutlet UICollectionView *ItemCollectionView;
+
 - (IBAction)BackBtn_action:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIView *OptionView;

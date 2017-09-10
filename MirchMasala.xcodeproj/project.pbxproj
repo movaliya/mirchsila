@@ -110,6 +110,8 @@
 		B153B3B11F6519A800DE8514 /* CategoriesCellWithIMG.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3AF1F6519A800DE8514 /* CategoriesCellWithIMG.m */; };
 		B153B3B21F6519A800DE8514 /* CategoriesCellWithIMG.xib in Resources */ = {isa = PBXBuildFile; fileRef = B153B3B01F6519A800DE8514 /* CategoriesCellWithIMG.xib */; };
 		B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B153B3B31F6519C500DE8514 /* slider_image_1.png */; };
+		B153B3B81F657DBD00DE8514 /* SubitemCellWithIMG.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3B61F657DBD00DE8514 /* SubitemCellWithIMG.m */; };
+		B153B3B91F657DBD00DE8514 /* SubitemCellWithIMG.xib in Resources */ = {isa = PBXBuildFile; fileRef = B153B3B71F657DBD00DE8514 /* SubitemCellWithIMG.xib */; };
 		B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */; };
 		B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799C1E6C3665004A4D32 /* IQUIScrollView+Additions.m */; };
 		B15F7A091E6C3665004A4D32 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799E1E6C3665004A4D32 /* IQUITextFieldView+Additions.m */; };
@@ -343,6 +345,9 @@
 		B153B3AF1F6519A800DE8514 /* CategoriesCellWithIMG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesCellWithIMG.m; sourceTree = "<group>"; };
 		B153B3B01F6519A800DE8514 /* CategoriesCellWithIMG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesCellWithIMG.xib; sourceTree = "<group>"; };
 		B153B3B31F6519C500DE8514 /* slider_image_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_image_1.png; sourceTree = "<group>"; };
+		B153B3B51F657DBD00DE8514 /* SubitemCellWithIMG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubitemCellWithIMG.h; sourceTree = "<group>"; };
+		B153B3B61F657DBD00DE8514 /* SubitemCellWithIMG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubitemCellWithIMG.m; sourceTree = "<group>"; };
+		B153B3B71F657DBD00DE8514 /* SubitemCellWithIMG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubitemCellWithIMG.xib; sourceTree = "<group>"; };
 		B15F79991E6C3665004A4D32 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		B15F799B1E6C3665004A4D32 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -575,6 +580,9 @@
 				530EA8F11E6DA77F00A61A88 /* SubitemCell.h */,
 				530EA8F21E6DA77F00A61A88 /* SubitemCell.m */,
 				530EA8F31E6DA77F00A61A88 /* SubitemCell.xib */,
+				B153B3B51F657DBD00DE8514 /* SubitemCellWithIMG.h */,
+				B153B3B61F657DBD00DE8514 /* SubitemCellWithIMG.m */,
+				B153B3B71F657DBD00DE8514 /* SubitemCellWithIMG.xib */,
 				5309EDD41E6EC3EB00A216F2 /* CategoriesCell.h */,
 				5309EDD51E6EC3EB00A216F2 /* CategoriesCell.m */,
 				5309EDD61E6EC3EB00A216F2 /* CategoriesCell.xib */,
@@ -633,6 +641,8 @@
 				530C39C01E6C340A0073AA78 /* ForgotPasswordView.m */,
 				B13A04601E7BBF430048F36D /* RestaurantMenuView.h */,
 				B13A04611E7BBF430048F36D /* RestaurantMenuView.m */,
+				530EA8ED1E6DA68D00A61A88 /* SubItemView.h */,
+				530EA8EE1E6DA68D00A61A88 /* SubItemView.m */,
 				538991BE1F65156F0054AE66 /* MenuListWithImage.h */,
 				538991BF1F65156F0054AE66 /* MenuListWithImage.m */,
 				5309EDD11E6EA8D400A216F2 /* HomeView.h */,
@@ -647,8 +657,6 @@
 				5371310A1F63D8F700211643 /* ReservationVW.m */,
 				5371310F1F6411CA00211643 /* ReservationSubVW.h */,
 				537131101F6411CA00211643 /* ReservationSubVW.m */,
-				530EA8ED1E6DA68D00A61A88 /* SubItemView.h */,
-				530EA8EE1E6DA68D00A61A88 /* SubItemView.m */,
 				530EA8FC1E6DB64700A61A88 /* cartView.h */,
 				530EA8FD1E6DB64700A61A88 /* cartView.m */,
 				530BFA471E791B0800AE5502 /* CheckOut */,
@@ -1064,6 +1072,7 @@
 				530BFA561E794B5A00AE5502 /* OrderSummay_Detail.xib in Resources */,
 				53BBBD251E853A6900E4DC73 /* Icon-App-76x76@1x.png in Resources */,
 				B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */,
+				B153B3B91F657DBD00DE8514 /* SubitemCellWithIMG.xib in Resources */,
 				B13BC3561EC2252F00F40DB0 /* CommentTextCell.xib in Resources */,
 				537131011F63C1B000211643 /* cart.png in Resources */,
 				53BBBD281E853A6900E4DC73 /* Icon-App-83.5x83.5@2x.png in Resources */,
@@ -1130,6 +1139,7 @@
 				530BEF751E718D6700614BF8 /* OderDetailUperCell.m in Sources */,
 				530C39C11E6C340A0073AA78 /* ForgotPasswordView.m in Sources */,
 				5310CBE41E6A957800091333 /* AppDelegate.m in Sources */,
+				B153B3B81F657DBD00DE8514 /* SubitemCellWithIMG.m in Sources */,
 				B15F7A7C1E6C3964004A4D32 /* AFSecurityPolicy.m in Sources */,
 				5309EDD31E6EA8D400A216F2 /* HomeView.m in Sources */,
 				B1451E221E6DE5E800E98C7C /* AFImageDownloader.m in Sources */,

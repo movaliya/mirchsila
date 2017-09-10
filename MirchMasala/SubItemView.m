@@ -12,12 +12,14 @@
 #import "AppDelegate.h"
 #import "LoginVW.h"
 #import "cartView.h"
+#import "SubitemCellWithIMG.h"
 
 @interface SubItemView ()
 {
     NSMutableArray *WithSelectArr,*WithoutSelectArr;
     NSMutableArray *withSelectMain,*withoutselectMain;
     NSMutableDictionary *Searchdic;
+    BOOL ImageFag;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *dic,*MainCount;
@@ -28,7 +30,7 @@
 @synthesize CategoryId,categoryName,CategoryTitleLBL;
 @synthesize dic,MainCount;
 @synthesize OptionView,WithTBL,WithoutTBL,CartNotification_LBL;
-@synthesize HeaderViewHight,HraderTitleY,SearchBR;
+@synthesize HeaderViewHight,HraderTitleY,SearchBR,ItemCollectionView;
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -38,6 +40,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //ItemCollectionView.hidden=YES;
+    ItemTableView.hidden=YES;
     
     SearchBR.hidden=YES;
     SearchBR.layer.borderWidth = 1;
@@ -69,11 +74,19 @@
     }
     
     OptionView.hidden=YES;
+    //Register Table Cell
     UINib *nib = [UINib nibWithNibName:@"SubitemCell" bundle:nil];
     SubitemCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     ItemTableView.rowHeight = cell.frame.size.height;
     [ItemTableView registerNib:nib forCellReuseIdentifier:@"SubitemCell"];
     CategoryTitleLBL.text=categoryName;
+    
+    //Register Collectionview Cell
+    [ItemCollectionView registerClass:[SubitemCellWithIMG class] forCellWithReuseIdentifier:@"SubitemCellWithIMG"];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(100, 150)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [ItemCollectionView setCollectionViewLayout:flowLayout];
     
     self.OptionTitleView.layer.masksToBounds = NO;
     self.OptionTitleView.layer.shadowOffset = CGSizeMake(0, 1);
@@ -153,13 +166,22 @@
              MainCount=[[NSMutableDictionary alloc]init];
              [dic setObject:arrayInt forKey:@"Count"];
              [MainCount setObject:arrayInt forKey:@"MainCount"];
+            
              
-             if (subCategoryDic) {
+             ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
+             ImageFag=YES;
+             
+             if (ImageFag==YES)
+             {
+                 ItemCollectionView.hidden=NO;
+                 [ItemCollectionView reloadData];
+             }
+             else
+             {
+                 ItemTableView.hidden=NO;
                  [ItemTableView reloadData];
              }
          }
-         
-         
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -167,6 +189,115 @@
          [KVNProgress dismiss] ;
      }];
 }
+
+
+#pragma mark Collection view layout things
+#pragma mark COLLECTION VIEW
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return subCategoryDic.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Setup cell identifier
+    static NSString *cellIdentifier = @"SubitemCellWithIMG";
+    
+    SubitemCellWithIMG *cell = (SubitemCellWithIMG *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    cell.layer.masksToBounds = NO;
+    cell.layer.shadowOffset = CGSizeMake(0, 1);
+    cell.layer.shadowRadius = 1.0;
+    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.layer.shadowOpacity = 0.5;
+    
+    // cell.Title_Hight.constant=0;
+    cell.ItemTitel_LBL.text=[[subCategoryDic valueForKey:@"productName"] objectAtIndex:indexPath.row];
+    
+    //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
+    
+    // [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    // [cell.IconImageview setShowActivityIndicatorView:YES];
+    
+    NSString *imagename=@"slider_image_1.png";
+    UIImage *imge=[UIImage imageNamed:imagename];
+    cell.ItemIMG.image=imge;
+    
+    return cell;
+    
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+
+#pragma mark Collection view layout things
+// Layout: Set cell size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize mElementSize;
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        mElementSize = CGSizeMake(139, 139);
+    }
+    else if (IS_IPHONE_6)
+    {
+        mElementSize = CGSizeMake(166, 166);
+    }
+    else
+    {
+        mElementSize = CGSizeMake(185, 185);
+    }
+    return mElementSize;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 2.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        return 12.0;
+    }
+    else if (IS_IPHONE_6)
+    {
+        return 10.0;
+    }
+    else if (IS_IPHONE_6P)
+    {
+        return 15.0;
+    }
+    return 15.0;
+}
+
+// Layout: Set Edges
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+    }
+    else if (IS_IPHONE_6)
+    {
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+    }
+    else if (IS_IPHONE_6P)
+    {
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+    }
+    
+    return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+}
+
 
 
 #pragma mark UITableView delegate
@@ -201,7 +332,7 @@
     {
         return 1;
     }
-    return 10.0f;
+    return 13.0f;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -951,4 +1082,5 @@
     SearchBR.text=@"";
     [SearchBR becomeFirstResponder];
 }
+
 @end

@@ -11,6 +11,7 @@
 #import "CategoriesCell.h"
 #import "SubItemView.h"
 #import "CategoriesCellWithIMG.h"
+#import "MenuListWithImage.h"
 
 @interface RestaurantMenuView ()
 {
@@ -208,10 +209,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
-    /*SubItemView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SubItemView"];
+    SubItemView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SubItemView"];
     vcr.CategoryId=[[topCategoriesDic valueForKey:@"id"] objectAtIndex:indexPath.section];
     vcr.categoryName=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.section];
-    [self.navigationController pushViewController:vcr animated:YES];*/
+    [self.navigationController pushViewController:vcr animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
