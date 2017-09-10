@@ -13,11 +13,13 @@
 #import "LoginVW.h"
 #import "cartView.h"
 #import "SubitemCellWithIMG.h"
+#import "SingleItemView.h"
 
 @interface SubItemView ()
 {
     NSMutableArray *WithSelectArr,*WithoutSelectArr;
     NSMutableArray *withSelectMain,*withoutselectMain;
+    NSMutableArray *PraseArr;
     NSMutableDictionary *Searchdic;
     BOOL ImageFag;
 }
@@ -45,8 +47,8 @@
     ItemTableView.hidden=YES;
     
     SearchBR.hidden=YES;
-    SearchBR.layer.borderWidth = 1;
-    SearchBR.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+    SearchBR.layer.borderWidth = 0.1;
+    SearchBR.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(198/255.0) blue:(143/255.0) alpha:1.0].CGColor;
     [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
     
     CartNotification_LBL.layer.masksToBounds = YES;
@@ -156,6 +158,7 @@
          if ([SUCCESS boolValue] ==YES)
          {
              subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
+             PraseArr=[subCategoryDic mutableCopy];
              
              Searchdic= subCategoryDic;
              
@@ -237,6 +240,11 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    SingleItemView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SingleItemView"];
+    vcr.ItemArr=[PraseArr objectAtIndex: indexPath.row];
+    vcr.CategoryId=CategoryId;
+    [self.navigationController  pushViewController:vcr animated:YES];
+    
     
     
 }
