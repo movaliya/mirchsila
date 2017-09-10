@@ -78,8 +78,12 @@
     UINib *nib = [UINib nibWithNibName:@"SubitemCell" bundle:nil];
     SubitemCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
     ItemTableView.rowHeight = cell.frame.size.height;
+    
     [ItemTableView registerNib:nib forCellReuseIdentifier:@"SubitemCell"];
     CategoryTitleLBL.text=categoryName;
+    
+    
+   
     
     //Register Collectionview Cell
     [ItemCollectionView registerClass:[SubitemCellWithIMG class] forCellWithReuseIdentifier:@"SubitemCellWithIMG"];
