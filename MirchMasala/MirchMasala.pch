@@ -72,14 +72,14 @@
 //#define kBaseURL    @"http://tiffintom.com/api/private/request/data/"
 
 //NEW URL
-#define kBaseURL    @"https://tiffintom.com/api/private/request/data/"
+#define kBaseURL    @"https://tiffintom.com/api/private/request/data"
 
 
 //Live Key
-#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
+//#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
 
 //Dummy Key
-//#define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
+#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
 
 
 
