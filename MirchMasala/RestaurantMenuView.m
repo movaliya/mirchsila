@@ -10,10 +10,12 @@
 #import "cartView.h"
 #import "CategoriesCell.h"
 #import "SubItemView.h"
+#import "CategoriesCellWithIMG.h"
 
 @interface RestaurantMenuView ()
 {
     NSMutableDictionary *Searchdic;
+    BOOL ImageFag;
 }
 @end
 
@@ -48,6 +50,11 @@
     }
 }
 
+-(void)RegisterCell :(NSString *)CellName
+{
+    UINib *nib = [UINib nibWithNibName:CellName bundle:nil];
+    [MenuTableView registerNib:nib forCellReuseIdentifier:CellName];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -66,11 +73,8 @@
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:YES];
     
-    
-    UINib *nib = [UINib nibWithNibName:@"CategoriesCell" bundle:nil];
-    CategoriesCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-    MenuTableView.rowHeight = cell.frame.size.height;
-    [MenuTableView registerNib:nib forCellReuseIdentifier:@"CategoriesCell"];
+    [self RegisterCell:@"CategoriesCell"];
+    [self RegisterCell:@"CategoriesCellWithIMG"];
     
     // Call Category List
     BOOL internet=[AppDelegate connectedToNetwork];
@@ -128,15 +132,17 @@
          {
              topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
              Searchdic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
+             ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
              
-             if (topCategoriesDic) {
+             ImageFag=YES;
+             
+             if (topCategoriesDic)
+             {
                  [MenuTableView reloadData];
              }
          }
-         
-         
      }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
          [KVNProgress dismiss] ;
@@ -167,31 +173,55 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CategoriesCell";
-    CategoriesCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell=nil;
-    if (cell == nil)
+    if (ImageFag==NO)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
+        static NSString *CellIdentifier = @"CategoriesCell";
+        CategoriesCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell=nil;
+        if (cell == nil)
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+        }
+        cell.TitleLable.text=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.section];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
     }
-    cell.TitleLable.text=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.section];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    return cell;
+    else
+    {
+        static NSString *CellIdentifier = @"CategoriesCellWithIMG";
+        CategoriesCellWithIMG *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell=nil;
+        if (cell == nil)
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+        }
+        cell.TitleLable.text=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.section];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        return cell;
+    }
+   
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
-    SubItemView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SubItemView"];
+    /*SubItemView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SubItemView"];
     vcr.CategoryId=[[topCategoriesDic valueForKey:@"id"] objectAtIndex:indexPath.section];
     vcr.categoryName=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.section];
-    [self.navigationController pushViewController:vcr animated:YES];
+    [self.navigationController pushViewController:vcr animated:YES];*/
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    if (ImageFag==NO)
+    {
+        return 44;
+    }
+    return 165;
+    
 }
 - (void)didReceiveMemoryWarning
 {

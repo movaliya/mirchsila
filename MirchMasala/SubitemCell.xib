@@ -32,7 +32,7 @@
                             <constraint firstAttribute="width" constant="40" id="pss-mi-UIp"/>
                             <constraint firstAttribute="height" constant="20" id="zlU-NM-E8O"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10.5"/>
                         <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -57,7 +57,7 @@
                         </state>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdA-Oz-KHS">
-                        <rect key="frame" x="54" y="33" width="75" height="24"/>
+                        <rect key="frame" x="51" y="33" width="75" height="24"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kwd-hn-gkJ">
                                 <rect key="frame" x="0.0" y="2.5" width="20" height="20"/>
@@ -99,7 +99,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-z5-4bq">
-                        <rect key="frame" x="144" y="35" width="51" height="20"/>
+                        <rect key="frame" x="141" y="35" width="51" height="20"/>
                         <color key="backgroundColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="MpK-el-MmD"/>
@@ -123,7 +123,7 @@
                     <constraint firstItem="9CQ-Rh-UzA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="hPK-pt-oeM"/>
                     <constraint firstItem="TV3-Oc-bla" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="hPV-FV-v7x"/>
                     <constraint firstItem="RVC-z5-4bq" firstAttribute="leading" secondItem="FdA-Oz-KHS" secondAttribute="trailing" constant="15" id="oT4-23-wDn"/>
-                    <constraint firstItem="FdA-Oz-KHS" firstAttribute="leading" secondItem="9CQ-Rh-UzA" secondAttribute="trailing" constant="8" id="plS-rt-pAL"/>
+                    <constraint firstItem="FdA-Oz-KHS" firstAttribute="leading" secondItem="9CQ-Rh-UzA" secondAttribute="trailing" constant="5" id="plS-rt-pAL"/>
                     <constraint firstItem="sZR-hz-2F0" firstAttribute="centerY" secondItem="iD4-L1-MFG" secondAttribute="centerY" id="vin-B7-K8l"/>
                 </constraints>
             </tableViewCellContentView>

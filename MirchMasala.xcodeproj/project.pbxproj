@@ -104,6 +104,9 @@
 		B13BC3561EC2252F00F40DB0 /* CommentTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13BC3541EC2252F00F40DB0 /* CommentTextCell.xib */; };
 		B1451E211E6DE5E800E98C7C /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B1451E1E1E6DE5E800E98C7C /* AFAutoPurgingImageCache.m */; };
 		B1451E221E6DE5E800E98C7C /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1451E201E6DE5E800E98C7C /* AFImageDownloader.m */; };
+		B153B3B11F6519A800DE8514 /* CategoriesCellWithIMG.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3AF1F6519A800DE8514 /* CategoriesCellWithIMG.m */; };
+		B153B3B21F6519A800DE8514 /* CategoriesCellWithIMG.xib in Resources */ = {isa = PBXBuildFile; fileRef = B153B3B01F6519A800DE8514 /* CategoriesCellWithIMG.xib */; };
+		B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B153B3B31F6519C500DE8514 /* slider_image_1.png */; };
 		B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */; };
 		B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799C1E6C3665004A4D32 /* IQUIScrollView+Additions.m */; };
 		B15F7A091E6C3665004A4D32 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799E1E6C3665004A4D32 /* IQUITextFieldView+Additions.m */; };
@@ -328,6 +331,10 @@
 		B1451E1E1E6DE5E800E98C7C /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAutoPurgingImageCache.m; sourceTree = "<group>"; };
 		B1451E1F1E6DE5E800E98C7C /* AFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageDownloader.h; sourceTree = "<group>"; };
 		B1451E201E6DE5E800E98C7C /* AFImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageDownloader.m; sourceTree = "<group>"; };
+		B153B3AE1F6519A800DE8514 /* CategoriesCellWithIMG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesCellWithIMG.h; sourceTree = "<group>"; };
+		B153B3AF1F6519A800DE8514 /* CategoriesCellWithIMG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesCellWithIMG.m; sourceTree = "<group>"; };
+		B153B3B01F6519A800DE8514 /* CategoriesCellWithIMG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesCellWithIMG.xib; sourceTree = "<group>"; };
+		B153B3B31F6519C500DE8514 /* slider_image_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_image_1.png; sourceTree = "<group>"; };
 		B15F79991E6C3665004A4D32 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		B15F799B1E6C3665004A4D32 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -563,6 +570,9 @@
 				5309EDD41E6EC3EB00A216F2 /* CategoriesCell.h */,
 				5309EDD51E6EC3EB00A216F2 /* CategoriesCell.m */,
 				5309EDD61E6EC3EB00A216F2 /* CategoriesCell.xib */,
+				B153B3AE1F6519A800DE8514 /* CategoriesCellWithIMG.h */,
+				B153B3AF1F6519A800DE8514 /* CategoriesCellWithIMG.m */,
+				B153B3B01F6519A800DE8514 /* CategoriesCellWithIMG.xib */,
 				530ECF421E713EBD0004F9AB /* OrderHistry_Cell.h */,
 				530ECF431E713EBD0004F9AB /* OrderHistry_Cell.m */,
 				530ECF441E713EBD0004F9AB /* OrderHistry_Cell.xib */,
@@ -596,6 +606,7 @@
 		5310CBDE1E6A957800091333 /* MirchMasala */ = {
 			isa = PBXGroup;
 			children = (
+				B153B3B31F6519C500DE8514 /* slider_image_1.png */,
 				53BBBCF81E853A4C00E4DC73 /* AppIcon */,
 				530792361E6FE104005426ED /* Side Menu */,
 				5310CBF81E6A95BE00091333 /* Images */,
@@ -1029,6 +1040,7 @@
 				530BEF7B1E718D8000614BF8 /* OrderDetailLowerCell.xib in Resources */,
 				530EA8F51E6DA77F00A61A88 /* SubitemCell.xib in Resources */,
 				530C39BB1E6BE47C0073AA78 /* Logo.png in Resources */,
+				B153B3B21F6519A800DE8514 /* CategoriesCellWithIMG.xib in Resources */,
 				53BBBCFC1E853A5C00E4DC73 /* iTunesArtwork@1x.png in Resources */,
 				53BBBD1A1E853A6900E4DC73 /* Icon-App-29x29@3x.png in Resources */,
 				5310CBEF1E6A957800091333 /* LaunchScreen.storyboard in Resources */,
@@ -1038,6 +1050,7 @@
 				530ECF461E713EBD0004F9AB /* OrderHistry_Cell.xib in Resources */,
 				530BFA561E794B5A00AE5502 /* OrderSummay_Detail.xib in Resources */,
 				53BBBD251E853A6900E4DC73 /* Icon-App-76x76@1x.png in Resources */,
+				B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */,
 				B13BC3561EC2252F00F40DB0 /* CommentTextCell.xib in Resources */,
 				537131011F63C1B000211643 /* cart.png in Resources */,
 				53BBBD281E853A6900E4DC73 /* Icon-App-83.5x83.5@2x.png in Resources */,
@@ -1132,6 +1145,7 @@
 				B13BC3551EC2252F00F40DB0 /* CommentTextCell.m in Sources */,
 				B15F7A811E6C3964004A4D32 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				B15F7A841E6C3964004A4D32 /* UIImageView+AFNetworking.m in Sources */,
+				B153B3B11F6519A800DE8514 /* CategoriesCellWithIMG.m in Sources */,
 				530BEF7A1E718D8000614BF8 /* OrderDetailLowerCell.m in Sources */,
 				B15F7A7F1E6C3964004A4D32 /* AFURLResponseSerialization.m in Sources */,
 				B15F7A1C1E6C3665004A4D32 /* Reachability.m in Sources */,

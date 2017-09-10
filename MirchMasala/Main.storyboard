@@ -4243,7 +4243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ty8-B8-8A9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOq-Ay-IQF">
                                         <rect key="frame" x="0.0" y="20" width="55" height="43"/>
@@ -4256,17 +4256,17 @@
                                             <action selector="Toggle_MenuBrtnAction:" destination="ZeB-yh-gxN" eventType="touchUpInside" id="0AP-gI-xHk"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nO-z7-gnb">
-                                        <rect key="frame" x="55" y="28" width="200" height="27"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Silsila" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nO-z7-gnb">
+                                        <rect key="frame" x="63" y="28" width="200" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="8KS-i4-FR6"/>
                                             <constraint firstAttribute="width" constant="200" id="H2v-LN-jU3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsq-qI-2gG">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsq-qI-2gG">
                                         <rect key="frame" x="229" y="20" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="43" id="Un6-PZ-yZb"/>
@@ -4300,19 +4300,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.37647058820000001" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.77647058820000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Hsq-qI-2gG" firstAttribute="centerY" secondItem="gRZ-0V-aGQ" secondAttribute="centerY" id="0In-LS-6js"/>
                                     <constraint firstItem="gRZ-0V-aGQ" firstAttribute="top" secondItem="Ty8-B8-8A9" secondAttribute="top" constant="20" id="AHp-D8-15y"/>
                                     <constraint firstItem="eOq-Ay-IQF" firstAttribute="top" secondItem="Ty8-B8-8A9" secondAttribute="top" constant="20" id="BHC-kS-o09"/>
                                     <constraint firstItem="shX-fQ-j0V" firstAttribute="top" secondItem="Ty8-B8-8A9" secondAttribute="top" constant="20" id="Mnu-z2-MtC"/>
-                                    <constraint firstItem="3nO-z7-gnb" firstAttribute="leading" secondItem="eOq-Ay-IQF" secondAttribute="trailing" id="NQa-Vk-YSJ"/>
+                                    <constraint firstItem="3nO-z7-gnb" firstAttribute="leading" secondItem="eOq-Ay-IQF" secondAttribute="trailing" constant="8" id="NQa-Vk-YSJ"/>
                                     <constraint firstItem="gRZ-0V-aGQ" firstAttribute="leading" secondItem="Hsq-qI-2gG" secondAttribute="trailing" constant="5" id="TmU-Wb-Zou"/>
                                     <constraint firstAttribute="trailing" secondItem="gRZ-0V-aGQ" secondAttribute="trailing" id="a6T-sg-Hay"/>
                                     <constraint firstAttribute="trailing" secondItem="shX-fQ-j0V" secondAttribute="trailing" constant="10" id="hxR-dY-uP4"/>
                                     <constraint firstItem="3nO-z7-gnb" firstAttribute="centerY" secondItem="eOq-Ay-IQF" secondAttribute="centerY" id="kkg-e2-dYn"/>
                                     <constraint firstItem="eOq-Ay-IQF" firstAttribute="leading" secondItem="Ty8-B8-8A9" secondAttribute="leading" id="s9P-cy-UW1"/>
-                                    <constraint firstAttribute="height" constant="80" id="x1m-6T-Ol4"/>
+                                    <constraint firstAttribute="height" constant="70" id="x1m-6T-Ol4"/>
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" placeholder="Search Restaurant Menu" translatesAutoresizingMaskIntoConstraints="NO" id="Fos-xK-6xS">
@@ -4322,14 +4322,14 @@
                                     <constraint firstAttribute="height" constant="44" id="jjD-Gw-NIV"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" red="0.96862745100000003" green="0.37647058820000001" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.81176470590000005" green="0.77647058820000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="ZeB-yh-gxN" id="aRw-pY-fMV"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Idi-Ph-3O2">
-                                <rect key="frame" x="16" y="80" width="288" height="486"/>
+                                <rect key="frame" x="16" y="70" width="288" height="496"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -5021,7 +5021,7 @@
         <image name="CalendarIcon" width="18" height="18"/>
         <image name="Emailicon" width="20" height="13"/>
         <image name="LoginLogo" width="156" height="150"/>
-        <image name="MenuBtn" width="24" height="16"/>
+        <image name="MenuBtn" width="24" height="24"/>
         <image name="MessageIconEnable" width="22" height="19"/>
         <image name="PasswordIcon" width="15" height="21"/>
         <image name="RadioOFF" width="15" height="15"/>
