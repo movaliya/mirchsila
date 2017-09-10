@@ -74,6 +74,9 @@
 		5371310B1F63D8F700211643 /* ReservationVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5371310A1F63D8F700211643 /* ReservationVW.m */; };
 		537131111F6411CA00211643 /* ReservationSubVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 537131101F6411CA00211643 /* ReservationSubVW.m */; };
 		537131151F64248100211643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537131141F64248100211643 /* Main.storyboard */; };
+		538991C01F65156F0054AE66 /* MenuListWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 538991BF1F65156F0054AE66 /* MenuListWithImage.m */; };
+		538991C41F6516690054AE66 /* MenuImageCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 538991C21F6516690054AE66 /* MenuImageCELL.m */; };
+		538991C51F6516690054AE66 /* MenuImageCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 538991C31F6516690054AE66 /* MenuImageCELL.xib */; };
 		53BBBCFC1E853A5C00E4DC73 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BBBCF91E853A5C00E4DC73 /* iTunesArtwork@1x.png */; };
 		53BBBCFD1E853A5C00E4DC73 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BBBCFA1E853A5C00E4DC73 /* iTunesArtwork@2x.png */; };
 		53BBBCFE1E853A5C00E4DC73 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BBBCFB1E853A5C00E4DC73 /* iTunesArtwork@3x.png */; };
@@ -296,6 +299,11 @@
 		5371310F1F6411CA00211643 /* ReservationSubVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationSubVW.h; sourceTree = "<group>"; };
 		537131101F6411CA00211643 /* ReservationSubVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationSubVW.m; sourceTree = "<group>"; };
 		537131141F64248100211643 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		538991BE1F65156F0054AE66 /* MenuListWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListWithImage.h; sourceTree = "<group>"; };
+		538991BF1F65156F0054AE66 /* MenuListWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListWithImage.m; sourceTree = "<group>"; };
+		538991C11F6516690054AE66 /* MenuImageCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuImageCELL.h; sourceTree = "<group>"; };
+		538991C21F6516690054AE66 /* MenuImageCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuImageCELL.m; sourceTree = "<group>"; };
+		538991C31F6516690054AE66 /* MenuImageCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuImageCELL.xib; sourceTree = "<group>"; };
 		53BBBCF91E853A5C00E4DC73 /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
 		53BBBCFA1E853A5C00E4DC73 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		53BBBCFB1E853A5C00E4DC73 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
@@ -579,6 +587,9 @@
 				537130FA1F63C06800211643 /* CVCell.h */,
 				537130FB1F63C06800211643 /* CVCell.m */,
 				537130FC1F63C06800211643 /* CVCell.xib */,
+				538991C11F6516690054AE66 /* MenuImageCELL.h */,
+				538991C21F6516690054AE66 /* MenuImageCELL.m */,
+				538991C31F6516690054AE66 /* MenuImageCELL.xib */,
 				B1BE0CBA1F64222900DD052A /* NewsCell.h */,
 				B1BE0CBB1F64222900DD052A /* NewsCell.m */,
 				B1BE0CBC1F64222900DD052A /* NewsCell.xib */,
@@ -622,6 +633,8 @@
 				530C39C01E6C340A0073AA78 /* ForgotPasswordView.m */,
 				B13A04601E7BBF430048F36D /* RestaurantMenuView.h */,
 				B13A04611E7BBF430048F36D /* RestaurantMenuView.m */,
+				538991BE1F65156F0054AE66 /* MenuListWithImage.h */,
+				538991BF1F65156F0054AE66 /* MenuListWithImage.m */,
 				5309EDD11E6EA8D400A216F2 /* HomeView.h */,
 				5309EDD21E6EA8D400A216F2 /* HomeView.m */,
 				537131031F63CE9000211643 /* GalleryVW.h */,
@@ -1065,6 +1078,7 @@
 				53BBBD1F1E853A6900E4DC73 /* Icon-App-57x57@2x.png in Resources */,
 				53BBBD171E853A6900E4DC73 /* Icon-App-20x20@3x.png in Resources */,
 				53BBBCFE1E853A5C00E4DC73 /* iTunesArtwork@3x.png in Resources */,
+				538991C51F6516690054AE66 /* MenuImageCELL.xib in Resources */,
 				53BBBD221E853A6900E4DC73 /* Icon-App-60x60@3x.png in Resources */,
 				B1BE0CBE1F64222900DD052A /* NewsCell.xib in Resources */,
 				53BBBCFD1E853A5C00E4DC73 /* iTunesArtwork@2x.png in Resources */,
@@ -1106,6 +1120,7 @@
 			files = (
 				530792411E6FE124005426ED /* DrawerView.m in Sources */,
 				B15F7A2E1E6C3665004A4D32 /* UIButton+WebCache.m in Sources */,
+				538991C41F6516690054AE66 /* MenuImageCELL.m in Sources */,
 				B15F7A0D1E6C3665004A4D32 /* IQKeyboardManager.m in Sources */,
 				530979DE1E7420C900385083 /* AboutUS.m in Sources */,
 				B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */,
@@ -1179,6 +1194,7 @@
 				B15F7A851E6C3964004A4D32 /* UIProgressView+AFNetworking.m in Sources */,
 				B15F7A831E6C3964004A4D32 /* UIButton+AFNetworking.m in Sources */,
 				530792421E6FE124005426ED /* MenuCell.m in Sources */,
+				538991C01F65156F0054AE66 /* MenuListWithImage.m in Sources */,
 				B15F7A7D1E6C3964004A4D32 /* AFURLConnectionOperation.m in Sources */,
 				530979DB1E73ECBB00385083 /* ContactUsView.m in Sources */,
 				537130FD1F63C06800211643 /* CVCell.m in Sources */,

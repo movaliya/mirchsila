@@ -17,6 +17,8 @@
 #import "NewsVW.h"
 #import "ReservationVW.h"
 #import "RestaurantMenuView.h"
+#import "MenuListWithImage.h"
+
 
 
 @interface HomeView ()
