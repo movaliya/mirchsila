@@ -16,6 +16,7 @@
 #import "GalleryVW.h"
 #import "NewsVW.h"
 #import "ReservationVW.h"
+#import "RestaurantMenuView.h"
 
 
 @interface HomeView ()
@@ -170,7 +171,14 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row==2)
+    if (indexPath.row==0)
+    {
+        //Gallery
+        RestaurantMenuView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantMenuView"];
+        [self.navigationController pushViewController:vcr animated:YES];
+    }
+    
+   else if (indexPath.row==2)
     {
         //Gallery
         ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
