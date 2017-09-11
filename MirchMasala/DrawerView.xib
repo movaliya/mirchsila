@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,10 +45,6 @@
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Aa1-rl-ATN">
                             <rect key="frame" x="0.0" y="166" width="240" height="314"/>
                             <color key="backgroundColor" red="0.42352941176470588" green="0.078431372549019607" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="314" id="X6L-KY-j8V"/>
-                                <constraint firstAttribute="width" constant="240" id="huC-Bz-3B5"/>
-                            </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RLO-Bv-bwM">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -66,14 +62,16 @@
                     <constraints>
                         <constraint firstItem="adJ-1E-P1A" firstAttribute="leading" secondItem="tXO-v4-3jx" secondAttribute="leading" constant="18" id="2lc-Cu-Tae"/>
                         <constraint firstItem="ucE-hw-wWg" firstAttribute="leading" secondItem="tXO-v4-3jx" secondAttribute="leading" id="5A4-AQ-JdH"/>
-                        <constraint firstItem="Aa1-rl-ATN" firstAttribute="leading" secondItem="tXO-v4-3jx" secondAttribute="leading" id="773-eJ-OiL"/>
                         <constraint firstItem="LGf-Kt-JYz" firstAttribute="top" secondItem="tXO-v4-3jx" secondAttribute="top" constant="45" id="7R8-iA-jOL"/>
                         <constraint firstAttribute="trailing" secondItem="ucE-hw-wWg" secondAttribute="trailing" id="832-MK-uDo"/>
-                        <constraint firstItem="Aa1-rl-ATN" firstAttribute="top" secondItem="LGf-Kt-JYz" secondAttribute="bottom" constant="21" id="BZi-xn-HBu"/>
+                        <constraint firstItem="Aa1-rl-ATN" firstAttribute="top" secondItem="LGf-Kt-JYz" secondAttribute="bottom" constant="21" id="994-D2-YfY"/>
                         <constraint firstItem="LGf-Kt-JYz" firstAttribute="centerX" secondItem="tXO-v4-3jx" secondAttribute="centerX" id="WHL-7k-7hk"/>
                         <constraint firstItem="adJ-1E-P1A" firstAttribute="top" secondItem="tXO-v4-3jx" secondAttribute="top" constant="31" id="Y0L-yb-hit"/>
+                        <constraint firstAttribute="bottom" secondItem="Aa1-rl-ATN" secondAttribute="bottom" id="YlG-uG-dYT"/>
                         <constraint firstAttribute="bottom" secondItem="ucE-hw-wWg" secondAttribute="bottom" id="gfE-1p-FHD"/>
                         <constraint firstItem="ucE-hw-wWg" firstAttribute="top" secondItem="LGf-Kt-JYz" secondAttribute="bottom" constant="21" id="o7G-GN-Jvt"/>
+                        <constraint firstAttribute="trailing" secondItem="Aa1-rl-ATN" secondAttribute="trailing" id="pze-V5-Dhy"/>
+                        <constraint firstItem="Aa1-rl-ATN" firstAttribute="leading" secondItem="tXO-v4-3jx" secondAttribute="leading" id="wln-71-rHC"/>
                     </constraints>
                 </view>
             </subviews>

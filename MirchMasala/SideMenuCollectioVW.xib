@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,32 +18,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Hotels" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLe-K2-uhb">
-                        <rect key="frame" x="0.0" y="71" width="134" height="35"/>
+                        <rect key="frame" x="48.5" y="79.5" width="37.5" height="14.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="134" id="YB1-JH-S6v"/>
-                            <constraint firstAttribute="height" constant="35" id="gp5-fV-Wob"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                         <color key="textColor" red="0.42352941179999998" green="0.078431372550000003" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="6vf-AN-bDn">
-                        <rect key="frame" x="49" y="38" width="36" height="25"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="GJk-0C-RSv"/>
-                            <constraint firstAttribute="height" constant="25" id="fL8-yZ-2Jn"/>
-                        </constraints>
+                        <rect key="frame" x="59" y="53.5" width="16" height="14"/>
                     </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.81176470590000005" green="0.7725490196" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="cLe-K2-uhb" firstAttribute="leading" secondItem="qVc-wC-nNn" secondAttribute="leading" id="3wN-8P-byE"/>
-                <constraint firstAttribute="bottom" secondItem="cLe-K2-uhb" secondAttribute="bottom" constant="15" id="Auy-0j-sUl"/>
-                <constraint firstItem="6vf-AN-bDn" firstAttribute="top" secondItem="qVc-wC-nNn" secondAttribute="top" constant="38" id="O42-GX-Tl3"/>
-                <constraint firstAttribute="trailing" secondItem="cLe-K2-uhb" secondAttribute="trailing" id="iHd-bM-FVI"/>
-                <constraint firstItem="6vf-AN-bDn" firstAttribute="leading" secondItem="qVc-wC-nNn" secondAttribute="leading" constant="49" id="zZa-aC-Dog"/>
+                <constraint firstItem="6vf-AN-bDn" firstAttribute="centerY" secondItem="qVc-wC-nNn" secondAttribute="centerY" id="AcD-OM-qxV"/>
+                <constraint firstItem="6vf-AN-bDn" firstAttribute="centerX" secondItem="qVc-wC-nNn" secondAttribute="centerX" id="QIg-AW-JJ6"/>
+                <constraint firstItem="cLe-K2-uhb" firstAttribute="top" secondItem="6vf-AN-bDn" secondAttribute="bottom" constant="12" id="XxL-QB-TsH"/>
+                <constraint firstItem="cLe-K2-uhb" firstAttribute="centerX" secondItem="6vf-AN-bDn" secondAttribute="centerX" id="lj0-Yg-Wt6"/>
             </constraints>
             <size key="customSize" width="136" height="122"/>
             <connections>
