@@ -154,8 +154,8 @@
 {
     if (textField == EmailTxt)
     {
-        EmailTxt.textColor=[UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0];
-        _EmailView.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+        EmailTxt.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
+        _EmailView.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0].CGColor;
         _emailImageVW.image=[UIImage imageNamed:@"Emailicon"];
     }
     return YES;

@@ -73,7 +73,7 @@
     [super viewDidLoad];
      [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
+    ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
     TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location", nil];
     
     [self.collectionView registerClass:[CVCell class] forCellWithReuseIdentifier:@"cvCell"];

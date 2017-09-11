@@ -8,6 +8,7 @@
 
 #import "AboutUS.h"
 #import "cartView.h"
+#import "AboutUsCELL.h"
 
 @interface AboutUS ()
 
@@ -16,7 +17,7 @@
 @implementation AboutUS
 @synthesize WebViewAbout;
 @synthesize CartNotification_LBL;
-
+@synthesize TableVW;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -46,22 +47,80 @@
     CartNotification_LBL.layer.masksToBounds = YES;
     CartNotification_LBL.layer.cornerRadius = 8.0f;
     
-    WebViewAbout.scrollView.showsHorizontalScrollIndicator = NO;
-    WebViewAbout.scrollView.showsVerticalScrollIndicator = NO;
-    
-    
     self.rootNav = (CCKFNavDrawer *)self.navigationController;
     [self.rootNav setCCKFNavDrawerDelegate:self];
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:YES];
     
     
-    NSString* htmlString= @"<html><body><h4><center>Welcome to Mirch Masala Indian Takeaway</center></h4><br><span>Situated in Pensnett, the Mirch Masala Indian Takeaway offers mouth-watering Indian cuisine.</span></br><br>The Mirch Masala Indian Takeaway is renowned throughout the Pensnett and Dudley area for its divine style and presentation of traditional Indian cuisine, this is achieved by paying special attention to every fine detail and only using the very finest ingredients.</br><br>If you looking for the most exquisite Indian food in the Pensnett and Dudley area, then take a look and order from our easy to use on screen menu, you will see that we offer something for every member of your family. Our on-line menu is fully customisable, so why not give it a try! If your favourite meal is not on our menu just call 01384 78007 to ask us, and our chef will happily try and prepare it especially for you.</br><br>Our high quality Website is provided by tiffintom.com, please be sure to visit our website on a regular basis to see our latest menu updates.\n We deliver on all online orders to following postcodes DY1 DY2 DY3 DY5 DY4 DY6 DY8 B69 plus more also Pensenett Dudley and Brierley hill</br></body></html>";
-    [WebViewAbout setBackgroundColor:[UIColor clearColor]];
-    [WebViewAbout setOpaque:NO];
-    [WebViewAbout loadHTMLString:htmlString baseURL:nil];
+    ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"About1",@"About2",@"About3",@"About4",@"About5",@"About6", nil];
+    TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Application Name",@"Build Version",@"Email",@"Copyright",@"Share",@"Rate", nil];
+    
+    DescriptionNameSection=[[NSMutableArray alloc]initWithObjects:@"Silsila Restaurant",@"Version 1.0",@"info@yourdomainname.com",@"Copyright @ 2017 Nibs Solution. All Rights reserved",@"Share to your friends",@"Give your rate & feedback", nil];
+    
+    UINib *nib = [UINib nibWithNibName:@"AboutUsCELL" bundle:nil];
+    AboutUsCELL *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    TableVW.rowHeight = cell.frame.size.height;
+    [TableVW registerNib:nib forCellReuseIdentifier:@"AboutUsCELL"];
+    
+    
+    
+}
+#pragma mark UITableView delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return TitleNameSection.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    return 15;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *v = [UIView new];
+    [v setBackgroundColor:[UIColor clearColor]];
+    return v;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *CellIdentifier = @"AboutUsCELL";
+    AboutUsCELL *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell=nil;
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+    }
+    
+    [cell.TitleLBL setText:[TitleNameSection objectAtIndex:indexPath.section]];
+     [cell.DescriptionLBL setText:[DescriptionNameSection objectAtIndex:indexPath.section]];
+    
+    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.section];
+    UIImage *imge=[UIImage imageNamed:imagename];
+    [cell.ImageVW setImage:imge];
+   
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
    
 }
+
+
 - (IBAction)TopBarCartBtn_action:(id)sender
 {
     NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];

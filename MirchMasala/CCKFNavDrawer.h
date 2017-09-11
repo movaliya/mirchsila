@@ -13,7 +13,11 @@
 - (void)CCKFNavDrawerSelection:(NSInteger)selectionIndex;
 @end
 
-@interface CCKFNavDrawer : UINavigationController<UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CCKFNavDrawer : UINavigationController<UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+{
+    NSMutableArray *ImageNameSection;
+    NSMutableArray *TitleNameSection;
+}
 
 -(void)CheckLoginArr;
 

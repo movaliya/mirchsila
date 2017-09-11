@@ -65,6 +65,10 @@
 		5310CC721E6AB12800091333 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5310CC711E6AB12800091333 /* CFNetwork.framework */; };
 		5310CC741E6AB12E00091333 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5310CC731E6AB12E00091333 /* AVFoundation.framework */; };
 		5310CC761E6AB13C00091333 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5310CC751E6AB13C00091333 /* GLKit.framework */; };
+		536FC00C1F667F7D001F3BE4 /* SideMenuCollectioVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FC00A1F667F7D001F3BE4 /* SideMenuCollectioVW.m */; };
+		536FC00D1F667F7D001F3BE4 /* SideMenuCollectioVW.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536FC00B1F667F7D001F3BE4 /* SideMenuCollectioVW.xib */; };
+		536FC0111F66D610001F3BE4 /* AboutUsCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FC00F1F66D610001F3BE4 /* AboutUsCELL.m */; };
+		536FC0121F66D610001F3BE4 /* AboutUsCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536FC0101F66D610001F3BE4 /* AboutUsCELL.xib */; };
 		537130FD1F63C06800211643 /* CVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 537130FB1F63C06800211643 /* CVCell.m */; };
 		537130FE1F63C06800211643 /* CVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 537130FC1F63C06800211643 /* CVCell.xib */; };
 		537131011F63C1B000211643 /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 537130FF1F63C1B000211643 /* cart.png */; };
@@ -288,6 +292,12 @@
 		5310CC711E6AB12800091333 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5310CC731E6AB12E00091333 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5310CC751E6AB13C00091333 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		536FC0091F667F7D001F3BE4 /* SideMenuCollectioVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuCollectioVW.h; sourceTree = "<group>"; };
+		536FC00A1F667F7D001F3BE4 /* SideMenuCollectioVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuCollectioVW.m; sourceTree = "<group>"; };
+		536FC00B1F667F7D001F3BE4 /* SideMenuCollectioVW.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuCollectioVW.xib; sourceTree = "<group>"; };
+		536FC00E1F66D610001F3BE4 /* AboutUsCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsCELL.h; sourceTree = "<group>"; };
+		536FC00F1F66D610001F3BE4 /* AboutUsCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsCELL.m; sourceTree = "<group>"; };
+		536FC0101F66D610001F3BE4 /* AboutUsCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsCELL.xib; sourceTree = "<group>"; };
 		537130FA1F63C06800211643 /* CVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVCell.h; sourceTree = "<group>"; };
 		537130FB1F63C06800211643 /* CVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVCell.m; sourceTree = "<group>"; };
 		537130FC1F63C06800211643 /* CVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CVCell.xib; sourceTree = "<group>"; };
@@ -503,6 +513,9 @@
 				5307923C1E6FE124005426ED /* MenuCell.h */,
 				5307923D1E6FE124005426ED /* MenuCell.m */,
 				5307923E1E6FE124005426ED /* MenuCell.xib */,
+				536FC0091F667F7D001F3BE4 /* SideMenuCollectioVW.h */,
+				536FC00A1F667F7D001F3BE4 /* SideMenuCollectioVW.m */,
+				536FC00B1F667F7D001F3BE4 /* SideMenuCollectioVW.xib */,
 			);
 			name = "Side Menu";
 			sourceTree = "<group>";
@@ -604,6 +617,9 @@
 				B1BE0CBA1F64222900DD052A /* NewsCell.h */,
 				B1BE0CBB1F64222900DD052A /* NewsCell.m */,
 				B1BE0CBC1F64222900DD052A /* NewsCell.xib */,
+				536FC00E1F66D610001F3BE4 /* AboutUsCELL.h */,
+				536FC00F1F66D610001F3BE4 /* AboutUsCELL.m */,
+				536FC0101F66D610001F3BE4 /* AboutUsCELL.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1056,6 +1072,7 @@
 				53BBBD241E853A6900E4DC73 /* Icon-App-72x72@2x.png in Resources */,
 				53BBBD1C1E853A6900E4DC73 /* Icon-App-40x40@2x.png in Resources */,
 				53BBBD201E853A6900E4DC73 /* Icon-App-60x60@1x.png in Resources */,
+				536FC00D1F667F7D001F3BE4 /* SideMenuCollectioVW.xib in Resources */,
 				53BBBD271E853A6900E4DC73 /* Icon-App-76x76@3x.png in Resources */,
 				530BFA5B1E794B7700AE5502 /* OrderSummry_Total.xib in Resources */,
 				530EA8EC1E6D8B7500A61A88 /* SplashScreen.jpg in Resources */,
@@ -1076,6 +1093,7 @@
 				530ECF461E713EBD0004F9AB /* OrderHistry_Cell.xib in Resources */,
 				530BFA561E794B5A00AE5502 /* OrderSummay_Detail.xib in Resources */,
 				53BBBD251E853A6900E4DC73 /* Icon-App-76x76@1x.png in Resources */,
+				536FC0121F66D610001F3BE4 /* AboutUsCELL.xib in Resources */,
 				B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */,
 				B153B3B91F657DBD00DE8514 /* SubitemCellWithIMG.xib in Resources */,
 				B13BC3561EC2252F00F40DB0 /* CommentTextCell.xib in Resources */,
@@ -1201,6 +1219,7 @@
 				B15F7A111E6C3665004A4D32 /* IQPreviousNextView.m in Sources */,
 				5371310B1F63D8F700211643 /* ReservationVW.m in Sources */,
 				B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */,
+				536FC00C1F667F7D001F3BE4 /* SideMenuCollectioVW.m in Sources */,
 				B15F7A871E6C3964004A4D32 /* UIWebView+AFNetworking.m in Sources */,
 				530BFA551E794B5A00AE5502 /* OrderSummay_Detail.m in Sources */,
 				B15F7A311E6C3665004A4D32 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1218,6 +1237,7 @@
 				B15F7A7E1E6C3964004A4D32 /* AFURLRequestSerialization.m in Sources */,
 				B1BE0CBD1F64222900DD052A /* NewsCell.m in Sources */,
 				530BFA4A1E791B3C00AE5502 /* CheckOut_AddressVIEW.m in Sources */,
+				536FC0111F66D610001F3BE4 /* AboutUsCELL.m in Sources */,
 				530EA8F41E6DA77F00A61A88 /* SubitemCell.m in Sources */,
 				530EA8EF1E6DA68D00A61A88 /* SubItemView.m in Sources */,
 				B15F7A321E6C3665004A4D32 /* UIImageView+WebCache.m in Sources */,

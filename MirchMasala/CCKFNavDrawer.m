@@ -20,6 +20,10 @@
 #import "ProfileView.h"
 #import "RestaurantMenuView.h"
 #import "ShoppingPolicy_View.h"
+#import "SideMenuCollectioVW.h"
+#import "ReservationVW.h"
+#import "GalleryVW.h"
+#import "NewsVW.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -91,6 +95,21 @@
         self.drawerView.LBL_Trailing.constant=20;
         self.drawerView.LogoLBLGap.constant=29;
     }
+    
+   
+   
+    TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Login or Signup", nil];
+     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+    
+    [self.drawerView.Collectionview registerClass:[SideMenuCollectioVW class] forCellWithReuseIdentifier:@"SideMenuCollectioVW"];
+    // Configure layout collectionView
+    
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(120, 120)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [self.drawerView.Collectionview setCollectionViewLayout:flowLayout];
+
 
 }
 
@@ -112,6 +131,147 @@
     
     [self.drawerView.drawerTableView reloadData];
     
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return TitleNameSection.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Setup cell identifier
+    static NSString *cellIdentifier = @"SideMenuCollectioVW";
+    
+    SideMenuCollectioVW *cell = (SideMenuCollectioVW *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    cell.layer.masksToBounds = NO;
+    cell.layer.shadowOffset = CGSizeMake(0, 1);
+    cell.layer.shadowRadius = 1.0;
+    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.layer.shadowOpacity = 0.5;
+    
+    
+    [cell.ItemTitel_LBL setText:[TitleNameSection objectAtIndex:indexPath.row]];
+    
+    
+    //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
+    
+    // [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    // [cell.IconImageview setShowActivityIndicatorView:YES];
+    
+    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.row];
+    UIImage *imge=[UIImage imageNamed:imagename];
+    [cell.ItemIMG setImage:imge];
+    
+    return cell;
+    
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row==0)
+    {
+        HomeView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeView"];
+        [super pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==1)
+    {
+        RestaurantMenuView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantMenuView"];
+        [super pushViewController:vcr animated:YES];
+    }
+    
+    else if (indexPath.row==3)
+    {
+        ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+        [super pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==4)
+    {
+        GalleryVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GalleryVW"];
+        [super pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==5)
+    {
+        NewsVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsVW"];
+        [super pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==9)
+    {
+        AboutUS *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AboutUS"];
+        [super pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==12)
+    {
+        ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
+        [super pushViewController:vcr animated:YES];
+    }
+    
+    
+    
+    [self closeNavigationDrawer];
+}
+
+#pragma mark Collection view layout things
+// Layout: Set cell size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize mElementSize;
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        mElementSize = CGSizeMake(118, 106);
+    }
+    else if (IS_IPHONE_6)
+    {
+        mElementSize = CGSizeMake(105, 105);
+    }
+    else
+    {
+        mElementSize = CGSizeMake(120, 120);
+    }
+    return mElementSize;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.5;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        return 0.5;
+    }
+    else if (IS_IPHONE_6)
+    {
+        return 10.0;
+    }
+    else if (IS_IPHONE_6P)
+    {
+        return 15.0;
+    }
+    return 15.0;
+}
+
+// Layout: Set Edges
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (IS_IPHONE_5 || IS_IPHONE_4)
+    {
+        return UIEdgeInsetsMake(1,1,1,1);  // top, left, bottom, right
+    }
+    else if (IS_IPHONE_6)
+    {
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+    }
+    else if (IS_IPHONE_6P)
+    {
+        return UIEdgeInsetsMake(15,15,15,15);  // top, left, bottom, right
+    }
+    
+    return UIEdgeInsetsMake(10,15,10,15);  // top, left, bottom, right
 }
 
 - (void)didReceiveMemoryWarning

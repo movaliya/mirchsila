@@ -213,14 +213,14 @@
 {
     if (textField == emailTxt)
     {
-        emailTxt.textColor=[UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0];
-        _EmailView.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+        emailTxt.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
+        _EmailView.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0].CGColor;
         _EmailImageVW.image=[UIImage imageNamed:@"Emailicon"];
     }
     else if (textField == passwordTxt)
     {
-        passwordTxt.textColor=[UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0];
-        _PasswordView.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+        passwordTxt.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
+        _PasswordView.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0].CGColor;
         _passwordImgeVW.image=[UIImage imageNamed:@"PasswordIcon"];
     }
     return YES;

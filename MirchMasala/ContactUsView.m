@@ -209,15 +209,15 @@
 {
     if (textField == self.UserName_TXT)
     {
-        UserName_TXT.textColor=[UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0];
-        user_View.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+        UserName_TXT.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
+        user_View.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0].CGColor;
         User_Icon.image=[UIImage imageNamed:@"UserIcon"];
        
     }
     else if (textField == Email_TXT)
     {
-        Email_TXT.textColor=[UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0];
-        email_View.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+        Email_TXT.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
+        email_View.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0].CGColor;
         Email_Icon.image=[UIImage imageNamed:@"Emailicon"];
     }
     return YES;
@@ -244,8 +244,8 @@
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
     
-    Message_TXT.textColor=[UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0];
-    Message_View.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
+    Message_TXT.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
+    Message_View.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0].CGColor;
     Message_Icon.image=[UIImage imageNamed:@"MessageIconEnable"];
     
     

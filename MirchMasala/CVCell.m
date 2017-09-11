@@ -17,9 +17,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        
-        
-        // Initialization code
+         // Initialization code
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"CVCell" owner:self options:nil];
         
         if ([arrayOfViews count] < 1) {
@@ -31,11 +29,8 @@
         }
         
         self = [arrayOfViews objectAtIndex:0];
-        
     }
-    
     return self;
-    
 }
 
 /*

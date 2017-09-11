@@ -11,11 +11,14 @@
 
 @interface AboutUS : UIViewController<CCKFNavDrawerDelegate>
 {
-    
+    NSMutableArray *ImageNameSection;
+    NSMutableArray *TitleNameSection;
+    NSMutableArray *DescriptionNameSection;
 }
 @property (weak, nonatomic) IBOutlet UILabel *CartNotification_LBL;
 @property (weak, nonatomic) IBOutlet UIWebView *WebViewAbout;
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
+@property (weak, nonatomic) IBOutlet UITableView *TableVW;
 
 
 @end
