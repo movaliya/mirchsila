@@ -24,6 +24,7 @@
 #import "ReservationVW.h"
 #import "GalleryVW.h"
 #import "NewsVW.h"
+#import "SocialView.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -201,6 +202,11 @@
     else if (indexPath.row==9)
     {
         AboutUS *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AboutUS"];
+        [super pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==10)
+    {
+        SocialView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SocialView"];
         [super pushViewController:vcr animated:YES];
     }
     else if (indexPath.row==12)

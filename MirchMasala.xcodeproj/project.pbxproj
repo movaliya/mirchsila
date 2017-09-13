@@ -109,6 +109,9 @@
 		B13A04621E7BBF430048F36D /* RestaurantMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B13A04611E7BBF430048F36D /* RestaurantMenuView.m */; };
 		B13BC3551EC2252F00F40DB0 /* CommentTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13BC3531EC2252F00F40DB0 /* CommentTextCell.m */; };
 		B13BC3561EC2252F00F40DB0 /* CommentTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13BC3541EC2252F00F40DB0 /* CommentTextCell.xib */; };
+		B140C4521F69A0B80019B15E /* SocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = B140C4511F69A0B80019B15E /* SocialView.m */; };
+		B140C4561F69A1140019B15E /* SocialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B140C4541F69A1140019B15E /* SocialCell.m */; };
+		B140C4571F69A1140019B15E /* SocialCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B140C4551F69A1140019B15E /* SocialCell.xib */; };
 		B1451E211E6DE5E800E98C7C /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B1451E1E1E6DE5E800E98C7C /* AFAutoPurgingImageCache.m */; };
 		B1451E221E6DE5E800E98C7C /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B1451E201E6DE5E800E98C7C /* AFImageDownloader.m */; };
 		B153B3B11F6519A800DE8514 /* CategoriesCellWithIMG.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3AF1F6519A800DE8514 /* CategoriesCellWithIMG.m */; };
@@ -348,6 +351,11 @@
 		B13BC3521EC2252F00F40DB0 /* CommentTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTextCell.h; sourceTree = "<group>"; };
 		B13BC3531EC2252F00F40DB0 /* CommentTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTextCell.m; sourceTree = "<group>"; };
 		B13BC3541EC2252F00F40DB0 /* CommentTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTextCell.xib; sourceTree = "<group>"; };
+		B140C4501F69A0B80019B15E /* SocialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialView.h; sourceTree = "<group>"; };
+		B140C4511F69A0B80019B15E /* SocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialView.m; sourceTree = "<group>"; };
+		B140C4531F69A1140019B15E /* SocialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialCell.h; sourceTree = "<group>"; };
+		B140C4541F69A1140019B15E /* SocialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialCell.m; sourceTree = "<group>"; };
+		B140C4551F69A1140019B15E /* SocialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialCell.xib; sourceTree = "<group>"; };
 		B1451E1D1E6DE5E800E98C7C /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAutoPurgingImageCache.h; sourceTree = "<group>"; };
 		B1451E1E1E6DE5E800E98C7C /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAutoPurgingImageCache.m; sourceTree = "<group>"; };
 		B1451E1F1E6DE5E800E98C7C /* AFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageDownloader.h; sourceTree = "<group>"; };
@@ -620,6 +628,9 @@
 				536FC00E1F66D610001F3BE4 /* AboutUsCELL.h */,
 				536FC00F1F66D610001F3BE4 /* AboutUsCELL.m */,
 				536FC0101F66D610001F3BE4 /* AboutUsCELL.xib */,
+				B140C4531F69A1140019B15E /* SocialCell.h */,
+				B140C4541F69A1140019B15E /* SocialCell.m */,
+				B140C4551F69A1140019B15E /* SocialCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -672,6 +683,8 @@
 				537131041F63CE9000211643 /* GalleryVW.m */,
 				537131061F63D2E800211643 /* NewsVW.h */,
 				537131071F63D2E800211643 /* NewsVW.m */,
+				B140C4501F69A0B80019B15E /* SocialView.h */,
+				B140C4511F69A0B80019B15E /* SocialView.m */,
 				B1BE0CBF1F642A0800DD052A /* NewsFullView.h */,
 				B1BE0CC01F642A0800DD052A /* NewsFullView.m */,
 				537131091F63D8F700211643 /* ReservationVW.h */,
@@ -1103,6 +1116,7 @@
 				530792431E6FE124005426ED /* MenuCell.xib in Resources */,
 				537131151F64248100211643 /* Main.storyboard in Resources */,
 				5310CBEC1E6A957800091333 /* Assets.xcassets in Resources */,
+				B140C4571F69A1140019B15E /* SocialCell.xib in Resources */,
 				53BBBD191E853A6900E4DC73 /* Icon-App-29x29@2x.png in Resources */,
 				537131021F63C1B000211643 /* gallery.png in Resources */,
 				53BBBD181E853A6900E4DC73 /* Icon-App-29x29@1x.png in Resources */,
@@ -1209,6 +1223,7 @@
 				B15F7A131E6C3665004A4D32 /* IQToolbar.m in Sources */,
 				B15F7A161E6C3665004A4D32 /* UIColor+KVNContrast.m in Sources */,
 				B15F7A171E6C3665004A4D32 /* UIImage+KVNEmpty.m in Sources */,
+				B140C4521F69A0B80019B15E /* SocialView.m in Sources */,
 				B1BE0CC11F642A0800DD052A /* NewsFullView.m in Sources */,
 				B15F7A121E6C3665004A4D32 /* IQTitleBarButtonItem.m in Sources */,
 				5307923F1E6FE124005426ED /* CCKFNavDrawer.m in Sources */,
@@ -1241,6 +1256,7 @@
 				530EA8F41E6DA77F00A61A88 /* SubitemCell.m in Sources */,
 				530EA8EF1E6DA68D00A61A88 /* SubItemView.m in Sources */,
 				B15F7A321E6C3665004A4D32 /* UIImageView+WebCache.m in Sources */,
+				B140C4561F69A1140019B15E /* SocialCell.m in Sources */,
 				530BFA4D1E791C2F00AE5502 /* CheckOut_OrderSummyVW.m in Sources */,
 				B15F7A1A1E6C3665004A4D32 /* KVNProgressConfiguration.m in Sources */,
 				B15F7A2B1E6C3665004A4D32 /* SDWebImageDownloaderOperation.m in Sources */,

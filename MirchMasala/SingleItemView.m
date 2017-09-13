@@ -219,7 +219,7 @@
     
     NSString *prductNM=[ItemArr valueForKey:@"productName"];
     NSString *prductPRICE=[ItemArr valueForKey:@"price"] ;
-    NSString *Quatity=[MainCount valueForKey:@"MainCount"] ;
+    NSString *Quatity=[[MainCount valueForKey:@"MainCount"]objectAtIndex:btntag] ;
     NSString *Productid=[ItemArr valueForKey:@"id"];
     
     NSMutableDictionary *AddTocardDic = [[NSMutableDictionary alloc] init];
