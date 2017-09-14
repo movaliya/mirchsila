@@ -20,7 +20,8 @@
 @synthesize UserName_TXT,Email_TXT,Message_TXT,Message_Icon,Message_View,email_View,Email_Icon,user_View,User_Icon,Submit_Btn;
 @synthesize CartNotification_LBL;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     
@@ -38,12 +39,12 @@
             qnttotal=qnttotal+[[[KmyappDelegate.MainCartArr objectAtIndex:i]valueForKey:@"quatity"] integerValue];
         }
         
-        [CartNotification_LBL setHidden:NO];
-        CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
+      //  [CartNotification_LBL setHidden:NO];
+      //  CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
     }
     else
     {
-        [CartNotification_LBL setHidden:YES];
+       // [CartNotification_LBL setHidden:YES];
     }
     CartNotification_LBL.layer.masksToBounds = YES;
     CartNotification_LBL.layer.cornerRadius = 8.0f;
@@ -194,8 +195,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)Menu_Toggle:(id)sender {
-    [self.rootNav drawerToggle];
+- (IBAction)Menu_Toggle:(id)sender
+{
+    //[self.rootNav drawerToggle];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - photoShotSavedDelegate
