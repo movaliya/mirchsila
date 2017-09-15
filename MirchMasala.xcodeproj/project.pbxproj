@@ -65,6 +65,11 @@
 		5310CC721E6AB12800091333 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5310CC711E6AB12800091333 /* CFNetwork.framework */; };
 		5310CC741E6AB12E00091333 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5310CC731E6AB12E00091333 /* AVFoundation.framework */; };
 		5310CC761E6AB13C00091333 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5310CC751E6AB13C00091333 /* GLKit.framework */; };
+		5350A7801F6C06E700140174 /* MYCartVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350A77F1F6C06E700140174 /* MYCartVW.m */; };
+		5350A7841F6C0CDB00140174 /* MyCartDownCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350A7821F6C0CDB00140174 /* MyCartDownCELL.m */; };
+		5350A7851F6C0CDB00140174 /* MyCartDownCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5350A7831F6C0CDB00140174 /* MyCartDownCELL.xib */; };
+		5350A7891F6C1D0B00140174 /* MyCartUpperCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5350A7871F6C1D0B00140174 /* MyCartUpperCELL.m */; };
+		5350A78A1F6C1D0B00140174 /* MyCartUpperCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5350A7881F6C1D0B00140174 /* MyCartUpperCELL.xib */; };
 		536FC00C1F667F7D001F3BE4 /* SideMenuCollectioVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FC00A1F667F7D001F3BE4 /* SideMenuCollectioVW.m */; };
 		536FC00D1F667F7D001F3BE4 /* SideMenuCollectioVW.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536FC00B1F667F7D001F3BE4 /* SideMenuCollectioVW.xib */; };
 		536FC0111F66D610001F3BE4 /* AboutUsCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FC00F1F66D610001F3BE4 /* AboutUsCELL.m */; };
@@ -295,6 +300,14 @@
 		5310CC711E6AB12800091333 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5310CC731E6AB12E00091333 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5310CC751E6AB13C00091333 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		5350A77E1F6C06E700140174 /* MYCartVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYCartVW.h; sourceTree = "<group>"; };
+		5350A77F1F6C06E700140174 /* MYCartVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYCartVW.m; sourceTree = "<group>"; };
+		5350A7811F6C0CDB00140174 /* MyCartDownCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCartDownCELL.h; sourceTree = "<group>"; };
+		5350A7821F6C0CDB00140174 /* MyCartDownCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCartDownCELL.m; sourceTree = "<group>"; };
+		5350A7831F6C0CDB00140174 /* MyCartDownCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCartDownCELL.xib; sourceTree = "<group>"; };
+		5350A7861F6C1D0B00140174 /* MyCartUpperCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCartUpperCELL.h; sourceTree = "<group>"; };
+		5350A7871F6C1D0B00140174 /* MyCartUpperCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCartUpperCELL.m; sourceTree = "<group>"; };
+		5350A7881F6C1D0B00140174 /* MyCartUpperCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCartUpperCELL.xib; sourceTree = "<group>"; };
 		536FC0091F667F7D001F3BE4 /* SideMenuCollectioVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuCollectioVW.h; sourceTree = "<group>"; };
 		536FC00A1F667F7D001F3BE4 /* SideMenuCollectioVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuCollectioVW.m; sourceTree = "<group>"; };
 		536FC00B1F667F7D001F3BE4 /* SideMenuCollectioVW.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuCollectioVW.xib; sourceTree = "<group>"; };
@@ -540,6 +553,12 @@
 				B13BC3521EC2252F00F40DB0 /* CommentTextCell.h */,
 				B13BC3531EC2252F00F40DB0 /* CommentTextCell.m */,
 				B13BC3541EC2252F00F40DB0 /* CommentTextCell.xib */,
+				5350A7811F6C0CDB00140174 /* MyCartDownCELL.h */,
+				5350A7821F6C0CDB00140174 /* MyCartDownCELL.m */,
+				5350A7831F6C0CDB00140174 /* MyCartDownCELL.xib */,
+				5350A7861F6C1D0B00140174 /* MyCartUpperCELL.h */,
+				5350A7871F6C1D0B00140174 /* MyCartUpperCELL.m */,
+				5350A7881F6C1D0B00140174 /* MyCartUpperCELL.xib */,
 			);
 			name = CartCell;
 			sourceTree = "<group>";
@@ -691,6 +710,8 @@
 				5371310A1F63D8F700211643 /* ReservationVW.m */,
 				5371310F1F6411CA00211643 /* ReservationSubVW.h */,
 				537131101F6411CA00211643 /* ReservationSubVW.m */,
+				5350A77E1F6C06E700140174 /* MYCartVW.h */,
+				5350A77F1F6C06E700140174 /* MYCartVW.m */,
 				530EA8FC1E6DB64700A61A88 /* cartView.h */,
 				530EA8FD1E6DB64700A61A88 /* cartView.m */,
 				530BFA471E791B0800AE5502 /* CheckOut */,
@@ -1123,8 +1144,10 @@
 				530D67D31E80E8E60045EAD7 /* Stripe.bundle in Resources */,
 				53BBBD1F1E853A6900E4DC73 /* Icon-App-57x57@2x.png in Resources */,
 				53BBBD171E853A6900E4DC73 /* Icon-App-20x20@3x.png in Resources */,
+				5350A7851F6C0CDB00140174 /* MyCartDownCELL.xib in Resources */,
 				53BBBCFE1E853A5C00E4DC73 /* iTunesArtwork@3x.png in Resources */,
 				538991C51F6516690054AE66 /* MenuImageCELL.xib in Resources */,
+				5350A78A1F6C1D0B00140174 /* MyCartUpperCELL.xib in Resources */,
 				53BBBD221E853A6900E4DC73 /* Icon-App-60x60@3x.png in Resources */,
 				B1BE0CBE1F64222900DD052A /* NewsCell.xib in Resources */,
 				53BBBCFD1E853A5C00E4DC73 /* iTunesArtwork@2x.png in Resources */,
@@ -1191,6 +1214,7 @@
 				5309EDD71E6EC3EB00A216F2 /* CategoriesCell.m in Sources */,
 				B15F7A791E6C3964004A4D32 /* AFHTTPSessionManager.m in Sources */,
 				530979E11E74276A00385083 /* ProfileView.m in Sources */,
+				5350A7891F6C1D0B00140174 /* MyCartUpperCELL.m in Sources */,
 				B15F7A0A1E6C3665004A4D32 /* IQUIView+Hierarchy.m in Sources */,
 				B15F7A331E6C3665004A4D32 /* UIView+WebCacheOperation.m in Sources */,
 				B13A04621E7BBF430048F36D /* RestaurantMenuView.m in Sources */,
@@ -1211,6 +1235,7 @@
 				B153B3B11F6519A800DE8514 /* CategoriesCellWithIMG.m in Sources */,
 				530BEF7A1E718D8000614BF8 /* OrderDetailLowerCell.m in Sources */,
 				B15F7A7F1E6C3964004A4D32 /* AFURLResponseSerialization.m in Sources */,
+				5350A7801F6C06E700140174 /* MYCartVW.m in Sources */,
 				B15F7A1C1E6C3665004A4D32 /* Reachability.m in Sources */,
 				B15F7A861E6C3964004A4D32 /* UIRefreshControl+AFNetworking.m in Sources */,
 				530BFA501E791CAC00AE5502 /* CheckOut_PaymentVW.m in Sources */,
@@ -1230,6 +1255,7 @@
 				B15F7A2D1E6C3665004A4D32 /* SDWebImagePrefetcher.m in Sources */,
 				530EA9021E6DBB1000A61A88 /* CartTableCell.m in Sources */,
 				530EA8FE1E6DB64700A61A88 /* cartView.m in Sources */,
+				5350A7841F6C0CDB00140174 /* MyCartDownCELL.m in Sources */,
 				537131111F6411CA00211643 /* ReservationSubVW.m in Sources */,
 				B15F7A111E6C3665004A4D32 /* IQPreviousNextView.m in Sources */,
 				5371310B1F63D8F700211643 /* ReservationVW.m in Sources */,

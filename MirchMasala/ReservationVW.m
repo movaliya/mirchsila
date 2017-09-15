@@ -23,6 +23,10 @@
     self.BackView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
     self.BackView.layer.shadowOpacity = 0.5;
     
+    
+     NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
+    
+    
     // Do any additional setup after loading the view.
 }
 - (IBAction)SubmitBtn_Action:(id)sender

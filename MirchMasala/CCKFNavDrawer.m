@@ -25,6 +25,7 @@
 #import "GalleryVW.h"
 #import "NewsVW.h"
 #import "SocialView.h"
+#import "MYCartVW.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -67,11 +68,15 @@
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Login & Signup", nil];
+      //  TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Login & Signup", nil];
+        
+          TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Login or Signup", nil];
     }
     else
     {
-       TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Sign Out", nil];
+      // TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Sign Out", nil];
+        
+          TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Sign Out", nil];
     }
     
     
@@ -99,7 +104,7 @@
     
    
    
-    TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Login or Signup", nil];
+  
      ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
     
     [self.drawerView.Collectionview registerClass:[SideMenuCollectioVW class] forCellWithReuseIdentifier:@"SideMenuCollectioVW"];
@@ -120,11 +125,15 @@
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
-         TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Login & Signup", nil];
+        // TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Login & Signup", nil];
+        
+        TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Login or Signup", nil];
     }
     else
     {
-        TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Sign Out", nil];
+       // TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Sign Out", nil];
+        
+        TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Sign Out", nil];
     }
     
     
@@ -183,6 +192,30 @@
         RestaurantMenuView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantMenuView"];
         [super pushViewController:vcr animated:YES];
     }
+    else if (indexPath.row==2)
+    {
+        
+        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
+        
+        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        
+        if (CoustmerID!=nil)
+        {
+            MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+            [super pushViewController:vcr animated:YES];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
+                                                            message:@""
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Login",nil];
+            alert.tag=51;
+            [alert show];
+        }
+       
+    }
     
     else if (indexPath.row==3)
     {
@@ -222,6 +255,29 @@
             [alert show];
         }
     }
+    else if (indexPath.row==8)
+    {
+        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
+        
+        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        
+        if (CoustmerID!=nil)
+        {
+            OrderHistryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistryView"];
+            [super pushViewController:vcr animated:YES];
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
+                                                            message:@""
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Login",nil];
+            alert.tag=52;
+            [alert show];
+        }
+    }
     else if (indexPath.row==9)
     {
         AboutUS *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AboutUS"];
@@ -240,9 +296,24 @@
     
     else if (indexPath.row==13)
     {
-        LoginVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
-        [super  pushViewController:vcr animated:YES];
+        if ([[TitleNameSection objectAtIndex:indexPath.row] isEqualToString:@"Login & Signup"])
+        {
+            [self checkLoginAndPresentContainer];
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                            message:@"Are you sure want to Logout?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Logout",nil];
+            alert.tag=50;
+            [alert show];
+        }
     }
+    
+    
    
     
     

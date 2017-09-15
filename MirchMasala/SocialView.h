@@ -10,7 +10,7 @@
 
 @interface SocialView : UIViewController
 {
-    
+    NSMutableArray *SocialDataArr;
 }
 - (IBAction)Back_Click:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *MainTBL;

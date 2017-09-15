@@ -593,6 +593,7 @@
         }
         else
         {
+            
             PriceLBL=[[UILabel alloc]initWithFrame:CGRectMake(WithoutTBL.frame.size.width-50, 0, 40, 44)];
             PriceLBL.textAlignment=NSTextAlignmentRight;
             
@@ -665,7 +666,7 @@
             }
             UILabel *clearCart=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, cartTable.frame.size.width, 44)];
             clearCart.text=@"Clear Cart";
-            clearCart.textColor=[UIColor redColor];
+            clearCart.textColor=[UIColor colorWithRed:(207/255.0) green:(197/255.0) blue:(144/255.0) alpha:1.0];
             clearCart.textAlignment=NSTextAlignmentCenter;
             [cell addSubview:clearCart];
             
@@ -1120,7 +1121,8 @@
 
 - (IBAction)ToggleMenuBtn_action:(id)sender
 {
-    [self.rootNav drawerToggle];
+    //[self.rootNav drawerToggle];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - photoShotSavedDelegate
