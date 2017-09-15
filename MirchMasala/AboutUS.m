@@ -18,7 +18,9 @@
 @synthesize WebViewAbout;
 @synthesize CartNotification_LBL;
 @synthesize TableVW;
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
@@ -63,33 +65,23 @@
     TableVW.rowHeight = cell.frame.size.height;
     [TableVW registerNib:nib forCellReuseIdentifier:@"AboutUsCELL"];
     
+    TableVW.tableHeaderView = nil;
+
+    
     
     
 }
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
-    return TitleNameSection.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return TitleNameSection.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    
-    return 15;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *v = [UIView new];
-    [v setBackgroundColor:[UIColor clearColor]];
-    return v;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -103,10 +95,10 @@
         
     }
     
-    [cell.TitleLBL setText:[TitleNameSection objectAtIndex:indexPath.section]];
-     [cell.DescriptionLBL setText:[DescriptionNameSection objectAtIndex:indexPath.section]];
+    [cell.TitleLBL setText:[TitleNameSection objectAtIndex:indexPath.row]];
+     [cell.DescriptionLBL setText:[DescriptionNameSection objectAtIndex:indexPath.row]];
     
-    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.section];
+    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.row];
     UIImage *imge=[UIImage imageNamed:imagename];
     [cell.ImageVW setImage:imge];
    
@@ -119,6 +111,21 @@
 {
    
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if (indexPath.row==3)
+    {
+        return 75;
+    }
+    return 61;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
 
 
 - (IBAction)TopBarCartBtn_action:(id)sender
