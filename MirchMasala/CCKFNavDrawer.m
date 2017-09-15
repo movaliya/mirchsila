@@ -215,6 +215,12 @@
         [super pushViewController:vcr animated:YES];
     }
     
+    else if (indexPath.row==13)
+    {
+        LoginVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
+        [super  pushViewController:vcr animated:YES];
+    }
+   
     
     
     [self closeNavigationDrawer];
