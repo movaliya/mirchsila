@@ -12,7 +12,7 @@
 #import "CheckOut_PaymentVW.h"
 #import "cartView.h"
 
-@interface CheckOut_OrderSummyVW ()
+@interface CheckOut_OrderSummyVW ()<UITextViewDelegate>
 {
     float GetTotal,GetMainTotal;
     NSString *MainDiscount;
@@ -138,6 +138,7 @@
     NSLog(@"GetMainTotal=%f",GetMainTotal);
     
 }
+
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -164,7 +165,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section == cellcount)
     {
         static NSString *CellIdentifier = @"OrderSummry_Total";
@@ -181,6 +181,10 @@
         
         cell1.OrderAmount_LBL.text=[NSString stringWithFormat:@"£%.02f",Gt];
        
+        cell1.Comment_TXT.layer.cornerRadius=5.0f;
+        cell1.Comment_TXT.layer.borderWidth=0.5;
+        cell1.Comment_TXT.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+        cell1.Comment_TXT.delegate=self;
         
         return cell1;
     }
@@ -279,9 +283,15 @@
     {
         return 68;
     }
+    else if (indexPath.section==cellcount)
+    {
+        return 201;
+
+    }
     return 84;
     
 }
+
 -(void)GetDiscountmethod
 {
     [KVNProgress show] ;
@@ -441,10 +451,12 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)BackBtn_Action:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];

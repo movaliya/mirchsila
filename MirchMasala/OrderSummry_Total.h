@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *Discount_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *OrderAmount_LBL;
 
+@property (strong, nonatomic) IBOutlet UITextView *Comment_TXT;
 @end
