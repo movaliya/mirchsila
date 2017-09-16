@@ -26,6 +26,8 @@
 #import "NewsVW.h"
 #import "SocialView.h"
 #import "MYCartVW.h"
+#import "LocationView.h"
+#import "VideoGallaryView.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -232,6 +234,12 @@
         NewsVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsVW"];
         [super pushViewController:vcr animated:YES];
     }
+    else if (indexPath.row==6)
+    {
+        LocationView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationView"];
+        [self.navigationController pushViewController:vcr animated:YES];
+    }
+    
     else if (indexPath.row==7)
     {
         NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
@@ -288,6 +296,11 @@
         SocialView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SocialView"];
         [super pushViewController:vcr animated:YES];
     }
+    else if (indexPath.row==11)
+    {
+        VideoGallaryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"VideoGallaryView"];
+        [super pushViewController:vcr animated:YES];
+    }
     else if (indexPath.row==12)
     {
         ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
@@ -327,7 +340,7 @@
     CGSize mElementSize;
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        mElementSize = CGSizeMake(118.5, 118.5);
+        mElementSize = CGSizeMake(119, 119.5);
     }
     else if (IS_IPHONE_6)
     {
