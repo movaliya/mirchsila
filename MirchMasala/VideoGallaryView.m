@@ -9,6 +9,8 @@
 #import "VideoGallaryView.h"
 #import "CVCell.h"
 #import "MirchMasala.pch"
+#import "AVKit/AVKit.h"
+#import "AVFoundation/AVFoundation.h"
 
 @interface VideoGallaryView ()
 {
@@ -31,6 +33,19 @@
     [flowLayout setItemSize:CGSizeMake(100, 150)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [GalleryCollection setCollectionViewLayout:flowLayout];
+    
+    /*
+    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://youtu.be/wWUzXFG_F4g"]];
+    
+    AVPlayerViewController * _moviePlayer1 = [[AVPlayerViewController alloc] init];
+    _moviePlayer1.player = [AVPlayer playerWithURL:url];
+    
+    [self presentViewController:_moviePlayer1 animated:YES completion:^{
+        [_moviePlayer1.player play];
+    }];*/
+    
+    
+
     
 }
 

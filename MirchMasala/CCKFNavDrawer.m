@@ -237,7 +237,7 @@
     else if (indexPath.row==6)
     {
         LocationView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationView"];
-        [self.navigationController pushViewController:vcr animated:YES];
+        [super pushViewController:vcr animated:YES];
     }
     
     else if (indexPath.row==7)

@@ -22,6 +22,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    SocialArr=[[NSMutableArray alloc]initWithObjects:@"Facebook",@"Linkedin",@"Twitter",@"Youtube", nil];
+    SocialDataArr=[[NSMutableArray alloc]init];
+    UINib *nib = [UINib nibWithNibName:@"SocialCell" bundle:nil];
+    SocialCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    MainTBL.rowHeight = cell.frame.size.height;
+    [MainTBL registerNib:nib forCellReuseIdentifier:@"SocialCell"];
+    
+    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
@@ -30,16 +40,10 @@
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-    SocialArr=[[NSMutableArray alloc]initWithObjects:@"Facebook",@"Linkedin",@"Twitter",@"Youtube", nil];
-    
-    UINib *nib = [UINib nibWithNibName:@"SocialCell" bundle:nil];
-    SocialCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-    [MainTBL registerNib:nib forCellReuseIdentifier:@"SocialCell"];
 }
 -(void)CallSocialService
 {
     [KVNProgress show] ;
-    SocialDataArr=[[NSMutableDictionary alloc] init];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -75,15 +79,16 @@
          NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"SUCCESS"];
          if ([SUCCESS boolValue] ==YES)
          {
-             SocialDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"result"] objectForKey:@"appButtons"] mutableCopy];
+             NSMutableArray *TempSocialDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"result"] objectForKey:@"appButtons"] mutableCopy];
              
              CellCount=0;
-             for (int ii=0; ii<SocialDataArr.count; ii++)
+             for (int ii=0; ii<TempSocialDataArr.count; ii++)
              {
-                  NSString *CheckButtontype=[[SocialDataArr valueForKey:@"button_type"] objectAtIndex:ii];
+                  NSString *CheckButtontype=[[TempSocialDataArr valueForKey:@"button_type"] objectAtIndex:ii];
                  if ([CheckButtontype isEqualToString:@"Social Link"])
                  {
                      CellCount=CellCount+1;
+                     [SocialDataArr addObject:[TempSocialDataArr objectAtIndex:ii]];
                  }
              }
              
@@ -110,7 +115,7 @@
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return CellCount;
+    return SocialDataArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -141,18 +146,18 @@
         
     }
     
-    NSString *CheckButtontype=[[SocialDataArr valueForKey:@"button_type"] objectAtIndex:indexPath.section];
-    if ([CheckButtontype isEqualToString:@"Social Link"])
-    {
+   // NSString *CheckButtontype=[[SocialDataArr valueForKey:@"button_type"] objectAtIndex:indexPath.section];
+    
+   // if ([CheckButtontype isEqualToString:@"Social Link"])
+   // {
+        NSLog(@"social=%@",[[SocialDataArr valueForKey:@"title"] objectAtIndex:indexPath.section]);
         cell.SocialTitle_LBL.text=[[SocialDataArr valueForKey:@"title"] objectAtIndex:indexPath.section];
         NSString *Urlstr=[[SocialDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.section];
         [cell.SocialIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
         [cell.SocialIMG setShowActivityIndicatorView:YES];
+        
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    }
-    
-    
-   
+    //}
     return cell;
     
     

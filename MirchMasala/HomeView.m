@@ -208,7 +208,7 @@
     
    else if (indexPath.row==2)
     {
-        //Gallery
+        //reservation
         ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
         [self.navigationController pushViewController:vcr animated:YES];
     }
@@ -220,12 +220,13 @@
     }
     else if (indexPath.row==4)
     {
-        //Gallery
+        //news
         NewsVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsVW"];
         [self.navigationController pushViewController:vcr animated:YES];
     }
     else if (indexPath.row==5)
     {
+        //Location
         LocationView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationView"];
         [self.navigationController pushViewController:vcr animated:YES];
     }

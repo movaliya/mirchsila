@@ -10,7 +10,7 @@
 
 @interface SocialView : UIViewController
 {
-    NSMutableDictionary *SocialDataArr;
+    NSMutableArray *SocialDataArr;
     NSInteger CellCount;
 }
 - (IBAction)Back_Click:(id)sender;
