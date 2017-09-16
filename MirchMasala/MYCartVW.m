@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self CalculateGrantTotal];
     cellcount=KmyappDelegate.MainCartArr.count;
     
     UINib *nib = [UINib nibWithNibName:@"MyCartUpperCELL" bundle:nil];
@@ -79,7 +79,7 @@
         {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
-        
+        cell.TotalAmount.text=[NSString stringWithFormat:@"£%.02f",tempMainTotal];
          [cell.ReservationBTN addTarget:self action:@selector(Reservation_Click:) forControlEvents:UIControlEventTouchUpInside];
          [cell.OrderBTN addTarget:self action:@selector(Order_Click:) forControlEvents:UIControlEventTouchUpInside];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -184,6 +184,66 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+}
+
+-(void)CalculateGrantTotal
+{
+    tempMainTotal=0.00;
+    tempTotal=0.00;
+    for (int jj=0; jj<KmyappDelegate.MainCartArr.count; jj++)
+    {
+        NSMutableArray *Array=[[[KmyappDelegate.MainCartArr objectAtIndex:jj] valueForKey:@"ingredient"] mutableCopy];
+        
+        tempTotal=[[[KmyappDelegate.MainCartArr objectAtIndex:jj]valueForKey:@"price"] floatValue];
+        float integratPRICE=0.00;
+        NSLog(@"Array==%@",Array);
+        if ([Array isKindOfClass:[NSArray class]])
+        {
+            NSString *WithoutStr=[[NSString alloc]init];
+            NSString *WithStr=[[NSString alloc]init];
+            
+            for (int i=0; i<Array.count; i++)
+            {
+                if ([[[Array objectAtIndex:i] valueForKey:@"is_with"] boolValue]==0)
+                {
+                    integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price_without"] floatValue];
+                    
+                    if ([WithoutStr isEqualToString:@""])
+                    {
+                        WithoutStr=[[Array objectAtIndex:i] valueForKey:@"ingredient_name"];
+                    }
+                    else
+                    {
+                        WithoutStr=[NSString stringWithFormat:@"%@,%@",WithoutStr,[[Array objectAtIndex:i] valueForKey:@"ingredient_name"]];
+                    }
+                }
+                else
+                {
+                    integratPRICE=integratPRICE+[[[Array objectAtIndex:i] valueForKey:@"price"] floatValue];
+                    
+                    if ([WithStr isEqualToString:@""])
+                    {
+                        WithStr=[[Array objectAtIndex:i] valueForKey:@"ingredient_name"];
+                    }
+                    else
+                    {
+                        WithStr=[NSString stringWithFormat:@"%@,%@",WithStr,[[Array objectAtIndex:i] valueForKey:@"ingredient_name"]];
+                    }
+                }
+            }
+            NSLog(@"integratPRICE==%f",integratPRICE);
+        }
+        // NSLog(@"Price total=%f",Total);
+        tempTotal=tempTotal*[[[KmyappDelegate.MainCartArr objectAtIndex:jj]valueForKey:@"quatity"] floatValue];
+        
+        //NSLog(@"total=%f",Total);
+        float QUATIntegate=integratPRICE*[[[KmyappDelegate.MainCartArr objectAtIndex:jj]valueForKey:@"quatity"] floatValue];
+        NSLog(@"QUATIntegate=%f",QUATIntegate);
+        tempMainTotal=tempMainTotal+tempTotal+QUATIntegate;
+    }
+    NSLog(@"tempTotal=%f",tempTotal);
+    NSLog(@"tempMainTotal=%f",tempMainTotal);
     
 }
 

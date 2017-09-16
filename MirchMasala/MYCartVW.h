@@ -12,6 +12,8 @@
 @interface MYCartVW : UIViewController<CCKFNavDrawerDelegate>
 {
      NSInteger cellcount;
+     float tempMainTotal;
+    float tempTotal;
 }
 @property (weak, nonatomic) IBOutlet UITableView *MyTableVW;
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;

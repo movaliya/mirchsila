@@ -19,7 +19,7 @@
 #import "RestaurantMenuView.h"
 #import "MenuListWithImage.h"
 #import "LocationView.h"
-
+#import "MYCartVW.h"
 
 
 @interface HomeView ()
@@ -180,6 +180,31 @@
         RestaurantMenuView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantMenuView"];
         [self.navigationController pushViewController:vcr animated:YES];
     }
+    else if (indexPath.row==1)
+    {
+        //Cart
+        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
+        
+        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        
+        if (CoustmerID!=nil)
+        {
+            MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+            [self.navigationController pushViewController:vcr animated:YES];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
+                                                            message:@""
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Login",nil];
+            alert.tag=51;
+            [alert show];
+        }
+    }
+   
+    
     
    else if (indexPath.row==2)
     {
@@ -689,7 +714,7 @@
     
     if (CoustmerID!=nil)
     {
-        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
+        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

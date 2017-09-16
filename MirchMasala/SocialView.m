@@ -22,7 +22,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self CallSocialService];
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        [self CallSocialService];
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
     SocialArr=[[NSMutableArray alloc]initWithObjects:@"Facebook",@"Linkedin",@"Twitter",@"Youtube", nil];
     
@@ -33,7 +39,7 @@
 -(void)CallSocialService
 {
     [KVNProgress show] ;
-    SocialDataArr=[[NSMutableArray alloc] init];
+    SocialDataArr=[[NSMutableDictionary alloc] init];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -71,6 +77,19 @@
          {
              SocialDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"result"] objectForKey:@"appButtons"] mutableCopy];
              
+             CellCount=0;
+             for (int ii=0; ii<SocialDataArr.count; ii++)
+             {
+                  NSString *CheckButtontype=[[SocialDataArr valueForKey:@"button_type"] objectAtIndex:ii];
+                 if ([CheckButtontype isEqualToString:@"Social Link"])
+                 {
+                     CellCount=CellCount+1;
+                 }
+             }
+             
+             
+             [MainTBL reloadData];
+             
          }
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -79,6 +98,9 @@
          [KVNProgress dismiss] ;
      }];
 }
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,7 +110,7 @@
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return SocialArr.count;
+    return CellCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -119,8 +141,18 @@
         
     }
     
-    cell.SocialTitle_LBL.text=[SocialArr objectAtIndex:indexPath.section];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    NSString *CheckButtontype=[[SocialDataArr valueForKey:@"button_type"] objectAtIndex:indexPath.section];
+    if ([CheckButtontype isEqualToString:@"Social Link"])
+    {
+        cell.SocialTitle_LBL.text=[[SocialDataArr valueForKey:@"title"] objectAtIndex:indexPath.section];
+        NSString *Urlstr=[[SocialDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.section];
+        [cell.SocialIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+        [cell.SocialIMG setShowActivityIndicatorView:YES];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    }
+    
+    
+   
     return cell;
     
     
@@ -128,6 +160,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        NSString *Urlstr=[[SocialDataArr valueForKey:@"content"] objectAtIndex:indexPath.section];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Urlstr]];
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
