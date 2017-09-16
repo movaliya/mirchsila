@@ -76,7 +76,7 @@
     {
       // TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Sign Out", nil];
         
-          TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Sign Out", nil];
+          TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Logout", nil];
     }
     
     
@@ -133,7 +133,7 @@
     {
        // TitleArr=[[NSMutableArray alloc] initWithObjects:@"Home",@"Restaurant Menu",@"Profile",@"My Cart",@"Order History",@"About Us",@"Contact Us",@"Shopping Policy",@"Sign Out", nil];
         
-        TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Sign Out", nil];
+        TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"About Us",@"Social",@"Video Gallery",@"Contact Us",@"Logout", nil];
     }
     
     
@@ -296,7 +296,7 @@
     
     else if (indexPath.row==13)
     {
-        if ([[TitleNameSection objectAtIndex:indexPath.row] isEqualToString:@"Login & Signup"])
+        if ([[TitleNameSection objectAtIndex:indexPath.row] isEqualToString:@"Login or Signup"])
         {
             [self checkLoginAndPresentContainer];
             
