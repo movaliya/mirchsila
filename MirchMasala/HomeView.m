@@ -18,6 +18,7 @@
 #import "ReservationVW.h"
 #import "RestaurantMenuView.h"
 #import "MenuListWithImage.h"
+#import "LocationView.h"
 
 
 
@@ -196,6 +197,12 @@
     {
         //Gallery
         NewsVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsVW"];
+        [self.navigationController pushViewController:vcr animated:YES];
+    }
+    else if (indexPath.row==5)
+    {
+        //Gallery
+        LocationView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationView"];
         [self.navigationController pushViewController:vcr animated:YES];
     }
 }

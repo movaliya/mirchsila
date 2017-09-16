@@ -125,6 +125,11 @@
 		B153B3B81F657DBD00DE8514 /* SubitemCellWithIMG.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3B61F657DBD00DE8514 /* SubitemCellWithIMG.m */; };
 		B153B3B91F657DBD00DE8514 /* SubitemCellWithIMG.xib in Resources */ = {isa = PBXBuildFile; fileRef = B153B3B71F657DBD00DE8514 /* SubitemCellWithIMG.xib */; };
 		B153B3BC1F65A91800DE8514 /* SingleItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3BB1F65A91800DE8514 /* SingleItemView.m */; };
+		B15BBB111F6CF14D004FB813 /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB101F6CF14D004FB813 /* LocationView.m */; };
+		B15BBB131F6CF234004FB813 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BBB121F6CF234004FB813 /* MapKit.framework */; };
+		B15BBB191F6CFB48004FB813 /* MyNotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB181F6CFB48004FB813 /* MyNotationView.m */; };
+		B15BBB1D1F6D0146004FB813 /* MapCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB1B1F6D0146004FB813 /* MapCellView.m */; };
+		B15BBB1E1F6D0146004FB813 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15BBB1C1F6D0146004FB813 /* myView.xib */; };
 		B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */; };
 		B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799C1E6C3665004A4D32 /* IQUIScrollView+Additions.m */; };
 		B15F7A091E6C3665004A4D32 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799E1E6C3665004A4D32 /* IQUITextFieldView+Additions.m */; };
@@ -382,6 +387,14 @@
 		B153B3B71F657DBD00DE8514 /* SubitemCellWithIMG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubitemCellWithIMG.xib; sourceTree = "<group>"; };
 		B153B3BA1F65A91800DE8514 /* SingleItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleItemView.h; sourceTree = "<group>"; };
 		B153B3BB1F65A91800DE8514 /* SingleItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleItemView.m; sourceTree = "<group>"; };
+		B15BBB0F1F6CF14D004FB813 /* LocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationView.h; sourceTree = "<group>"; };
+		B15BBB101F6CF14D004FB813 /* LocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationView.m; sourceTree = "<group>"; };
+		B15BBB121F6CF234004FB813 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B15BBB171F6CFB48004FB813 /* MyNotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNotationView.h; sourceTree = "<group>"; };
+		B15BBB181F6CFB48004FB813 /* MyNotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNotationView.m; sourceTree = "<group>"; };
+		B15BBB1A1F6D0146004FB813 /* MapCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCellView.h; sourceTree = "<group>"; };
+		B15BBB1B1F6D0146004FB813 /* MapCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCellView.m; sourceTree = "<group>"; };
+		B15BBB1C1F6D0146004FB813 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
 		B15F79991E6C3665004A4D32 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		B15F799B1E6C3665004A4D32 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -506,11 +519,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15BBB131F6CF234004FB813 /* MapKit.framework in Frameworks */,
+				B1C4EBAB1E6B069C00111837 /* CoreLocation.framework in Frameworks */,
 				B1C4EBAD1E6B06CE00111837 /* Accelerate.framework in Frameworks */,
 				5310CC701E6AB12200091333 /* Security.framework in Frameworks */,
 				5310CC741E6AB12E00091333 /* AVFoundation.framework in Frameworks */,
 				530D67D11E80E8DA0045EAD7 /* Stripe.framework in Frameworks */,
-				B1C4EBAB1E6B069C00111837 /* CoreLocation.framework in Frameworks */,
 				5310CC761E6AB13C00091333 /* GLKit.framework in Frameworks */,
 				5310CC721E6AB12800091333 /* CFNetwork.framework in Frameworks */,
 				5310CC6E1E6AB11500091333 /* CoreGraphics.framework in Frameworks */,
@@ -714,6 +728,9 @@
 				5350A77F1F6C06E700140174 /* MYCartVW.m */,
 				530EA8FC1E6DB64700A61A88 /* cartView.h */,
 				530EA8FD1E6DB64700A61A88 /* cartView.m */,
+				B15BBB0F1F6CF14D004FB813 /* LocationView.h */,
+				B15BBB101F6CF14D004FB813 /* LocationView.m */,
+				B15BBB1F1F6D13CC004FB813 /* MapFile */,
 				530BFA471E791B0800AE5502 /* CheckOut */,
 				530ECF3F1E71392F0004F9AB /* OrderHistryView.h */,
 				530ECF401E71392F0004F9AB /* OrderHistryView.m */,
@@ -780,6 +797,7 @@
 		5310CC681E6AB10100091333 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B15BBB121F6CF234004FB813 /* MapKit.framework */,
 				530D67D21E80E8E60045EAD7 /* Stripe.bundle */,
 				530D67D01E80E8DA0045EAD7 /* Stripe.framework */,
 				B12C94EE1E6C2AE100185A7B /* AFNetworking.framework */,
@@ -826,6 +844,18 @@
 				53BBBCFB1E853A5C00E4DC73 /* iTunesArtwork@3x.png */,
 			);
 			name = AppIcon;
+			sourceTree = "<group>";
+		};
+		B15BBB1F1F6D13CC004FB813 /* MapFile */ = {
+			isa = PBXGroup;
+			children = (
+				B15BBB1A1F6D0146004FB813 /* MapCellView.h */,
+				B15BBB1B1F6D0146004FB813 /* MapCellView.m */,
+				B15BBB1C1F6D0146004FB813 /* myView.xib */,
+				B15BBB171F6CFB48004FB813 /* MyNotationView.h */,
+				B15BBB181F6CFB48004FB813 /* MyNotationView.m */,
+			);
+			name = MapFile;
 			sourceTree = "<group>";
 		};
 		B15F79971E6C3665004A4D32 /* IQKeyboardManager */ = {
@@ -1127,6 +1157,7 @@
 				530ECF461E713EBD0004F9AB /* OrderHistry_Cell.xib in Resources */,
 				530BFA561E794B5A00AE5502 /* OrderSummay_Detail.xib in Resources */,
 				53BBBD251E853A6900E4DC73 /* Icon-App-76x76@1x.png in Resources */,
+				B15BBB1E1F6D0146004FB813 /* myView.xib in Resources */,
 				536FC0121F66D610001F3BE4 /* AboutUsCELL.xib in Resources */,
 				B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */,
 				B153B3B91F657DBD00DE8514 /* SubitemCellWithIMG.xib in Resources */,
@@ -1218,6 +1249,7 @@
 				B15F7A0A1E6C3665004A4D32 /* IQUIView+Hierarchy.m in Sources */,
 				B15F7A331E6C3665004A4D32 /* UIView+WebCacheOperation.m in Sources */,
 				B13A04621E7BBF430048F36D /* RestaurantMenuView.m in Sources */,
+				B15BBB191F6CFB48004FB813 /* MyNotationView.m in Sources */,
 				530ECF411E71392F0004F9AB /* OrderHistryView.m in Sources */,
 				5307924A1E702274005426ED /* CartGrandTotalCell.m in Sources */,
 				B15F7A271E6C3665004A4D32 /* SDImageCache.m in Sources */,
@@ -1239,9 +1271,11 @@
 				B15F7A1C1E6C3665004A4D32 /* Reachability.m in Sources */,
 				B15F7A861E6C3964004A4D32 /* UIRefreshControl+AFNetworking.m in Sources */,
 				530BFA501E791CAC00AE5502 /* CheckOut_PaymentVW.m in Sources */,
+				B15BBB1D1F6D0146004FB813 /* MapCellView.m in Sources */,
 				B15F7A301E6C3665004A4D32 /* UIImage+MultiFormat.m in Sources */,
 				530BFA5A1E794B7700AE5502 /* OrderSummry_Total.m in Sources */,
 				B15F7A101E6C3665004A4D32 /* IQBarButtonItem.m in Sources */,
+				B15BBB111F6CF14D004FB813 /* LocationView.m in Sources */,
 				B15F7A771E6C3964004A4D32 /* AFHTTPRequestOperation.m in Sources */,
 				5307989C1E79947A005BA050 /* successMessageVW.m in Sources */,
 				B15F7A0C1E6C3665004A4D32 /* IQUIWindow+Hierarchy.m in Sources */,
