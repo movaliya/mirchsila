@@ -255,8 +255,29 @@
 }
 -(void)Order_Click:(id)sender
 {
-    cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
-    [self.navigationController pushViewController:vcr animated:YES];
+    
+    NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
+    NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+    if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
+    {
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+        {
+            cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
+            [self.navigationController pushViewController:vcr animated:YES];
+        }
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        
+    }
+    else
+    {
+         [AppDelegate showErrorMessageWithTitle:@"" message:@"Cart is Empty." delegate:nil];
+    }
+    
+    
+    
+  
 }
 - (IBAction)MenuBtn_Click:(id)sender
 {

@@ -23,7 +23,17 @@
 {
     [super viewDidLoad];
     
+    GalleryDataArr=[[NSMutableArray alloc]init];
     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+         [self CallGalleryService];
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+   
     [IMGCollection registerClass:[CVCell class] forCellWithReuseIdentifier:@"cvCell"];
     // Configure layout collectionView
     
@@ -35,6 +45,55 @@
     
 
 }
+-(void)CallGalleryService
+{
+    [KVNProgress show] ;
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"galleryImages" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+     {
+         [KVNProgress dismiss];
+         
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"galleryImages"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             GalleryDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"galleryImages"] objectForKey:@"result"] objectForKey:@"galleryImages"] mutableCopy];
+             [IMGCollection reloadData];
+         }
+     }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Fail");
+         [KVNProgress dismiss] ;
+     }];
+}
+
 - (IBAction)backBtn_action:(id)sender
 {
      [self.navigationController popViewControllerAnimated:YES];
@@ -51,7 +110,7 @@
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 6;
+    return GalleryDataArr.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,15 +128,9 @@
     
     cell.Title_Hight.constant=0;
     
-    //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
-    
-    // [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    // [cell.IconImageview setShowActivityIndicatorView:YES];
-    
-    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.row];
-    UIImage *imge=[UIImage imageNamed:imagename];
-    [cell.IconImageview setImage:imge];
-    
+    NSString *Urlstr=[[GalleryDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
+    [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    [cell.IconImageview setShowActivityIndicatorView:YES];
     return cell;
     
 }

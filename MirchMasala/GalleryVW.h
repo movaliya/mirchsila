@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface GalleryVW : UIViewController
+{
+    NSMutableArray *GalleryDataArr;
+}
 
 @property (strong, nonatomic) IBOutlet UICollectionView *IMGCollection;
 @end

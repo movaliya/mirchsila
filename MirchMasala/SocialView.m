@@ -146,18 +146,12 @@
         
     }
     
-   // NSString *CheckButtontype=[[SocialDataArr valueForKey:@"button_type"] objectAtIndex:indexPath.section];
-    
-   // if ([CheckButtontype isEqualToString:@"Social Link"])
-   // {
-        NSLog(@"social=%@",[[SocialDataArr valueForKey:@"title"] objectAtIndex:indexPath.section]);
-        cell.SocialTitle_LBL.text=[[SocialDataArr valueForKey:@"title"] objectAtIndex:indexPath.section];
-        NSString *Urlstr=[[SocialDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.section];
-        [cell.SocialIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-        [cell.SocialIMG setShowActivityIndicatorView:YES];
+    cell.SocialTitle_LBL.text=[[SocialDataArr valueForKey:@"title"] objectAtIndex:indexPath.section];
+    NSString *Urlstr=[[SocialDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.section];
+    [cell.SocialIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    [cell.SocialIMG setShowActivityIndicatorView:YES];
         
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    //}
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
     
     
