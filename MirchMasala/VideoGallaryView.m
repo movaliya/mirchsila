@@ -104,7 +104,7 @@
     }
     else
     {
-        mElementSize = CGSizeMake(195, 185);
+        mElementSize = CGSizeMake(206, 206);
     }
     return mElementSize;
 }
