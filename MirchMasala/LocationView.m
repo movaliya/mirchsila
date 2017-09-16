@@ -61,7 +61,7 @@
     Mapdatadic=[[NSMutableDictionary alloc] init];
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
-    [dict1 setValue:@"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA" forKey:@"APIKEY"];
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
     
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"getitem" forKey:@"MODULE"];

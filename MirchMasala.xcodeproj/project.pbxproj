@@ -130,6 +130,7 @@
 		B15BBB191F6CFB48004FB813 /* MyNotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB181F6CFB48004FB813 /* MyNotationView.m */; };
 		B15BBB1D1F6D0146004FB813 /* MapCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB1B1F6D0146004FB813 /* MapCellView.m */; };
 		B15BBB1E1F6D0146004FB813 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15BBB1C1F6D0146004FB813 /* myView.xib */; };
+		B15BBB221F6D2335004FB813 /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB211F6D2335004FB813 /* VideoGallaryView.m */; };
 		B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */; };
 		B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799C1E6C3665004A4D32 /* IQUIScrollView+Additions.m */; };
 		B15F7A091E6C3665004A4D32 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799E1E6C3665004A4D32 /* IQUITextFieldView+Additions.m */; };
@@ -395,6 +396,8 @@
 		B15BBB1A1F6D0146004FB813 /* MapCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCellView.h; sourceTree = "<group>"; };
 		B15BBB1B1F6D0146004FB813 /* MapCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCellView.m; sourceTree = "<group>"; };
 		B15BBB1C1F6D0146004FB813 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
+		B15BBB201F6D2335004FB813 /* VideoGallaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGallaryView.h; sourceTree = "<group>"; };
+		B15BBB211F6D2335004FB813 /* VideoGallaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGallaryView.m; sourceTree = "<group>"; };
 		B15F79991E6C3665004A4D32 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		B15F799B1E6C3665004A4D32 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 				5309EDD21E6EA8D400A216F2 /* HomeView.m */,
 				537131031F63CE9000211643 /* GalleryVW.h */,
 				537131041F63CE9000211643 /* GalleryVW.m */,
+				B15BBB201F6D2335004FB813 /* VideoGallaryView.h */,
+				B15BBB211F6D2335004FB813 /* VideoGallaryView.m */,
 				537131061F63D2E800211643 /* NewsVW.h */,
 				537131071F63D2E800211643 /* NewsVW.m */,
 				B140C4501F69A0B80019B15E /* SocialView.h */,
@@ -1302,6 +1307,7 @@
 				530BEF6F1E71889300614BF8 /* OrderDetailView.m in Sources */,
 				B15F7A2F1E6C3665004A4D32 /* UIImage+GIF.m in Sources */,
 				B15F7A851E6C3964004A4D32 /* UIProgressView+AFNetworking.m in Sources */,
+				B15BBB221F6D2335004FB813 /* VideoGallaryView.m in Sources */,
 				B15F7A831E6C3964004A4D32 /* UIButton+AFNetworking.m in Sources */,
 				530792421E6FE124005426ED /* MenuCell.m in Sources */,
 				538991C01F65156F0054AE66 /* MenuListWithImage.m in Sources */,

@@ -226,7 +226,6 @@
     }
     else if (indexPath.row==5)
     {
-        //Gallery
         LocationView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationView"];
         [self.navigationController pushViewController:vcr animated:YES];
     }
