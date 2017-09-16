@@ -131,6 +131,8 @@
 		B15BBB1D1F6D0146004FB813 /* MapCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB1B1F6D0146004FB813 /* MapCellView.m */; };
 		B15BBB1E1F6D0146004FB813 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15BBB1C1F6D0146004FB813 /* myView.xib */; };
 		B15BBB221F6D2335004FB813 /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB211F6D2335004FB813 /* VideoGallaryView.m */; };
+		B15BBB261F6D3806004FB813 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB241F6D3806004FB813 /* VideoCell.m */; };
+		B15BBB271F6D3806004FB813 /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15BBB251F6D3806004FB813 /* VideoCell.xib */; };
 		B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */; };
 		B15F7A081E6C3665004A4D32 /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799C1E6C3665004A4D32 /* IQUIScrollView+Additions.m */; };
 		B15F7A091E6C3665004A4D32 /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B15F799E1E6C3665004A4D32 /* IQUITextFieldView+Additions.m */; };
@@ -398,6 +400,9 @@
 		B15BBB1C1F6D0146004FB813 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
 		B15BBB201F6D2335004FB813 /* VideoGallaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGallaryView.h; sourceTree = "<group>"; };
 		B15BBB211F6D2335004FB813 /* VideoGallaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGallaryView.m; sourceTree = "<group>"; };
+		B15BBB231F6D3806004FB813 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		B15BBB241F6D3806004FB813 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		B15BBB251F6D3806004FB813 /* VideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCell.xib; sourceTree = "<group>"; };
 		B15F79991E6C3665004A4D32 /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		B15F799A1E6C3665004A4D32 /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		B15F799B1E6C3665004A4D32 /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -667,6 +672,9 @@
 				B140C4531F69A1140019B15E /* SocialCell.h */,
 				B140C4541F69A1140019B15E /* SocialCell.m */,
 				B140C4551F69A1140019B15E /* SocialCell.xib */,
+				B15BBB231F6D3806004FB813 /* VideoCell.h */,
+				B15BBB241F6D3806004FB813 /* VideoCell.m */,
+				B15BBB251F6D3806004FB813 /* VideoCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1183,6 +1191,7 @@
 				5350A7851F6C0CDB00140174 /* MyCartDownCELL.xib in Resources */,
 				53BBBCFE1E853A5C00E4DC73 /* iTunesArtwork@3x.png in Resources */,
 				538991C51F6516690054AE66 /* MenuImageCELL.xib in Resources */,
+				B15BBB271F6D3806004FB813 /* VideoCell.xib in Resources */,
 				5350A78A1F6C1D0B00140174 /* MyCartUpperCELL.xib in Resources */,
 				53BBBD221E853A6900E4DC73 /* Icon-App-60x60@3x.png in Resources */,
 				B1BE0CBE1F64222900DD052A /* NewsCell.xib in Resources */,
@@ -1234,6 +1243,7 @@
 				B15F7A261E6C3665004A4D32 /* NSData+ImageContentType.m in Sources */,
 				530BEF751E718D6700614BF8 /* OderDetailUperCell.m in Sources */,
 				530C39C11E6C340A0073AA78 /* ForgotPasswordView.m in Sources */,
+				B15BBB261F6D3806004FB813 /* VideoCell.m in Sources */,
 				5310CBE41E6A957800091333 /* AppDelegate.m in Sources */,
 				B153B3B81F657DBD00DE8514 /* SubitemCellWithIMG.m in Sources */,
 				B15F7A7C1E6C3964004A4D32 /* AFSecurityPolicy.m in Sources */,

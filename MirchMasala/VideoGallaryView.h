@@ -13,6 +13,6 @@
     
 }
 - (IBAction)Back_click:(id)sender;
-@property (strong, nonatomic) IBOutlet UICollectionView *GalleryCollection;
+@property (strong, nonatomic) IBOutlet UITableView *VideoTBL;
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "VideoGallaryView.h"
-#import "CVCell.h"
 #import "MirchMasala.pch"
+#import "VideoCell.h"
 
 @interface VideoGallaryView ()
 {
@@ -17,20 +17,18 @@
 @end
 
 @implementation VideoGallaryView
-@synthesize GalleryCollection;
+@synthesize VideoTBL;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
-    [GalleryCollection registerClass:[CVCell class] forCellWithReuseIdentifier:@"cvCell"];
-    // Configure layout collectionView
     
+    UINib *nib = [UINib nibWithNibName:@"VideoCell" bundle:nil];
+    VideoCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    VideoTBL.rowHeight = cell.frame.size.height;
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(100, 150)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [GalleryCollection setCollectionViewLayout:flowLayout];
+    [VideoTBL registerNib:nib forCellReuseIdentifier:@"VideoCell"];
     
 }
 
@@ -47,82 +45,52 @@
 }
 
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+
+#pragma mark UITableView delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return ImageNameSection.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
 }
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 6;
+    return 13.0f;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *v = [UIView new];
+    [v setBackgroundColor:[UIColor clearColor]];
+    return v;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"VideoCell";
+    VideoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell=nil;
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+    }
     
-    // Setup cell identifier
-    static NSString *cellIdentifier = @"cvCell";
+    cell.Thumbimg.image=[UIImage imageNamed:[ImageNameSection objectAtIndex:indexPath.section]];
     
-    CVCell *cell = (CVCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-//    cell.layer.masksToBounds = NO;
-//    cell.layer.shadowOffset = CGSizeMake(0, 1);
-//    cell.layer.shadowRadius = 1.0;
-//    cell.layer.shadowColor = [UIColor blackColor].CGColor;
-//    cell.layer.shadowOpacity = 0.5;
-    
-    cell.Title_Hight.constant=0;
-    
-    //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
-    
-    // [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    // [cell.IconImageview setShowActivityIndicatorView:YES];
-    
-    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.row];
-    UIImage *imge=[UIImage imageNamed:imagename];
-    [cell.IconImageview setImage:imge];
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
     
-}
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     
 }
 
-#pragma mark Collection view layout things
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize mElementSize;
-    if (IS_IPHONE_5 || IS_IPHONE_4)
-    {
-        mElementSize = CGSizeMake(158.8f, 158.8f);
-    }
-    else if (IS_IPHONE_6)
-    {
-        mElementSize = CGSizeMake(186.5f, 186.5f);
-    }
-    else
-    {
-        mElementSize = CGSizeMake(206, 206);
-    }
-    return mElementSize;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 2.0;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 2.0;
-}
-
-// Layout: Set Edges
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0,0,0,0); // top, left, bottom, right
+    
 }
 
 @end
