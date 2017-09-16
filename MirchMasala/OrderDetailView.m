@@ -9,7 +9,7 @@
 #import "OrderDetailView.h"
 #import "OrderDetailLowerCell.h"
 #import "OderDetailUperCell.h"
-#import "cartView.h"
+#import "MYCartVW.h"
 
 
 @interface OrderDetailView ()
@@ -188,7 +188,7 @@
     
     if (CoustmerID!=nil)
     {
-        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
+        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

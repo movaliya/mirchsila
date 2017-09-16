@@ -9,7 +9,7 @@
 #import "OrderHistryView.h"
 #import "OrderHistry_Cell.h"
 #import "OrderDetailView.h"
-#import "cartView.h"
+#import "MYCartVW.h"
 
 
 @interface OrderHistryView ()
@@ -321,7 +321,7 @@
     
     if (CoustmerID!=nil)
     {
-        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
+        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

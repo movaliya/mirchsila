@@ -506,7 +506,7 @@
         return 1;
     }
     //NSLog(@"MainCartArr---%d",KmyappDelegate.MainCartArr.count);
-    return KmyappDelegate.MainCartArr.count+ExtraCellINT+2;
+    return KmyappDelegate.MainCartArr.count+ExtraCellINT+1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -633,7 +633,7 @@
     else
     {
         
-        if (indexPath.section == cellcount+1)
+        if (indexPath.section == cellcount)
         {
             static NSString *CellIdentifier = @"CartGrandTotalCell";
             CartGrandTotalCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -653,7 +653,7 @@
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
         }
-        else if(indexPath.section == cellcount+2)
+        else if(indexPath.section == cellcount+1)
         {
             static NSString *CellIdentifier1 = @"Cell";
             UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
@@ -672,7 +672,7 @@
             
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
-        }
+        }/*
         else if(indexPath.section == cellcount)
         {
             static NSString *CellIdentifier = @"CommentTextCell";
@@ -685,7 +685,7 @@
             
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
-        }
+        }*/
 
         else
         {
@@ -794,12 +794,12 @@
         if (indexPath.section == cellcount)
         {
             return 130;
-        }
+        }/*
         else if (indexPath.section==cellcount+1)
         {
             return 137;
-        }
-        else if (indexPath.section==cellcount+2)
+        }*/
+        else if (indexPath.section==cellcount+1)
         {
             return 44;
         }
@@ -1091,9 +1091,9 @@
 
 - (IBAction)CheckOutBtn_Action:(id)sender
 {
-    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:0 inSection:cellcount];
-    CommentTextCell *cell = (CommentTextCell *)[cartTable cellForRowAtIndexPath:changedRow];
-    NSLog(@"===%@",cell.Comment_TXT.text);
+    //NSIndexPath *changedRow = [NSIndexPath indexPathForRow:0 inSection:cellcount];
+   // CommentTextCell *cell = (CommentTextCell *)[cartTable cellForRowAtIndexPath:changedRow];
+   // NSLog(@"===%@",cell.Comment_TXT.text);
     
     if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
     {
@@ -1104,7 +1104,7 @@
             NSString *stringWithoutSpaces = [CheckoutTotal_LBL.text
                                              stringByReplacingOccurrencesOfString:@"£" withString:@""];
             vcr.CartTotalAmout=stringWithoutSpaces;
-            vcr.Comment1View=cell.Comment_TXT.text;
+           // vcr.Comment1View=cell.Comment_TXT.text;
             [self.navigationController pushViewController:vcr animated:YES];
         }
         else

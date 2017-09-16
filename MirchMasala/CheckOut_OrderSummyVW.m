@@ -10,7 +10,7 @@
 #import "OrderSummay_Detail.h"
 #import "OrderSummry_Total.h"
 #import "CheckOut_PaymentVW.h"
-#import "cartView.h"
+#import "MYCartVW.h"
 
 @interface CheckOut_OrderSummyVW ()<UITextViewDelegate>
 {
@@ -397,6 +397,9 @@
 
 - (IBAction)PaymentMethod_Action:(id)sender
 {
+    NSIndexPath *changedRow = [NSIndexPath indexPathForRow:0 inSection:cellcount];
+     OrderSummry_Total *cell = (OrderSummry_Total *)[TableVW cellForRowAtIndexPath:changedRow];
+     NSLog(@"===%@",cell.Comment_TXT.text);
     [KVNProgress dismiss];
     
     BOOL internet=[AppDelegate connectedToNetwork];
@@ -406,7 +409,7 @@
         vcr.Discount=[NSString stringWithFormat:@"%@",MainDiscount];
         vcr.OrderAmount=[NSString stringWithFormat:@"%.02f",GetMainTotal];
         vcr.deliveryCharge=deliveryCharge1;
-        vcr.Comment3View=self.Comment2View;
+        vcr.Comment3View=cell.Comment_TXT.text;
         [self.navigationController pushViewController:vcr animated:YES];
     }
     else
@@ -422,7 +425,7 @@
     
     if (CoustmerID!=nil)
     {
-        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
+        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

@@ -19,6 +19,7 @@
 // AFNetworking
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "UIImageView+WebCache.h"
 
 
 
@@ -79,7 +80,7 @@
 //#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
 
 //Dummy Key
-#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
+#define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
 
 
 

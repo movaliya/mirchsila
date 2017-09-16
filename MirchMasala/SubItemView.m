@@ -11,7 +11,7 @@
 #import "MirchMasala.pch"
 #import "AppDelegate.h"
 #import "LoginVW.h"
-#import "cartView.h"
+#import "MYCartVW.h"
 #import "SubitemCellWithIMG.h"
 #import "SingleItemView.h"
 
@@ -987,7 +987,7 @@
     
     if (CoustmerID!=nil)
     {
-        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
+        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }
