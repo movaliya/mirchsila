@@ -8,7 +8,7 @@
 
 #import "SingleItemView.h"
 #import "MirchMasala.pch"
-#import "MYCartVW.h"
+#import "cartView.h"
 
 @interface SingleItemView ()
 {
@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     OptionBTN.layer.cornerRadius=5;
     OptionBTN.layer.masksToBounds=YES;
@@ -378,7 +379,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

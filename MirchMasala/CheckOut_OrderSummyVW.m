@@ -10,7 +10,7 @@
 #import "OrderSummay_Detail.h"
 #import "OrderSummry_Total.h"
 #import "CheckOut_PaymentVW.h"
-#import "MYCartVW.h"
+#import "cartView.h"
 
 @interface CheckOut_OrderSummyVW ()<UITextViewDelegate>
 {
@@ -425,7 +425,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

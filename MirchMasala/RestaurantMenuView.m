@@ -7,7 +7,7 @@
 //
 
 #import "RestaurantMenuView.h"
-#import "MYCartVW.h"
+#import "cartView.h"
 #import "CategoriesCell.h"
 #import "SubItemView.h"
 #import "CategoriesCellWithIMG.h"
@@ -135,7 +135,7 @@
              Searchdic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
              ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
              
-             ImageFag=YES;
+            // ImageFag=YES;
              
              if (topCategoriesDic)
              {
@@ -237,7 +237,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

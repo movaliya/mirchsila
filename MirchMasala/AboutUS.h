@@ -14,6 +14,7 @@
     NSMutableArray *ImageNameSection;
     NSMutableArray *TitleNameSection;
     NSMutableArray *DescriptionNameSection;
+    NSMutableArray *AboutDataArr;
 }
 @property (weak, nonatomic) IBOutlet UILabel *CartNotification_LBL;
 @property (weak, nonatomic) IBOutlet UIWebView *WebViewAbout;

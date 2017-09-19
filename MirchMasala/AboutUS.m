@@ -7,8 +7,9 @@
 //
 
 #import "AboutUS.h"
-#import "MYCartVW.h"
+#import "cartView.h"
 #import "AboutUsCELL.h"
+#import "MirchMasala.pch"
 
 @interface AboutUS ()
 
@@ -54,7 +55,7 @@
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:YES];
     
-    
+    AboutDataArr=[[NSMutableArray alloc]init];
     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"About1",@"About2",@"About3",@"About4",@"About5",@"About6", nil];
     TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Application Name",@"Build Version",@"Email",@"Copyright",@"Share",@"Rate", nil];
     
@@ -66,10 +67,76 @@
     [TableVW registerNib:nib forCellReuseIdentifier:@"AboutUsCELL"];
     
     TableVW.tableHeaderView = nil;
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        [self CallAboutService];
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
 
+}
+
+-(void)CallAboutService
+{
+    [KVNProgress show] ;
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"appButtons" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
     
     
+    NSError* error = nil;
     
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+     {
+         [KVNProgress dismiss];
+         
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NSMutableArray *TempSocialDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"appButtons"] objectForKey:@"result"] objectForKey:@"appButtons"] mutableCopy];
+             
+             for (int ii=0; ii<TempSocialDataArr.count; ii++)
+             {
+                 NSString *CheckButtontype=[[TempSocialDataArr valueForKey:@"button_type"] objectAtIndex:ii];
+                 if ([CheckButtontype isEqualToString:@"Link"]||[CheckButtontype isEqualToString:@"Text"])
+                 {
+                     [AboutDataArr addObject:[TempSocialDataArr objectAtIndex:ii]];
+                 }
+             }
+             
+             
+             [TableVW reloadData];
+             
+         }
+     }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Fail");
+         [KVNProgress dismiss] ;
+     }];
 }
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -79,7 +146,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return TitleNameSection.count;
+    return AboutDataArr.count;
 }
 
 
@@ -95,12 +162,10 @@
         
     }
     
-    [cell.TitleLBL setText:[TitleNameSection objectAtIndex:indexPath.row]];
-     [cell.DescriptionLBL setText:[DescriptionNameSection objectAtIndex:indexPath.row]];
-    
-    NSString *imagename=[ImageNameSection objectAtIndex:indexPath.row];
-    UIImage *imge=[UIImage imageNamed:imagename];
-    [cell.ImageVW setImage:imge];
+    cell.TitleLBL.text=[[AboutDataArr valueForKey:@"title"] objectAtIndex:indexPath.section];
+    NSString *Urlstr=[[AboutDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.section];
+    [cell.ImageVW sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    [cell.ImageVW setShowActivityIndicatorView:YES];
    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
@@ -109,15 +174,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row==2)
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
     {
-
-        //email
-        NSString *recipients= @"mailto:info@yourdomainname.com?subject=Silsila&body=content";
-       NSString * encodedString = [recipients stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-        UIApplication *application = [UIApplication sharedApplication];
-        [application openURL:[NSURL URLWithString: encodedString] options:@{} completionHandler:nil];
+        NSString *Urlstr=[[AboutDataArr valueForKey:@"content"] objectAtIndex:indexPath.section];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Urlstr]];
     }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -144,7 +208,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

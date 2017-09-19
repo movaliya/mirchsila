@@ -42,7 +42,7 @@
                             <constraint firstAttribute="height" constant="13" id="Owy-QV-jYP"/>
                             <constraint firstAttribute="width" constant="25" id="tvf-UR-shl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                         <color key="textColor" red="0.53725490200000003" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -52,7 +52,7 @@
                             <constraint firstAttribute="height" constant="13" id="4p8-pD-THE"/>
                             <constraint firstAttribute="width" constant="25" id="D8G-GE-tlu"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                         <color key="textColor" red="0.53725490200000003" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -70,7 +70,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="3Q2-er-l3n"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                         <color key="textColor" red="0.53725490200000003" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -80,7 +80,7 @@
                             <constraint firstAttribute="width" constant="40" id="EIM-wn-CVl"/>
                             <constraint firstAttribute="height" constant="13" id="dQ9-cv-HS2"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                         <color key="textColor" red="0.53725490200000003" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -90,7 +90,7 @@
                             <constraint firstAttribute="width" constant="45" id="gmg-Km-q0Y"/>
                             <constraint firstAttribute="height" constant="13" id="mIi-38-vJv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                         <color key="textColor" red="0.53725490200000003" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -100,7 +100,7 @@
                             <constraint firstAttribute="height" constant="13" id="70g-se-AH8"/>
                             <constraint firstAttribute="width" constant="50" id="sCo-7f-zZd"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="9"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                         <color key="textColor" red="0.53725490200000003" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

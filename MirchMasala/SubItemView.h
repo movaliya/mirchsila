@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MirchMasala.pch"
 
-@interface SubItemView : UIViewController
+@interface SubItemView : UIViewController<CCKFNavDrawerDelegate>
 {
     NSString *CategoryId,*categoryName;
     NSMutableDictionary *subCategoryDic;
@@ -22,6 +23,8 @@
     NSMutableArray *WithIntegrate,*withoutIntegrate;
     NSInteger subItemIndex;
 }
+@property (strong, nonatomic) CCKFNavDrawer *rootNav;
+
 @property (weak, nonatomic) IBOutlet UILabel *CartNotification_LBL;
 @property (strong, nonatomic) NSString *CategoryId;
 @property (strong, nonatomic) NSString *categoryName;

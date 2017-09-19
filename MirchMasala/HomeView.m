@@ -19,7 +19,7 @@
 #import "RestaurantMenuView.h"
 #import "MenuListWithImage.h"
 #import "LocationView.h"
-#import "MYCartVW.h"
+#import "cartView.h"
 
 
 @interface HomeView ()
@@ -126,8 +126,8 @@
     if (internet)
     {
         [self performSelector:@selector(CategoriesList) withObject:nil afterDelay:0.0f];
-        [self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
-       
+        //[self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
+        [self CallforgetOffers];
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -189,7 +189,7 @@
         
         if (CoustmerID!=nil)
         {
-            MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+            cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
             [self.navigationController pushViewController:vcr animated:YES];
         }
         else
@@ -209,8 +209,29 @@
    else if (indexPath.row==2)
     {
         //reservation
-        ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
-        [self.navigationController pushViewController:vcr animated:YES];
+        
+        
+        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
+        
+        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        
+        if (CoustmerID!=nil)
+        {
+            ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+            [self.navigationController pushViewController:vcr animated:YES];
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
+                                                            message:@""
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Login",nil];
+            alert.tag=51;
+            [alert show];
+        }
+       
     }
     else if (indexPath.row==3)
     {
@@ -714,7 +735,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

@@ -11,7 +11,7 @@
 #import "MirchMasala.pch"
 #import "AppDelegate.h"
 #import "LoginVW.h"
-#import "MYCartVW.h"
+#import "cartView.h"
 #import "SubitemCellWithIMG.h"
 #import "SingleItemView.h"
 
@@ -42,6 +42,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.rootNav = (CCKFNavDrawer *)self.navigationController;
+    [self.rootNav setCCKFNavDrawerDelegate:self];
+    [self.rootNav CheckLoginArr];
+    [self.rootNav.pan_gr setEnabled:NO];
+    
+    
     
     //ItemCollectionView.hidden=YES;
     ItemTableView.hidden=YES;
@@ -176,7 +182,7 @@
             
              
              ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
-             ImageFag=YES;
+             //ImageFag=YES;
              
              if (ImageFag==YES)
              {
@@ -185,6 +191,7 @@
              }
              else
              {
+                 ItemCollectionView.hidden=YES;
                  ItemTableView.hidden=NO;
                  [ItemTableView reloadData];
              }
@@ -987,7 +994,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }

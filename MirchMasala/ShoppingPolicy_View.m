@@ -7,7 +7,7 @@
 //
 
 #import "ShoppingPolicy_View.h"
-#import "MYCartVW.h"
+#import "cartView.h"
 
 @interface ShoppingPolicy_View ()
 
@@ -110,7 +110,7 @@
     
     if (CoustmerID!=nil)
     {
-        MYCartVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MYCartVW"];
+        cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
         [self.navigationController pushViewController:vcr animated:YES];;
         
     }
