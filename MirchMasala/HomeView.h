@@ -19,6 +19,7 @@
     NSMutableArray *TitleNameSection;
    
 }
+@property (strong, nonatomic) IBOutlet UIImageView *Back_IMG;
 @property (weak, nonatomic) IBOutlet UILabel *CartNotification_LBL;
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 

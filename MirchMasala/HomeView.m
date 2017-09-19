@@ -340,9 +340,9 @@
     int x=0;
     
     
-    for (int i=0; i<3; i++)
+    for (int i=0; i<OfferArr.count; i++)
     {
-        Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, -20, SCREEN_WIDTH, 260)];
+        Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
         Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
         [HeaderScroll addSubview:Headerimg];
         
@@ -350,14 +350,12 @@
         {
             if (i==0)
             {
-                NSString *MainStr=[OfferArr valueForKey:@"A"];
-                NSArray *arr = [MainStr componentsSeparatedByString:@"#"];
-                for (int i =0 ; i<arr.count; i++)
+                for (int i =0 ; i<OfferArr.count; i++)
                 {
                     if (i==0)
                     {
-                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-150, SCREEN_WIDTH, 40)];
-                        First_LBL.text=[arr objectAtIndex:0];
+                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                        First_LBL.text=[OfferArr  valueForKey:@"A"];
                         First_LBL.font=[UIFont boldSystemFontOfSize:30];
                         First_LBL.textAlignment=NSTextAlignmentCenter;
                         First_LBL.textColor=[UIColor whiteColor];
@@ -365,8 +363,8 @@
                     }
                     else if (i==1)
                     {
-                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-110, SCREEN_WIDTH, 30)];
-                        Second_LBL.text=[arr objectAtIndex:1];
+                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                        Second_LBL.text=[OfferArr valueForKey:@"B"];
                         Second_LBL.font=[UIFont boldSystemFontOfSize:20];
                         Second_LBL.textAlignment=NSTextAlignmentCenter;
                         Second_LBL.textColor=[UIColor whiteColor];
@@ -374,9 +372,9 @@
                     }
                     else if (i==2)
                     {
-                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-80, SCREEN_WIDTH, 30)];
-                        thert_LBL.text=[arr objectAtIndex:2];
-                        thert_LBL.font=[UIFont boldSystemFontOfSize:10];
+                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                        thert_LBL.text=[OfferArr valueForKey:@"C"];
+                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
                         thert_LBL.textAlignment=NSTextAlignmentCenter;
                         thert_LBL.textColor=[UIColor whiteColor];
                         [HeaderScroll addSubview:thert_LBL];
@@ -385,14 +383,12 @@
             }
             else if (i==1)
             {
-                NSString *MainStr=[OfferArr valueForKey:@"B"];
-                NSArray *arr = [MainStr componentsSeparatedByString:@"#"];
-                for (int i =0 ; i<arr.count; i++)
+                for (int i =0 ; i<OfferArr.count; i++)
                 {
                     if (i==0)
                     {
-                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-150, SCREEN_WIDTH, 40)];
-                        First_LBL.text=[arr objectAtIndex:0];
+                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                        First_LBL.text=[OfferArr  valueForKey:@"A"];
                         First_LBL.font=[UIFont boldSystemFontOfSize:30];
                         First_LBL.textAlignment=NSTextAlignmentCenter;
                         First_LBL.textColor=[UIColor whiteColor];
@@ -400,8 +396,8 @@
                     }
                     else if (i==1)
                     {
-                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-110, SCREEN_WIDTH, 30)];
-                        Second_LBL.text=[arr objectAtIndex:1];
+                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                        Second_LBL.text=[OfferArr valueForKey:@"B"];
                         Second_LBL.font=[UIFont boldSystemFontOfSize:20];
                         Second_LBL.textAlignment=NSTextAlignmentCenter;
                         Second_LBL.textColor=[UIColor whiteColor];
@@ -409,26 +405,23 @@
                     }
                     else if (i==2)
                     {
-                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-80, SCREEN_WIDTH, 30)];
-                        thert_LBL.text=[arr objectAtIndex:2];
-                        thert_LBL.font=[UIFont boldSystemFontOfSize:10];
+                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                        thert_LBL.text=[OfferArr valueForKey:@"C"];
+                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
                         thert_LBL.textAlignment=NSTextAlignmentCenter;
                         thert_LBL.textColor=[UIColor whiteColor];
                         [HeaderScroll addSubview:thert_LBL];
                     }
                 }
-
             }
             else if (i==2)
             {
-                NSString *MainStr=[OfferArr valueForKey:@"B"];
-                NSArray *arr = [MainStr componentsSeparatedByString:@"#"];
-                for (int i =0 ; i<arr.count; i++)
+                for (int i =0 ; i<OfferArr.count; i++)
                 {
                     if (i==0)
                     {
-                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-150, SCREEN_WIDTH, 40)];
-                        First_LBL.text=[arr objectAtIndex:0];
+                        UILabel *First_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-190, SCREEN_WIDTH, 40)];
+                        First_LBL.text=[OfferArr  valueForKey:@"A"];
                         First_LBL.font=[UIFont boldSystemFontOfSize:30];
                         First_LBL.textAlignment=NSTextAlignmentCenter;
                         First_LBL.textColor=[UIColor whiteColor];
@@ -436,8 +429,8 @@
                     }
                     else if (i==1)
                     {
-                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-110, SCREEN_WIDTH, 30)];
-                        Second_LBL.text=[arr objectAtIndex:1];
+                        UILabel *Second_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-145, SCREEN_WIDTH, 30)];
+                        Second_LBL.text=[OfferArr valueForKey:@"B"];
                         Second_LBL.font=[UIFont boldSystemFontOfSize:20];
                         Second_LBL.textAlignment=NSTextAlignmentCenter;
                         Second_LBL.textColor=[UIColor whiteColor];
@@ -445,20 +438,19 @@
                     }
                     else if (i==2)
                     {
-                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-80, SCREEN_WIDTH, 30)];
-                        thert_LBL.text=[arr objectAtIndex:2];
-                        thert_LBL.font=[UIFont boldSystemFontOfSize:10];
+                        UILabel *thert_LBL=[[UILabel alloc]initWithFrame:CGRectMake(x, 260-115, SCREEN_WIDTH, 30)];
+                        thert_LBL.text=[OfferArr valueForKey:@"C"];
+                        thert_LBL.font=[UIFont boldSystemFontOfSize:12];
                         thert_LBL.textAlignment=NSTextAlignmentCenter;
                         thert_LBL.textColor=[UIColor whiteColor];
                         [HeaderScroll addSubview:thert_LBL];
                     }
                 }
-
             }
         }
         x=x+SCREEN_WIDTH;
     }
-    
+    _Back_IMG.hidden=YES;
     [HeaderScroll setContentSize:CGSizeMake(x, 130)];
     PageControll.numberOfPages =3;
     PageControll.currentPage = 0;

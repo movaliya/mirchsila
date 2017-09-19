@@ -146,15 +146,15 @@
     CGSize mElementSize;
     if (IS_IPHONE_5 || IS_IPHONE_4)
     {
-        mElementSize = CGSizeMake(139, 139);
+        mElementSize = CGSizeMake(139, 149);
     }
     else if (IS_IPHONE_6)
     {
-        mElementSize = CGSizeMake(166, 166);
+        mElementSize = CGSizeMake(166, 176);
     }
     else
     {
-        mElementSize = CGSizeMake(185, 185);
+        mElementSize = CGSizeMake(185, 195);
     }
     return mElementSize;
 }

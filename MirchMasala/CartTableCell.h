@@ -12,6 +12,7 @@
 {
     
 }
+
 @property (strong, nonatomic) IBOutlet UILabel *Title_LBL;
 @property (strong, nonatomic) IBOutlet UIButton *Change_BTN;
 @property (strong, nonatomic) IBOutlet UILabel *Price_LBL;
@@ -23,5 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *With_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Without_LBL;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *WithHight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *WithoutHight;
 
 @end
