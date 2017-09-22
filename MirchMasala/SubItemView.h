@@ -22,6 +22,7 @@
     NSMutableDictionary *ProductIngredDic;
     NSMutableArray *WithIntegrate,*withoutIntegrate;
     NSInteger subItemIndex;
+    BOOL autobool;
 }
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 

@@ -13,6 +13,7 @@
     NSMutableArray *ItemArr;
     NSUInteger chechPlusMinus;
     NSString *CategoryId;
+    BOOL autobool;
 
 }
 @property (strong, nonatomic) NSMutableArray *ItemArr;

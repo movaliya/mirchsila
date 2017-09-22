@@ -140,64 +140,81 @@
     }
     else
     {
-        OptionView.hidden=YES;
-        [WithTBL reloadData];
-        [WithoutTBL reloadData];
-        
-        NSString *Quatity=[[MainCount valueForKey:@"MainCount"] objectAtIndex:senderButton.tag];
-        NSString *Productid=[ItemArr valueForKey:@"id"];
-        
-        NSArray *CategoryIdArr=[KmyappDelegate.MainCartArr valueForKey:@"CategoryId"];
-        NSLog(@"=== %@",KmyappDelegate.MainCartArr);
-        if ([CategoryIdArr containsObject:CategoryId])
+        NSString *autoModify=[ItemArr valueForKey:@"autoModify"];
+        NSLog(@"autoModify=%@",autoModify);
+        if ([autoModify isEqualToString:@"1"])
         {
-            NSArray *ProductidArr=[KmyappDelegate.MainCartArr valueForKey:@"Productid"];
-            if ([ProductidArr containsObject:Productid])
+            [self Option_Click:sender];
+            WithoutTBL.alpha=0.5f;
+            autobool=YES;
+        }
+        else
+        {
+            autobool=NO;
+            WithoutTBL.alpha=1;
+            OptionView.hidden=YES;
+            [WithTBL reloadData];
+            [WithoutTBL reloadData];
+            
+            NSString *Quatity=[[MainCount valueForKey:@"MainCount"] objectAtIndex:senderButton.tag];
+            NSString *Productid=[ItemArr valueForKey:@"id"];
+            
+            NSArray *CategoryIdArr=[KmyappDelegate.MainCartArr valueForKey:@"CategoryId"];
+            NSLog(@"=== %@",KmyappDelegate.MainCartArr);
+            if ([CategoryIdArr containsObject:CategoryId])
             {
-                for (int i=0; i<ProductidArr.count; i++)
+                NSArray *ProductidArr=[KmyappDelegate.MainCartArr valueForKey:@"Productid"];
+                if ([ProductidArr containsObject:Productid])
                 {
-                    if ([[[KmyappDelegate.MainCartArr valueForKey:@"Productid"] objectAtIndex:i] isEqualToString:Productid])
+                    for (int i=0; i<ProductidArr.count; i++)
                     {
-                        NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:i];
-                        if (![ingredientArr isKindOfClass:[NSArray class]])
+                        if ([[[KmyappDelegate.MainCartArr valueForKey:@"Productid"] objectAtIndex:i] isEqualToString:Productid])
                         {
-                            NSString *addqnt=[NSString stringWithFormat:@"%ld",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
-                            NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                            NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
-                            [newDict addEntriesFromDictionary:oldDict];
-                            [newDict setObject:addqnt forKey:@"quatity"];
-                            [KmyappDelegate.MainCartArr replaceObjectAtIndex:i withObject:newDict];
-                            [[NSUserDefaults standardUserDefaults] setObject:KmyappDelegate.MainCartArr forKey:CoustmerID];
-                            KmyappDelegate.MainCartArr=[[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:CoustmerID]];
-                            [AppDelegate showErrorMessageWithTitle:@"" message:@"Product Added in Cart." delegate:nil];
-                            
-                            if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
+                            NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:i];
+                            if (![ingredientArr isKindOfClass:[NSArray class]])
                             {
-                                NSInteger qnttotal=0;
-                                for (int i=0; i<KmyappDelegate.MainCartArr.count; i++)
-                                {
-                                    qnttotal=qnttotal+[[[KmyappDelegate.MainCartArr objectAtIndex:i]valueForKey:@"quatity"] integerValue];
-                                }
+                                NSString *addqnt=[NSString stringWithFormat:@"%ld",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
+                                NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                                NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
+                                [newDict addEntriesFromDictionary:oldDict];
+                                [newDict setObject:addqnt forKey:@"quatity"];
+                                [KmyappDelegate.MainCartArr replaceObjectAtIndex:i withObject:newDict];
+                                [[NSUserDefaults standardUserDefaults] setObject:KmyappDelegate.MainCartArr forKey:CoustmerID];
+                                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:CoustmerID]];
+                                [AppDelegate showErrorMessageWithTitle:@"" message:@"Product Added in Cart." delegate:nil];
                                 
-                                [CartNotification_LBL setHidden:NO];
-                                CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
+                                if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
+                                {
+                                    NSInteger qnttotal=0;
+                                    for (int i=0; i<KmyappDelegate.MainCartArr.count; i++)
+                                    {
+                                        qnttotal=qnttotal+[[[KmyappDelegate.MainCartArr objectAtIndex:i]valueForKey:@"quatity"] integerValue];
+                                    }
+                                    
+                                    [CartNotification_LBL setHidden:NO];
+                                    CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
+                                }
+                                else
+                                {
+                                    [CartNotification_LBL setHidden:YES];
+                                }
+                                break;
                             }
                             else
                             {
-                                [CartNotification_LBL setHidden:YES];
+                                if (i==ProductidArr.count-1)
+                                {
+                                    [self Addnewitemincart:senderButton.tag];
+                                    break;
+                                }
+                                
                             }
-                            break;
-                        }
-                        else
-                        {
-                            if (i==ProductidArr.count-1)
-                            {
-                                [self Addnewitemincart:senderButton.tag];
-                                break;
-                            }
-                            
                         }
                     }
+                }
+                else
+                {
+                    [self Addnewitemincart:senderButton.tag];
                 }
             }
             else
@@ -205,10 +222,7 @@
                 [self Addnewitemincart:senderButton.tag];
             }
         }
-        else
-        {
-            [self Addnewitemincart:senderButton.tag];
-        }
+        
     }
 
 }
@@ -269,6 +283,20 @@
     
     withSelectMain=[[NSMutableArray alloc] init];
     withoutselectMain=[[NSMutableArray alloc] init];
+    NSString *autoModify=[ItemArr valueForKey:@"autoModify"] ;
+    NSLog(@"autoModify=%@",autoModify);
+    if ([autoModify isEqualToString:@"1"])
+    {
+        WithoutTBL.alpha=0.5f;
+        autobool=YES;
+    }
+    else
+    {
+        autobool=NO;
+        WithoutTBL.alpha=1;
+    }
+    
+    
     for (NSMutableArray *dic1 in ProductIngredDic)
     {
         if ([[dic1 valueForKey:@"is_with"] boolValue]==0)
@@ -302,21 +330,25 @@
 {
     UIButton *senderButton = (UIButton *)sender;
     NSLog(@"%ld",(long)senderButton.tag);
-    
-    if ([[WithoutSelectArr objectAtIndex:senderButton.tag] isEqualToString:@"YES"])
+    if (autobool==NO)
     {
-        [WithoutSelectArr replaceObjectAtIndex:senderButton.tag withObject:@"NO"];
-        NSInteger indx=[withoutselectMain indexOfObject:[NSString stringWithFormat:@"%ld",(long)senderButton.tag]];
-        [withoutselectMain removeObjectAtIndex:indx];
+        if ([[WithoutSelectArr objectAtIndex:senderButton.tag] isEqualToString:@"YES"])
+        {
+            [WithoutSelectArr replaceObjectAtIndex:senderButton.tag withObject:@"NO"];
+            NSInteger indx=[withoutselectMain indexOfObject:[NSString stringWithFormat:@"%ld",(long)senderButton.tag]];
+            [withoutselectMain removeObjectAtIndex:indx];
+            
+        }
+        else
+        {
+            [WithoutSelectArr replaceObjectAtIndex:senderButton.tag withObject:@"YES"];
+            [withoutselectMain addObject:[NSString stringWithFormat:@"%ld",(long)senderButton.tag]];
+        }
         
-    }
-    else
-    {
-        [WithoutSelectArr replaceObjectAtIndex:senderButton.tag withObject:@"YES"];
-        [withoutselectMain addObject:[NSString stringWithFormat:@"%ld",(long)senderButton.tag]];
+        [WithoutTBL reloadData];
     }
     
-    [WithoutTBL reloadData];
+    
 }
 
 -(void)WithChkbox_click:(id)sender
@@ -523,20 +555,39 @@
 {
     if (tableView==WithoutTBL)
     {
-        if ([[WithoutSelectArr objectAtIndex:indexPath.row] isEqualToString:@"YES"])
+        if (autobool==NO)
         {
-            [WithoutSelectArr replaceObjectAtIndex:indexPath.row withObject:@"NO"];
-            NSInteger indx=[withoutselectMain indexOfObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
-            [withoutselectMain removeObjectAtIndex:indx];
+            if ([[WithoutSelectArr objectAtIndex:indexPath.row] isEqualToString:@"YES"])
+            {
+                [WithoutSelectArr replaceObjectAtIndex:indexPath.row withObject:@"NO"];
+                NSInteger indx=[withoutselectMain indexOfObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+                [withoutselectMain removeObjectAtIndex:indx];
+            }
+            else
+            {
+                [WithoutSelectArr replaceObjectAtIndex:indexPath.row withObject:@"YES"];
+                [withoutselectMain addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+                
+            }
+            
+            [WithoutTBL reloadData];
+        }
+    }
+    else if (tableView==WithTBL)
+    {
+        if ([[WithSelectArr objectAtIndex:indexPath.row] isEqualToString:@"YES"])
+        {
+            [WithSelectArr replaceObjectAtIndex:indexPath.row withObject:@"NO"];
+            NSInteger indx=[withSelectMain indexOfObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+            [withSelectMain removeObjectAtIndex:indx];
         }
         else
         {
-            [WithoutSelectArr replaceObjectAtIndex:indexPath.row withObject:@"YES"];
-            [withoutselectMain addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
-            
+            [WithSelectArr replaceObjectAtIndex:indexPath.row withObject:@"YES"];
+            [withSelectMain addObject:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
         }
         
-        [WithoutTBL reloadData];
+        [WithTBL reloadData];
     }
 }
 
@@ -575,58 +626,166 @@
         }
         
         NSArray *FinalArray=[arr arrayByAddingObjectsFromArray:arr2];
-        OptionView.hidden=YES;
-        [WithTBL reloadData];
-        [WithoutTBL reloadData];
-        NSString *Quatity=[[MainCount valueForKey:@"MainCount"] objectAtIndex:0];
-        NSString *Productid=[ItemArr valueForKey:@"id"];
         
-        NSArray *CategoryIdArr=[KmyappDelegate.MainCartArr valueForKey:@"CategoryId"];
-        NSLog(@"=== %@",KmyappDelegate.MainCartArr);
-        if ([CategoryIdArr containsObject:CategoryId])
+        if (autobool==YES)
         {
-            NSArray *ProductidArr=[KmyappDelegate.MainCartArr valueForKey:@"Productid"];
-            if ([ProductidArr containsObject:Productid])
+            if (FinalArray.count==0)
             {
-                for (int i=0; i<ProductidArr.count; i++)
+                [AppDelegate showErrorMessageWithTitle:@"Alert!" message:@"Please select option" delegate:nil];
+            }
+            else
+            {
+                autobool=NO;
+                OptionView.hidden=YES;
+                [WithTBL reloadData];
+                [WithoutTBL reloadData];
+                NSString *Quatity=[[MainCount valueForKey:@"MainCount"] objectAtIndex:0];
+                NSString *Productid=[ItemArr valueForKey:@"id"];
+                
+                NSArray *CategoryIdArr=[KmyappDelegate.MainCartArr valueForKey:@"CategoryId"];
+                NSLog(@"=== %@",KmyappDelegate.MainCartArr);
+                if ([CategoryIdArr containsObject:CategoryId])
                 {
-                    if ([[[KmyappDelegate.MainCartArr valueForKey:@"Productid"] objectAtIndex:i] isEqualToString:Productid])
+                    NSArray *ProductidArr=[KmyappDelegate.MainCartArr valueForKey:@"Productid"];
+                    if ([ProductidArr containsObject:Productid])
                     {
-                        NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:i];
-                        if ([ingredientArr isKindOfClass:[NSArray class]])
+                        for (int i=0; i<ProductidArr.count; i++)
                         {
-                            NSSet *set1 = [NSSet setWithArray:ingredientArr];
-                            NSSet *set2 = [NSSet setWithArray:FinalArray];
-                            
-                            if([set1 isEqualToSet:set2])
+                            if ([[[KmyappDelegate.MainCartArr valueForKey:@"Productid"] objectAtIndex:i] isEqualToString:Productid])
                             {
-                                NSString *addqnt=[NSString stringWithFormat:@"%d",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
-                                NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
-                                NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
-                                [newDict addEntriesFromDictionary:oldDict];
-                                [newDict setObject:addqnt forKey:@"quatity"];
-                                [KmyappDelegate.MainCartArr replaceObjectAtIndex:i withObject:newDict];
-                                [[NSUserDefaults standardUserDefaults] setObject:KmyappDelegate.MainCartArr forKey:CoustmerID];
-                                KmyappDelegate.MainCartArr=[[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:CoustmerID]];
-                                [AppDelegate showErrorMessageWithTitle:@"" message:@"Product Added in Cart." delegate:nil];
-                                
-                                if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
+                                NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:i];
+                                if ([ingredientArr isKindOfClass:[NSArray class]])
                                 {
-                                    NSInteger qnttotal=0;
-                                    for (int i=0; i<KmyappDelegate.MainCartArr.count; i++)
-                                    {
-                                        qnttotal=qnttotal+[[[KmyappDelegate.MainCartArr objectAtIndex:i]valueForKey:@"quatity"] integerValue];
-                                    }
+                                    NSSet *set1 = [NSSet setWithArray:ingredientArr];
+                                    NSSet *set2 = [NSSet setWithArray:FinalArray];
                                     
-                                    [CartNotification_LBL setHidden:NO];
-                                    CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
+                                    if([set1 isEqualToSet:set2])
+                                    {
+                                        NSString *addqnt=[NSString stringWithFormat:@"%d",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
+                                        NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                                        NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
+                                        [newDict addEntriesFromDictionary:oldDict];
+                                        [newDict setObject:addqnt forKey:@"quatity"];
+                                        [KmyappDelegate.MainCartArr replaceObjectAtIndex:i withObject:newDict];
+                                        [[NSUserDefaults standardUserDefaults] setObject:KmyappDelegate.MainCartArr forKey:CoustmerID];
+                                        KmyappDelegate.MainCartArr=[[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:CoustmerID]];
+                                        [AppDelegate showErrorMessageWithTitle:@"" message:@"Product Added in Cart." delegate:nil];
+                                        
+                                        if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
+                                        {
+                                            NSInteger qnttotal=0;
+                                            for (int i=0; i<KmyappDelegate.MainCartArr.count; i++)
+                                            {
+                                                qnttotal=qnttotal+[[[KmyappDelegate.MainCartArr objectAtIndex:i]valueForKey:@"quatity"] integerValue];
+                                            }
+                                            
+                                            [CartNotification_LBL setHidden:NO];
+                                            CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
+                                        }
+                                        else
+                                        {
+                                            [CartNotification_LBL setHidden:YES];
+                                        }
+                                        
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (i==ProductidArr.count-1)
+                                        {
+                                            NSLog(@"Not Same");
+                                            [self Addcartdatawithoption:FinalArray];
+                                            break;
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    [CartNotification_LBL setHidden:YES];
+                                    if (i==ProductidArr.count-1)
+                                    {
+                                        NSLog(@"Not Same");
+                                        [self Addcartdatawithoption:FinalArray];
+                                        break;
+                                    }
                                 }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        [self Addcartdatawithoption:FinalArray];
+                    }
+                }
+                else
+                {
+                    [self Addcartdatawithoption:FinalArray];
+                }
+            }
+        }
+        else
+        {
+            OptionView.hidden=YES;
+            [WithTBL reloadData];
+            [WithoutTBL reloadData];
+            NSString *Quatity=[[MainCount valueForKey:@"MainCount"] objectAtIndex:0];
+            NSString *Productid=[ItemArr valueForKey:@"id"];
+            
+            NSArray *CategoryIdArr=[KmyappDelegate.MainCartArr valueForKey:@"CategoryId"];
+            NSLog(@"=== %@",KmyappDelegate.MainCartArr);
+            if ([CategoryIdArr containsObject:CategoryId])
+            {
+                NSArray *ProductidArr=[KmyappDelegate.MainCartArr valueForKey:@"Productid"];
+                if ([ProductidArr containsObject:Productid])
+                {
+                    for (int i=0; i<ProductidArr.count; i++)
+                    {
+                        if ([[[KmyappDelegate.MainCartArr valueForKey:@"Productid"] objectAtIndex:i] isEqualToString:Productid])
+                        {
+                            NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:i];
+                            if ([ingredientArr isKindOfClass:[NSArray class]])
+                            {
+                                NSSet *set1 = [NSSet setWithArray:ingredientArr];
+                                NSSet *set2 = [NSSet setWithArray:FinalArray];
                                 
-                                break;
+                                if([set1 isEqualToSet:set2])
+                                {
+                                    NSString *addqnt=[NSString stringWithFormat:@"%d",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
+                                    NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
+                                    NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
+                                    [newDict addEntriesFromDictionary:oldDict];
+                                    [newDict setObject:addqnt forKey:@"quatity"];
+                                    [KmyappDelegate.MainCartArr replaceObjectAtIndex:i withObject:newDict];
+                                    [[NSUserDefaults standardUserDefaults] setObject:KmyappDelegate.MainCartArr forKey:CoustmerID];
+                                    KmyappDelegate.MainCartArr=[[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]objectForKey:CoustmerID]];
+                                    [AppDelegate showErrorMessageWithTitle:@"" message:@"Product Added in Cart." delegate:nil];
+                                    
+                                    if (KmyappDelegate.MainCartArr.count>0 && CoustmerID!=nil)
+                                    {
+                                        NSInteger qnttotal=0;
+                                        for (int i=0; i<KmyappDelegate.MainCartArr.count; i++)
+                                        {
+                                            qnttotal=qnttotal+[[[KmyappDelegate.MainCartArr objectAtIndex:i]valueForKey:@"quatity"] integerValue];
+                                        }
+                                        
+                                        [CartNotification_LBL setHidden:NO];
+                                        CartNotification_LBL.text=[NSString stringWithFormat:@"%lu",(unsigned long)qnttotal];
+                                    }
+                                    else
+                                    {
+                                        [CartNotification_LBL setHidden:YES];
+                                    }
+                                    
+                                    break;
+                                }
+                                else
+                                {
+                                    if (i==ProductidArr.count-1)
+                                    {
+                                        NSLog(@"Not Same");
+                                        [self Addcartdatawithoption:FinalArray];
+                                        break;
+                                    }
+                                }
                             }
                             else
                             {
@@ -638,16 +797,11 @@
                                 }
                             }
                         }
-                        else
-                        {
-                            if (i==ProductidArr.count-1)
-                            {
-                                NSLog(@"Not Same");
-                                [self Addcartdatawithoption:FinalArray];
-                                break;
-                            }
-                        }
                     }
+                }
+                else
+                {
+                    [self Addcartdatawithoption:FinalArray];
                 }
             }
             else
@@ -655,10 +809,7 @@
                 [self Addcartdatawithoption:FinalArray];
             }
         }
-        else
-        {
-            [self Addcartdatawithoption:FinalArray];
-        }
+        
     }
 }
 
