@@ -17,6 +17,7 @@
     
     NSMutableArray *ImageNameSection;
     NSMutableArray *TitleNameSection;
+    NSMutableArray *BannerImageARR;
    
 }
 @property (strong, nonatomic) IBOutlet UIImageView *Back_IMG;

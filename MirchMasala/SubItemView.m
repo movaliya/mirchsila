@@ -182,7 +182,7 @@
             
              
              ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
-             ImageFag=YES;
+             //ImageFag=YES;
              
              if (ImageFag==YES)
              {
@@ -561,7 +561,7 @@
     {
         return 44;
     }
-    return 95;
+    return 75;
     
 }
 
