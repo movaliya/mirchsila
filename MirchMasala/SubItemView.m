@@ -233,6 +233,19 @@
     // cell.Title_Hight.constant=0;
     cell.ItemTitel_LBL.text=[[subCategoryDic valueForKey:@"productName"] objectAtIndex:indexPath.row];
     
+    cell.ViewHight.constant=40;
+    cell.Title_TOP.constant=12;
+    cell.ItemDesc_LBL.hidden=YES;
+    
+    NSString *description=[[subCategoryDic valueForKey:@"description"] objectAtIndex:indexPath.row];
+    if (description != (id)[NSNull null])
+    {
+        cell.ViewHight.constant=61;
+        cell.Title_TOP.constant=5;
+        cell.ItemDesc_LBL.hidden=NO;
+        cell.ItemDesc_LBL.text=[NSString stringWithFormat:@"%@",description];
+    }
+    
     //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
     
     // [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
