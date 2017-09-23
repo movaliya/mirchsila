@@ -79,11 +79,126 @@
     [Submit_Btn.layer setCornerRadius:20.0f];
     [Submit_Btn.layer setMasksToBounds:YES];
     
-       
+    
+    
+    
+    if (CoustmerID!=nil)
+    {
+        BOOL internet=[AppDelegate connectedToNetwork];
+        if (internet)
+        {
+            [self GetUserProfileData];
+        }
+        else
+            [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
+                                                        message:@""
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Login",nil];
+        [alert show];
+    }
+}
+-(void)GetUserProfileData
+{
+    NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    if (UserSaveData)
+    {
+        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
+        
+        
+        [KVNProgress show] ;
+        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+        
+        [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+        
+        
+        NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+        
+        [dictInner setObject:CoustmerID forKey:@"CUSTOMERID"];
+        
+        
+        
+        NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+        
+        [dictSub setObject:@"getitem" forKey:@"MODULE"];
+        
+        [dictSub setObject:@"myProfile" forKey:@"METHOD"];
+        
+        [dictSub setObject:dictInner forKey:@"PARAMS"];
+        
+        
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+        NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+        
+        [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+        [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+        
+        
+        NSError* error = nil;
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+        // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error];
+        
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+        AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        manager.requestSerializer = serializer;
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+         {
+             NSLog(@"responseObject==%@",responseObject);
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 
+                 NSMutableDictionary *myProfileDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
+                 
+                 UserName_TXT.text=[myProfileDic valueForKey:@"customerName"];
+                 Email_TXT.text=[myProfileDic valueForKey:@"email"];
+                 
+             }
+             else
+             {
+                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Server Error." delegate:nil];
+             }
+             
+             [KVNProgress dismiss] ;
+         }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Fail");
+             [KVNProgress dismiss] ;
+         }];
+        
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"You are not Login." delegate:nil];
+    }
+    
 }
 - (IBAction)Submit_action:(id)sender
 {
-    if ([Email_TXT.text isEqualToString:@""])
+    
+    NSMutableDictionary *UserSaveData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"LoginUserDic"] mutableCopy];
+    if (!UserSaveData)
+    {
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"You are not Login." delegate:nil];
+    }
+    else if ([Email_TXT.text isEqualToString:@""])
     {
         //[self ShowPOPUP];
         

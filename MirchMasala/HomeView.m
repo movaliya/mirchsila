@@ -125,9 +125,9 @@
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        [self performSelector:@selector(CategoriesList) withObject:nil afterDelay:0.0f];
-        //[self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
-        [self CallforgetOffers];
+        //[self performSelector:@selector(CategoriesList) withObject:nil afterDelay:0.0f];
+        [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
+      
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -343,7 +343,11 @@
     for (int i=0; i<OfferArr.count; i++)
     {
         Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
-        Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
+        
+        NSString *Urlstr=[[BannerImageARR valueForKey:@"image_path"] objectAtIndex:i];
+        [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"HomeLogo"]];
+        [Headerimg setShowActivityIndicatorView:YES];
+        //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
         [HeaderScroll addSubview:Headerimg];
         
         if (OfferArr.count>i)
@@ -664,7 +668,56 @@
     return 44;
     
 }
-
+-(void)BannerImageService
+{
+    [KVNProgress show] ;
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"bannerImages" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+     {
+         [KVNProgress dismiss];
+         
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             BannerImageARR=[[NSMutableArray alloc]init];
+             BannerImageARR=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"result"] objectForKey:@"bannerImages"] mutableCopy];
+               [self CallforgetOffers];
+             
+         }
+     }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Fail");
+         [KVNProgress dismiss] ;
+     }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
