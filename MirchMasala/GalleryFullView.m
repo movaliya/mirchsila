@@ -24,7 +24,7 @@
     [self.rootNav.pan_gr setEnabled:NO];
     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
     
-    
+    int x=0;
     for (int i = 0; i < ImagArr.count; i++)
     {
         CGRect frame;
@@ -34,8 +34,8 @@
         //frame.origin.x = 0;
        // frame.origin.y = ImageScrollView.frame.size.height * i;
         
-        frame.size = ImageScrollView.frame.size;
-       UIImageView *newPageView = [[UIImageView alloc] init];
+        //frame.size = ImageScrollView.frame.size;
+        UIImageView *newPageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, SCREEN_HEIGHT-60)];
         NSString *Urlstr=[[ImagArr valueForKey:@"image_path"] objectAtIndex:i];
         [newPageView sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
         [newPageView setShowActivityIndicatorView:YES];
@@ -44,11 +44,13 @@
         
        // newPageView.frame = CGRectMake(frame.origin.x,frame.origin.y , self.view.frame.size.width, frame.size.height);
         
-        newPageView.frame = frame;
+        //newPageView.frame = frame;
        
-        [ImageScrollView addSubview:newPageView];
+        [ImageScrollView addSubview:newPageView];\
+        
+        x=x+SCREEN_WIDTH;
     }
-    ImageScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * ImagArr.count , ImageScrollView.frame.size.height);
+    ImageScrollView.contentSize = CGSizeMake(x , ImageScrollView.frame.size.height);
     
     //ImageScrollView.contentSize = CGSizeMake(ImageScrollView.frame.size.width , ImageScrollView.frame.size.height* ImageNameSection.count);
     
