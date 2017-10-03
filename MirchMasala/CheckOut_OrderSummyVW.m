@@ -242,7 +242,8 @@
             // Without Lable
             if ([WithoutStr isEqualToString:@""])
             {
-                cell.Without_LBL.text=@"--";
+                cell.Without_LBL.text=@"";
+                cell.without_title.hidden=YES;
             }
             else
             {
@@ -252,7 +253,8 @@
             // With Lable
             if ([WithStr isEqualToString:@""])
             {
-                cell.With_LBL.text=@"--";
+                cell.With_LBL.text=@"";
+                cell.With_title.hidden=YES;
             }
             else
             {
@@ -261,8 +263,10 @@
         }
         else
         {
-            cell.Without_LBL.text=@"--";
-            cell.With_LBL.text=@"--";
+            cell.Without_LBL.text=@"";
+            cell.With_LBL.text=@"";
+            cell.without_title.hidden=YES;
+            cell.With_title.hidden=YES;
         }
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         

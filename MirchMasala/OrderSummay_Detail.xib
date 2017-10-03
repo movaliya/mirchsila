@@ -134,7 +134,9 @@
                 <outlet property="ProductPrice_LBL" destination="RwT-rY-bvm" id="Wd6-Zw-1Hh"/>
                 <outlet property="Quatity_LBL" destination="pjk-N3-sjn" id="LPb-ZY-PG7"/>
                 <outlet property="With_LBL" destination="FQJ-Rb-bbs" id="A8E-Qv-7Ni"/>
+                <outlet property="With_title" destination="gqJ-vo-5Fb" id="Oyi-wm-JLC"/>
                 <outlet property="Without_LBL" destination="nyQ-B1-xQk" id="QWW-X1-J3m"/>
+                <outlet property="without_title" destination="EIy-JI-e9J" id="HG4-oj-Gr0"/>
             </connections>
             <point key="canvasLocation" x="-63" y="-6"/>
         </tableViewCell>

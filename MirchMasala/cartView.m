@@ -739,7 +739,8 @@
                 // Without Lable
                 if ([WithoutStr isEqualToString:@""])
                 {
-                    cell1.WithoutOptiion_LBL.text=@"--";
+                    cell1.WithoutOptiion_LBL.text=@"";
+                    cell1.Without_LBL.hidden=YES;
                 }
                 else
                 {
@@ -749,7 +750,8 @@
                 // With Lable
                 if ([WithStr isEqualToString:@""])
                 {
-                    cell1.WithOption_LBL.text=@"--";
+                    cell1.WithOption_LBL.text=@"";
+                    cell1.With_LBL.hidden=YES;
                 }
                 else
                 {
@@ -758,8 +760,10 @@
             }
             else
             {
-                cell1.WithoutOptiion_LBL.text=@"--";
-                cell1.WithOption_LBL.text=@"--";
+                cell1.WithoutOptiion_LBL.text=@"";
+                cell1.WithOption_LBL.text=@"";
+                cell1.Without_LBL.hidden=YES;
+                cell1.With_LBL.hidden=YES;
             }
             [cell1 setSelectionStyle:UITableViewCellSelectionStyleNone];
             cell1.Title_LBL.text=[[KmyappDelegate.MainCartArr objectAtIndex:indexPath.section]valueForKey:@"productName"];

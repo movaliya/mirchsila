@@ -7,7 +7,6 @@
 //
 
 #import "GalleryFullView.h"
-
 @interface GalleryFullView ()
 
 @end
@@ -29,7 +28,7 @@
     for (int i = 0; i < ImagArr.count; i++)
     {
         CGRect frame;
-        frame.origin.x = ImageScrollView.frame.size.width * i;
+        frame.origin.x = SCREEN_WIDTH * i;
         frame.origin.y = 0;
         
         //frame.origin.x = 0;
@@ -42,15 +41,19 @@
         [newPageView setShowActivityIndicatorView:YES];
         
         newPageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+       // newPageView.frame = CGRectMake(frame.origin.x,frame.origin.y , self.view.frame.size.width, frame.size.height);
+        
         newPageView.frame = frame;
+       
         [ImageScrollView addSubview:newPageView];
     }
-    ImageScrollView.contentSize = CGSizeMake(ImageScrollView.frame.size.width * ImagArr.count , ImageScrollView.frame.size.height);
+    ImageScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * ImagArr.count , ImageScrollView.frame.size.height);
     
     //ImageScrollView.contentSize = CGSizeMake(ImageScrollView.frame.size.width , ImageScrollView.frame.size.height* ImageNameSection.count);
     
     int selectindex=[SelectedImage integerValue];
-    [ImageScrollView setContentOffset:CGPointMake(ImageScrollView.frame.size.width*selectindex, 0.0f) animated:YES];
+    [ImageScrollView setContentOffset:CGPointMake(SCREEN_WIDTH*selectindex, 0.0f) animated:YES];
 
    
 }
