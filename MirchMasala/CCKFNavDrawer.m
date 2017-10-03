@@ -21,7 +21,7 @@
 #import "RestaurantMenuView.h"
 #import "ShoppingPolicy_View.h"
 #import "SideMenuCollectioVW.h"
-#import "ReservationVW.h"
+#import "ReservationSubVW.h"
 #import "GalleryVW.h"
 #import "NewsVW.h"
 #import "SocialView.h"
@@ -233,7 +233,7 @@
             
             if (CoustmerID!=nil)
             {
-                ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+                ReservationSubVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationSubVW"];
                 [super pushViewController:vcr animated:YES];
             }
             else
@@ -351,7 +351,7 @@
             
             if (CoustmerID!=nil)
             {
-                ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+                ReservationSubVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationSubVW"];
                 [super pushViewController:vcr animated:YES];
             }
             else

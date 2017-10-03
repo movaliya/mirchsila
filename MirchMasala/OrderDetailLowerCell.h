@@ -14,5 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ProductQuatity_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *withIntegrate_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *WithoutIntegrate_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *without_title;
+@property (weak, nonatomic) IBOutlet UILabel *With_Title;
 
 @end

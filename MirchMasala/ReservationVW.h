@@ -15,4 +15,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *EmailTXT;
 @property (weak, nonatomic) IBOutlet UITextField *MessageTXT;
 
+@property (strong, nonatomic) NSString *aultNo;
+@property (strong, nonatomic) NSString *childerNo;
+@property (strong, nonatomic) NSString *Res_Time;
+@property (strong, nonatomic) NSString *Res_date;
+@property (strong, nonatomic) NSString *Stay_Hour;
+@property (strong, nonatomic) NSString *Stay_Mint;
+@property (strong, nonatomic) NSString *InfantsNo;
+
+
+
 @end

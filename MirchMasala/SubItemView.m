@@ -181,7 +181,7 @@
              [MainCount setObject:arrayInt forKey:@"MainCount"];
             
              
-             ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
+             ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
              //ImageFag=YES;
              
              if (ImageFag==YES)
@@ -246,14 +246,14 @@
         cell.ItemDesc_LBL.text=[NSString stringWithFormat:@"%@",description];
     }
     
-    //NSString *Urlstr=[[CatDATA valueForKey:@"img"] objectAtIndex:indexPath.row];
+    NSString *Urlstr=[[subCategoryDic valueForKey:@"imagePath"] objectAtIndex:indexPath.row];
     
-    // [cell.IconImageview sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
-    // [cell.IconImageview setShowActivityIndicatorView:YES];
+     [cell.ItemIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"slider_image_1.png"]];
+     [cell.ItemIMG setShowActivityIndicatorView:YES];
     
-    NSString *imagename=@"slider_image_1.png";
-    UIImage *imge=[UIImage imageNamed:imagename];
-    cell.ItemIMG.image=imge;
+   // NSString *imagename=@"slider_image_1.png";
+    //UIImage *imge=[UIImage imageNamed:imagename];
+   // cell.ItemIMG.image=imge;
     
     return cell;
     

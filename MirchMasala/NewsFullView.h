@@ -12,6 +12,8 @@
 {
     
 }
+@property (strong, nonatomic) NSMutableArray *NewsSelectArr;
+
 @property (strong, nonatomic) IBOutlet UIImageView *NewsImg;
 @property (strong, nonatomic) IBOutlet UILabel *NewsTitle_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *NewsDate_LBL;

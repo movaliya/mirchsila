@@ -7,10 +7,13 @@
 //
 
 #import "ReservationSubVW.h"
+#import "ReservationVW.h"
+
 #import "MirchMasala.pch"
 @interface ReservationSubVW ()<UIPickerViewDelegate, UIPickerViewDataSource>
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIPickerView *pickerViewChild;
+@property (nonatomic, strong) UIPickerView *pickerViewInfants;
 @property (nonatomic, strong) NSArray *pickerNames;
 
 
@@ -40,8 +43,13 @@
     self.pickerViewChild.delegate = self;     //#2
     self.pickerViewChild.dataSource = self;   //#2
     
+    self.pickerViewInfants = [[UIPickerView alloc] init];
+    self.pickerViewInfants.delegate = self;     //#2
+    self.pickerViewInfants.dataSource = self;   //#2
+    
     Ault14_TXT.inputView = self.pickerView;
     Children_TXT.inputView = self.pickerViewChild;
+    _infantsAge_TXT.inputView = self.pickerViewInfants;
     self.pickerNames = @[ @"1", @"2", @"3", @"4", @"5", @"6",@"7", @"8", @"9", @"10", @"11", @"12",@"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"];
     
     // Do any additional setup after loading the view.
@@ -84,9 +92,13 @@
     if (pickerView == self.pickerView) {
         Ault14_TXT.text = self.pickerNames[row];
     }
-    else
+    if (pickerView == self.pickerViewInfants)
     {
-         Children_TXT.text = self.pickerNames[row];
+         _infantsAge_TXT.text = self.pickerNames[row];
+    }
+    if (pickerView == self.pickerViewChild)
+    {
+        Children_TXT.text = self.pickerNames[row];
     }
 }
 
@@ -187,13 +199,58 @@
     
     NSString *dateString = [dateFormat stringFromDate:eventDate];
     StayTime_TXT.text = [NSString stringWithFormat:@"%@",dateString];
+    [dateFormat setDateFormat:@"hh"];
+    Hour=[dateFormat stringFromDate:eventDate];
+    [dateFormat setDateFormat:@"mm"];
+    Mint=[dateFormat stringFromDate:eventDate];
+    
 }
 
 
 
 - (IBAction)SubmitBtn_Action:(id)sender
 {
+    //RESERVATION_DATE
+    //RESERVATION_TIME
+   // RESERVATION_DURATION_HOUR
+   // RESERVATION_DURATION_MINUTE
+   // ADULT
     
+    
+    
+    if ([SelectDate_TXT.text isEqualToString:@""])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please select Date." delegate:nil];
+    }
+    else if ([Ault14_TXT.text isEqualToString:@""])
+    {
+        
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please select Ault." delegate:nil];
+    }
+    else if ([ComingTime_TXT.text isEqualToString:@""])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please select coming time." delegate:nil];
+    }
+    else if ([StayTime_TXT.text isEqualToString:@""])
+    {
+        [AppDelegate showErrorMessageWithTitle:@"Error!" message:@"Please select stay time." delegate:nil];
+    }
+    else
+    {
+        ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+        vcr.Res_date=SelectDate_TXT.text;
+        vcr.Res_Time=ComingTime_TXT.text;
+        vcr.aultNo=Ault14_TXT.text;
+        vcr.Stay_Hour=Hour;
+        vcr.Stay_Mint=Mint;
+        
+        vcr.childerNo=Children_TXT.text;
+        vcr.InfantsNo=_infantsAge_TXT.text;
+        
+        [self.navigationController pushViewController:vcr animated:YES];
+    }
+
+   
 }
 - (IBAction)backBtn_Action:(id)sender
 {

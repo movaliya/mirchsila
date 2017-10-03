@@ -29,7 +29,7 @@
 @implementation SingleItemView
 @synthesize Price_LBL,BackView,Title_LBL,OptionBTN,ItemArr,Qnt_LBL,CartNotification_LBL;
 @synthesize dic,MainCount,OptionView,OptionTitleView,WithTBL,WithoutTBL,CategoryId;
-
+@synthesize BannerImageView;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,6 +46,12 @@
     BackView.layer.shadowRadius = 0.2;
     BackView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
     BackView.layer.shadowOpacity = 0.2;
+    
+    NSString *Urlstr=[ItemArr valueForKey:@"imagePath"];
+    
+    [BannerImageView sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"slider_image_1.png"]];
+    [BannerImageView setShowActivityIndicatorView:YES];
+    
     
     AllProductIngredientsDIC=[[ItemArr valueForKey:@"ingredients"] objectAtIndex:0];
     arrayInt = [[NSMutableArray alloc] init];

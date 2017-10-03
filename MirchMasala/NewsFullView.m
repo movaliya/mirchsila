@@ -7,7 +7,7 @@
 //
 
 #import "NewsFullView.h"
-
+#import "MirchMasala.pch"
 @interface NewsFullView ()
 
 @end
@@ -19,7 +19,16 @@
 {
     [super viewDidLoad];
     
-    NewsDes_LBL.text=@"This is a sample description";
+    
+    NewsTitle_LBL=[self.NewsSelectArr valueForKey:@"title"];
+    NewsDate_LBL=[self.NewsSelectArr valueForKey:@"news_date"];
+    NewsDes_LBL.text=[self.NewsSelectArr valueForKey:@"content"];
+    
+    NSString *Urlstr=[self.NewsSelectArr valueForKey:@"image_path"];
+    [NewsImg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    [NewsImg setShowActivityIndicatorView:YES];
+    
+    
     BackView.layer.masksToBounds = NO;
     BackView.layer.shadowOffset = CGSizeMake(0, 1);
     BackView.layer.shadowRadius = 1.0;

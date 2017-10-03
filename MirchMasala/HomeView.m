@@ -15,7 +15,7 @@
 #import "CVCell.h"
 #import "GalleryVW.h"
 #import "NewsVW.h"
-#import "ReservationVW.h"
+#import "ReservationSubVW.h"
 #import "RestaurantMenuView.h"
 #import "MenuListWithImage.h"
 #import "LocationView.h"
@@ -217,7 +217,7 @@
         
         if (CoustmerID!=nil)
         {
-            ReservationVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationVW"];
+            ReservationSubVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ReservationSubVW"];
             [self.navigationController pushViewController:vcr animated:YES];
             
         }

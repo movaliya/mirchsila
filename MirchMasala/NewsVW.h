@@ -10,7 +10,7 @@
 
 @interface NewsVW : UIViewController
 {
-    
+    NSMutableArray *NewsDataArr;
 }
 @property (strong, nonatomic) IBOutlet UITableView *News_TBL;
 @end

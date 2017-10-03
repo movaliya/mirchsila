@@ -130,8 +130,10 @@
                 <outlet property="ProductName_LBL" destination="XxK-ql-4SM" id="wLr-Bo-GVb"/>
                 <outlet property="ProductPrice_LBL" destination="4ux-MN-zJZ" id="5PK-u6-v1o"/>
                 <outlet property="ProductQuatity_LBL" destination="848-AF-tmD" id="HHL-GY-ttt"/>
+                <outlet property="With_Title" destination="3fO-5v-ept" id="fwb-sv-ahI"/>
                 <outlet property="WithoutIntegrate_LBL" destination="W3g-uX-trA" id="nbU-jk-Nfa"/>
                 <outlet property="withIntegrate_LBL" destination="uWA-cT-PPB" id="R6X-UM-jlh"/>
+                <outlet property="without_title" destination="0Im-3D-DKT" id="PAp-OV-4T4"/>
             </connections>
             <point key="canvasLocation" x="13" y="-45"/>
         </tableViewCell>

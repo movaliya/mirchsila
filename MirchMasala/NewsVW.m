@@ -9,7 +9,7 @@
 #import "NewsVW.h"
 #import "NewsCell.h"
 #import "NewsFullView.h"
-
+#import "MirchMasala.pch"
 @interface NewsVW ()
 {
     NSMutableArray *ImageNameSection;
@@ -31,8 +31,67 @@
     [News_TBL registerNib:nib forCellReuseIdentifier:CellIdentifier];
     News_TBL.estimatedRowHeight = 220;
     News_TBL.rowHeight = UITableViewAutomaticDimension;
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        [self CallNewsService];
+    }
+    else
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    
 }
-
+-(void)CallNewsService
+{
+    [KVNProgress show] ;
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+   
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"news" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+     {
+         [KVNProgress dismiss];
+         
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"result"] objectForKey:@"news"] mutableCopy];
+             
+             [News_TBL reloadData];
+             
+         }
+     }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Fail");
+         [KVNProgress dismiss] ;
+     }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,7 +120,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ImageNameSection.count;
+    return NewsDataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,10 +136,12 @@
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
-    cell.NewsIMG.image=[UIImage imageNamed:[ImageNameSection objectAtIndex:indexPath.row]];
+    NSString *Urlstr=[[NewsDataArr valueForKey:@"image_path"] objectAtIndex:indexPath.row];
+    [cell.NewsIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"placeholder_img"]];
+    [cell.NewsIMG setShowActivityIndicatorView:YES];
     
-    cell.NewsTitle_LBL.text=@"Good Morning Update";
-    cell.Date_LBL.text=@"2017-07-03";    
+    cell.NewsTitle_LBL.text=[[NewsDataArr valueForKey:@"title"] objectAtIndex:indexPath.row];
+    cell.Date_LBL.text=[[NewsDataArr valueForKey:@"news_date"] objectAtIndex:indexPath.row];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -90,6 +151,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsFullView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NewsFullView"];
+    vcr.NewsSelectArr=[NewsDataArr objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vcr animated:YES];
 }
 

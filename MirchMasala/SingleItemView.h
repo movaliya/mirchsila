@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *ItemArr;
 @property (strong, nonatomic) NSString *CategoryId;
 
+@property (weak, nonatomic) IBOutlet UIImageView *BannerImageView;
 
 - (IBAction)Back_Click:(id)sender;
 

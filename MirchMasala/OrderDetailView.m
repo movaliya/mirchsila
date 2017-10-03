@@ -162,8 +162,34 @@
                     }
                 }
             }
-            cell1.withIntegrate_LBL.text=WithStr;
-            cell1.WithoutIntegrate_LBL.text=WithoutStr;
+            
+            if (WithStr.length==0)
+            {
+                cell1.With_Title.hidden=YES;
+            }
+            else
+            {
+                cell1.With_Title.hidden=NO;
+                cell1.withIntegrate_LBL.text=WithStr;
+            }
+            
+            if (WithoutStr.length==0)
+            {
+                cell1.without_title.hidden=YES;
+            }
+            else
+            {
+                cell1.without_title.hidden=NO;
+                cell1.WithoutIntegrate_LBL.text=WithoutStr;
+            }
+            
+            
+            
+        }
+        else
+        {
+            cell1.With_Title.hidden=YES;
+            cell1.without_title.hidden=YES;
         }
         
         [cell1 setSelectionStyle:UITableViewCellSelectionStyleNone];
