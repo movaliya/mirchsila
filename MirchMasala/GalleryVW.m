@@ -9,7 +9,7 @@
 #import "GalleryVW.h"
 #import "CVCell.h"
 #import "MirchMasala.pch"
-
+#import "GalleryFullView.h"
 @interface GalleryVW ()
 {
     NSMutableArray *ImageNameSection;
@@ -134,8 +134,12 @@
     return cell;
     
 }
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GalleryFullView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GalleryFullView"];
+    vcr.ImagArr=GalleryDataArr;
+    vcr.SelectedImage=[NSString stringWithFormat:@"%d",indexPath.row];
+    [self.navigationController pushViewController:vcr animated:YES];
     
 }
 

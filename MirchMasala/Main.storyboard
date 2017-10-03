@@ -5821,6 +5821,74 @@
             </objects>
             <point key="canvasLocation" x="3431" y="1032"/>
         </scene>
+        <!--Gallery Full View-->
+        <scene sceneID="pdT-30-vrB">
+            <objects>
+                <viewController storyboardIdentifier="GalleryFullView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wiX-Rr-X92" customClass="GalleryFullView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uUK-sO-TNw"/>
+                        <viewControllerLayoutGuide type="bottom" id="gCj-Pt-Bdu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MU9-m3-Xrk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tSD-Be-2y7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fR6-gB-g3B">
+                                        <rect key="frame" x="0.0" y="20" width="50" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="LlN-GL-LnL"/>
+                                            <constraint firstAttribute="height" constant="43" id="ssB-fK-3eq"/>
+                                        </constraints>
+                                        <state key="normal" title="   " image="WhiteBackBtn"/>
+                                        <connections>
+                                            <action selector="BackBtn_click:" destination="wiX-Rr-X92" eventType="touchUpInside" id="GC5-eU-veg"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHE-t4-CI5">
+                                        <rect key="frame" x="70" y="30" width="65" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.77647058820000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="bHE-t4-CI5" firstAttribute="leading" secondItem="fR6-gB-g3B" secondAttribute="trailing" constant="20" id="95d-g4-den"/>
+                                    <constraint firstAttribute="height" constant="70" id="Tzs-Le-2u5"/>
+                                    <constraint firstItem="fR6-gB-g3B" firstAttribute="leading" secondItem="tSD-Be-2y7" secondAttribute="leading" id="b84-LE-5yg"/>
+                                    <constraint firstAttribute="bottom" secondItem="fR6-gB-g3B" secondAttribute="bottom" constant="7" id="qKP-WU-2Vw"/>
+                                    <constraint firstItem="fR6-gB-g3B" firstAttribute="centerY" secondItem="bHE-t4-CI5" secondAttribute="centerY" id="tiP-7o-43b"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpC-M5-Vpy">
+                                <rect key="frame" x="0.0" y="71" width="320" height="497"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wiX-Rr-X92" id="HTu-sx-zKH"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tSD-Be-2y7" firstAttribute="leading" secondItem="MU9-m3-Xrk" secondAttribute="leading" id="NfL-Il-bfq"/>
+                            <constraint firstAttribute="trailing" secondItem="tSD-Be-2y7" secondAttribute="trailing" id="Rlz-xy-dSm"/>
+                            <constraint firstItem="xpC-M5-Vpy" firstAttribute="trailing" secondItem="tSD-Be-2y7" secondAttribute="trailing" id="UWk-vR-Shr"/>
+                            <constraint firstItem="xpC-M5-Vpy" firstAttribute="top" secondItem="tSD-Be-2y7" secondAttribute="bottom" constant="1" id="XH1-zo-qja"/>
+                            <constraint firstItem="xpC-M5-Vpy" firstAttribute="leading" secondItem="tSD-Be-2y7" secondAttribute="leading" id="fZI-TI-m90"/>
+                            <constraint firstItem="tSD-Be-2y7" firstAttribute="top" secondItem="MU9-m3-Xrk" secondAttribute="top" id="oY2-kN-Jh1"/>
+                            <constraint firstItem="xpC-M5-Vpy" firstAttribute="bottom" secondItem="gCj-Pt-Bdu" secondAttribute="top" id="xKc-xt-wK1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ImageScrollView" destination="xpC-M5-Vpy" id="NDW-Ie-9bn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2W3-fa-Lhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="336" y="-500"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackBtn" width="18" height="18"/>

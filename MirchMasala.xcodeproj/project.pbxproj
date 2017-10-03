@@ -110,6 +110,7 @@
 		5371310B1F63D8F700211643 /* ReservationVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5371310A1F63D8F700211643 /* ReservationVW.m */; };
 		537131111F6411CA00211643 /* ReservationSubVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 537131101F6411CA00211643 /* ReservationSubVW.m */; };
 		537131151F64248100211643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537131141F64248100211643 /* Main.storyboard */; };
+		5372A18E1F7A2EBE00C88265 /* GalleryFullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5372A18D1F7A2EBE00C88265 /* GalleryFullView.m */; };
 		538991C01F65156F0054AE66 /* MenuListWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 538991BF1F65156F0054AE66 /* MenuListWithImage.m */; };
 		538991C41F6516690054AE66 /* MenuImageCELL.m in Sources */ = {isa = PBXBuildFile; fileRef = 538991C21F6516690054AE66 /* MenuImageCELL.m */; };
 		538991C51F6516690054AE66 /* MenuImageCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = 538991C31F6516690054AE66 /* MenuImageCELL.xib */; };
@@ -365,6 +366,8 @@
 		5371310F1F6411CA00211643 /* ReservationSubVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservationSubVW.h; sourceTree = "<group>"; };
 		537131101F6411CA00211643 /* ReservationSubVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservationSubVW.m; sourceTree = "<group>"; };
 		537131141F64248100211643 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5372A18C1F7A2EBE00C88265 /* GalleryFullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryFullView.h; sourceTree = "<group>"; };
+		5372A18D1F7A2EBE00C88265 /* GalleryFullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryFullView.m; sourceTree = "<group>"; };
 		538991BE1F65156F0054AE66 /* MenuListWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuListWithImage.h; sourceTree = "<group>"; };
 		538991BF1F65156F0054AE66 /* MenuListWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuListWithImage.m; sourceTree = "<group>"; };
 		538991C11F6516690054AE66 /* MenuImageCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuImageCELL.h; sourceTree = "<group>"; };
@@ -729,6 +732,8 @@
 				5309EDD21E6EA8D400A216F2 /* HomeView.m */,
 				537131031F63CE9000211643 /* GalleryVW.h */,
 				537131041F63CE9000211643 /* GalleryVW.m */,
+				5372A18C1F7A2EBE00C88265 /* GalleryFullView.h */,
+				5372A18D1F7A2EBE00C88265 /* GalleryFullView.m */,
 				B15BBB201F6D2335004FB813 /* VideoGallaryView.h */,
 				B15BBB211F6D2335004FB813 /* VideoGallaryView.m */,
 				537131061F63D2E800211643 /* NewsVW.h */,
@@ -1257,6 +1262,7 @@
 				B15F7A181E6C3665004A4D32 /* UIImage+KVNImageEffects.m in Sources */,
 				B15F7A261E6C3665004A4D32 /* NSData+ImageContentType.m in Sources */,
 				530BEF751E718D6700614BF8 /* OderDetailUperCell.m in Sources */,
+				5372A18E1F7A2EBE00C88265 /* GalleryFullView.m in Sources */,
 				530C39C11E6C340A0073AA78 /* ForgotPasswordView.m in Sources */,
 				B15BBB261F6D3806004FB813 /* VideoCell.m in Sources */,
 				5310CBE41E6A957800091333 /* AppDelegate.m in Sources */,
