@@ -14,7 +14,13 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIPickerView *pickerViewChild;
 @property (nonatomic, strong) UIPickerView *pickerViewInfants;
+@property (nonatomic, strong) UIPickerView *pickerViewStaytime;
+@property (nonatomic, strong) UIPickerView *pickerViewComingtime;
+
 @property (nonatomic, strong) NSArray *pickerNames;
+@property (nonatomic, strong) NSArray *AdultpickerNames;
+@property (nonatomic, strong) NSArray *StaypickerNames;
+@property (nonatomic, strong) NSArray *ComingTimepickerNames;
 
 
 @end
@@ -31,8 +37,8 @@
     self.backView.layer.shadowOpacity = 0.5;
     
     [self setPickerToTXT];
-    [self SelectTimeFuc];
-    [self SelectStayTimeNMint];
+   // [self SelectTimeFuc];
+   // [self SelectStayTimeNMint];
     
     
     self.pickerView = [[UIPickerView alloc] init];
@@ -47,10 +53,29 @@
     self.pickerViewInfants.delegate = self;     //#2
     self.pickerViewInfants.dataSource = self;   //#2
     
+    self.pickerViewStaytime = [[UIPickerView alloc] init];
+    self.pickerViewStaytime.delegate = self;     //#2
+    self.pickerViewStaytime.dataSource = self;   //#2
+    
+    self.pickerViewComingtime = [[UIPickerView alloc] init];
+    self.pickerViewComingtime.delegate = self;     //#2
+    self.pickerViewComingtime.dataSource = self;   //#2
+    
     Ault14_TXT.inputView = self.pickerView;
     Children_TXT.inputView = self.pickerViewChild;
     _infantsAge_TXT.inputView = self.pickerViewInfants;
+     StayTime_TXT.inputView = self.pickerViewStaytime;
+    ComingTime_TXT.inputView = self.pickerViewComingtime;
+    
+    
     self.pickerNames = @[ @"1", @"2", @"3", @"4", @"5", @"6",@"7", @"8", @"9", @"10", @"11", @"12",@"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20"];
+    
+    self.AdultpickerNames = @[ @"1", @"2", @"3", @"4", @"5", @"6",@"7", @"8", @"9", @"10", @"11", @"12",@"13", @"14", @"15", @"16", @"17", @"18", @"19", @"20",@"Larger Party"];
+    
+    
+    self.StaypickerNames = @[ @"30 minutes", @"1 hour", @"1 hour 30 minutes", @"2 hour", @"2 hour 30 minutes", @"3 hour",@"3 hour 30 minutes", @"4 hour", @"4 hour 30 minutes", @"5 hour", @"5 hour 30 minutes"];
+    
+    self.ComingTimepickerNames = @[ @"5:30 PM", @"5:45 PM", @"6:00 PM", @"6:15 PM", @"6:30 PM", @"6:45 PM",@"7:00 PM", @"7:15 PM", @"7:30 PM", @"7:45 PM", @"8:00 PM", @"8:15 PM",@"8:30 PM", @"8:45 PM", @"9:00 PM", @"9:15 PM", @"9:30 PM", @"9:45 PM", @"10:00 PM", @"10:15 PM", @"10:30 PM", @"10:45 PM", @"11:00 PM", @"11:15 PM", @"11:30 PM"];
     
     // Do any additional setup after loading the view.
 }
@@ -67,7 +92,15 @@
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (pickerView == self.pickerView) {
-        return [self.pickerNames count];
+        return [self.AdultpickerNames count];
+    }
+    else if (pickerView == self.pickerViewStaytime)
+    {
+        return [self.StaypickerNames count];
+    }
+    else if (pickerView == self.pickerViewComingtime)
+    {
+        return [self.ComingTimepickerNames count];
     }
     else
     {
@@ -80,7 +113,15 @@
 #pragma mark - UIPickerViewDelegate
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (pickerView == self.pickerView) {
-        return self.pickerNames[row];
+        return self.AdultpickerNames[row];
+    }
+    else  if (pickerView == self.pickerViewStaytime)
+    {
+        return self.StaypickerNames[row];
+    }
+    else  if (pickerView == self.pickerViewComingtime)
+    {
+        return self.ComingTimepickerNames[row];
     }
     else
     {
@@ -90,7 +131,7 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.pickerView) {
-        Ault14_TXT.text = self.pickerNames[row];
+        Ault14_TXT.text = self.AdultpickerNames[row];
     }
     if (pickerView == self.pickerViewInfants)
     {
@@ -99,6 +140,21 @@
     if (pickerView == self.pickerViewChild)
     {
         Children_TXT.text = self.pickerNames[row];
+    }
+    if (pickerView == self.pickerViewStaytime)
+    {
+        StayTime_TXT.text = self.StaypickerNames[row];
+        NSString *haystackPrefix = @"hour";
+        NSString *haystackSuffix = @"minutes";
+        NSRange needleRange = NSMakeRange(haystackPrefix.length,
+                                          StayTime_TXT.text.length - haystackPrefix.length - haystackSuffix.length);
+        NSString *needle = [StayTime_TXT.text substringWithRange:needleRange];
+        NSLog(@"needle: %@", needle);
+    }
+    if (pickerView == self.pickerViewComingtime)
+    {
+        ComingTime_TXT.text = self.ComingTimepickerNames[row];
+        
     }
 }
 
@@ -199,6 +255,7 @@
     
     NSString *dateString = [dateFormat stringFromDate:eventDate];
     StayTime_TXT.text = [NSString stringWithFormat:@"%@",dateString];
+
     [dateFormat setDateFormat:@"hh"];
     Hour=[dateFormat stringFromDate:eventDate];
     [dateFormat setDateFormat:@"mm"];
