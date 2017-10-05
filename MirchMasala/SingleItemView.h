@@ -16,6 +16,8 @@
     BOOL autobool;
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *Description_lbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backview_hieght;
 @property (strong, nonatomic) NSMutableArray *ItemArr;
 @property (strong, nonatomic) NSString *CategoryId;
 
@@ -33,6 +35,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *Qnt_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Price_LBL;
 @property (strong, nonatomic) IBOutlet UILabel *Title_LBL;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ViewBottomSpace;
 
 
 @property (strong, nonatomic) IBOutlet UIView *OptionView;

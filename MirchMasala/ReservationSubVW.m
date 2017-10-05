@@ -144,12 +144,25 @@
     if (pickerView == self.pickerViewStaytime)
     {
         StayTime_TXT.text = self.StaypickerNames[row];
-        NSString *haystackPrefix = @"hour";
-        NSString *haystackSuffix = @"minutes";
-        NSRange needleRange = NSMakeRange(haystackPrefix.length,
-                                          StayTime_TXT.text.length - haystackPrefix.length - haystackSuffix.length);
-        NSString *needle = [StayTime_TXT.text substringWithRange:needleRange];
-        NSLog(@"needle: %@", needle);
+        
+        NSString *removeStrstr = [StayTime_TXT.text stringByReplacingOccurrencesOfString:@"hour"
+                                                                withString:@""];
+        removeStrstr = [removeStrstr stringByReplacingOccurrencesOfString:@"minutes"  withString:@""];
+        removeStrstr = [removeStrstr stringByReplacingOccurrencesOfString:@" "  withString:@","];
+        removeStrstr = [removeStrstr stringByReplacingOccurrencesOfString:@",,"  withString:@","];
+        removeStrstr = [removeStrstr stringByReplacingOccurrencesOfString:@" "  withString:@""];
+        NSLog(@"removeStrstr: %@", removeStrstr);
+        NSArray * arr = [removeStrstr componentsSeparatedByString:@","];
+         Hour=[arr objectAtIndex:0];
+        if ([[arr objectAtIndex:1]isEqualToString:@""])
+        {
+            Mint=@"0";
+        }
+        else
+        {
+             Mint=[arr objectAtIndex:1];
+        }
+        NSLog(@"Array values are : %@",arr);
     }
     if (pickerView == self.pickerViewComingtime)
     {

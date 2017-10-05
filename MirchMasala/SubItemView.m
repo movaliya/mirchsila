@@ -497,6 +497,21 @@
     else
     {
         cell.Quatity_LBL.text=[NSString stringWithFormat:@"%ld",Second];
+        
+    }
+    
+    // Check if Option Button is Hidden or show
+    
+     NSMutableDictionary *TempProductIngredDic=[[subCategoryDic valueForKey:@"ingredients"] objectAtIndex:indexPath.section];
+    
+    if (TempProductIngredDic.count==0)
+    {
+        NSLog(@"Option Btn Hidden");
+        cell.optionBtn.hidden=YES;
+    }
+    else
+    {
+        cell.optionBtn.hidden=NO;
     }
     
     cell.ProductName.text=[[subCategoryDic valueForKey:@"productName"] objectAtIndex:indexPath.section];

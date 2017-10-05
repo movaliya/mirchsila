@@ -47,6 +47,34 @@
     BackView.layer.shadowColor = [UIColor colorWithRed:115.0f/255.0f green:115.0f/255.0f blue:115.0f/255.0f alpha:1.0f].CGColor;
     BackView.layer.shadowOpacity = 0.2;
     
+    NSMutableDictionary *TempProductIngredDic=[ItemArr valueForKey:@"ingredients"];
+    if (TempProductIngredDic.count==0)
+    {
+        NSLog(@"Option Btn Hidden");
+        OptionBTN.hidden=YES;
+    }
+    else
+    {
+        OptionBTN.hidden=NO;
+    }
+    
+   // NSString *description=[ItemArr valueForKey:@"description"];
+    
+    if ([ItemArr valueForKey:@"description"] != (id)[NSNull null])
+    {
+        self.backview_hieght.constant=130;
+        self.Description_lbl.hidden=NO;
+        self.Description_lbl.text=[ItemArr valueForKey:@"description"];
+        self.ViewBottomSpace.constant=50;
+    }
+    else
+    {
+        self.backview_hieght.constant=80;
+         self.ViewBottomSpace.constant=8;
+        self.Description_lbl.hidden=YES;
+    }
+    
+    
     NSString *Urlstr=[ItemArr valueForKey:@"imagePath"];
     
     [BannerImageView sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"slider_image_1.png"]];
