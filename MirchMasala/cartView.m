@@ -289,7 +289,7 @@
 
 -(void)OptionClick:(NSString *)indextag : (NSArray *)IntgArr;
 {
-    OptionView.hidden=NO;
+    
     subItemIndex= [indextag integerValue];
     ProductIngredDic=[[subCategoryDic valueForKey:@"ingredients"] objectAtIndex:subItemIndex];
     
@@ -391,6 +391,16 @@
     }
     [WithoutTBL reloadData];
     [WithTBL reloadData];
+    
+    if (withoutIntegrate.count==0)
+    {
+        OptionView.hidden=YES;
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"There is no ingredients." delegate:nil];
+    }
+    else
+    {
+        OptionView.hidden=NO;
+    }
     NSLog(@"withoutIntegrate=%@",withoutIntegrate);
     
 }
