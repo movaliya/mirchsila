@@ -28,6 +28,7 @@
 #import "MYCartVW.h"
 #import "LocationView.h"
 #import "VideoGallaryView.h"
+#import "SubItemView.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -66,7 +67,10 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:)  name:@"CallForShowMenu" object:nil];
+    
     self.appDelegate = [AppDelegate sharedInstance];
+    self.drawerView.Collectionview.hidden=YES;
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
@@ -107,7 +111,6 @@
     }
     
    
-   
   
     
     
@@ -119,65 +122,75 @@
     [flowLayout setItemSize:CGSizeMake(120, 120)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.drawerView.Collectionview setCollectionViewLayout:flowLayout];
-   
-
 }
+
+
 -(void)CategoriesList
 {
+    self.drawerView.drawerTableView.hidden=NO;
+    self.drawerView.Collectionview.hidden=YES;
     
-    [KVNProgress show] ;
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"topCategories" forKey:@"METHOD"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         //NSLog(@"responseObject==%@",responseObject);
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
+    if (topCategoriesDic==nil)
+    {
+        [KVNProgress show] ;
+        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+        
+        [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+        
+        NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+        [dictSub setObject:@"getitem" forKey:@"MODULE"];
+        [dictSub setObject:@"topCategories" forKey:@"METHOD"];
+        
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+        NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+        
+        [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+        [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+        
+        
+        NSError* error = nil;
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+        // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+        AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        manager.requestSerializer = serializer;
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
-             topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
+             //NSLog(@"responseObject==%@",responseObject);
+             [KVNProgress dismiss];
+             
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
+                 [self.drawerView.drawerTableView reloadData];
+                 
+             }
          }
-     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismiss] ;
-     }];
+              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Fail");
+             [KVNProgress dismiss] ;
+         }];
+    }
 }
+
 -(void)CheckLoginArr
 {
-     [self CategoriesList];
+    self.drawerView.drawerTableView.hidden=YES;
+    self.drawerView.Collectionview.hidden=NO;
+    
     self.appDelegate = [AppDelegate sharedInstance];
     
     if ([self.appDelegate isUserLoggedIn] == NO)
@@ -787,14 +800,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return TitleArr.count;
+    return topCategoriesDic.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -806,194 +817,41 @@
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
-   
-    if (indexPath.row==8)
+    if (indexPath.row==0)
     {
-        cell.IconWidth.constant=14;
-        cell.IconHeight.constant=17;
-        cell.IconX.constant=15;
-        cell.ImgLblGap.constant=16;
-        
-    } /*
-    if (indexPath.row==1)
-    {
-        cell.IconWidth.constant=20;
-        cell.IconHeight.constant=15;
-        cell.IconX.constant=8;
-        cell.ImgLblGap.constant=15.5;
-        
+        cell.Title_LBL.text=@"Menu";
     }
-    if (indexPath.row==2)
+    else
     {
-        cell.IconWidth.constant=14;
-        cell.IconHeight.constant=14;
-        cell.IconX.constant=8;
-        cell.ImgLblGap.constant=19;
+        cell.Title_LBL.text=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.row-1];
     }
-    if (indexPath.row==3)
-    {
-        cell.IconWidth.constant=17;
-        cell.IconHeight.constant=17;
-        cell.IconX.constant=8;
-        cell.ImgLblGap.constant=16;
-    }
-    if (indexPath.row==4)
-    {
-        cell.IconWidth.constant=14;
-        cell.IconHeight.constant=13;
-        cell.IconX.constant=8;
-        cell.ImgLblGap.constant=19;
-    }
-    if (indexPath.row==5)
-    {
-        cell.IconWidth.constant=15;
-        cell.IconHeight.constant=15;
-        cell.IconX.constant=8;
-        cell.ImgLblGap.constant=18;
-    }
-    if (indexPath.row==6)
-    {
-        cell.IconWidth.constant=14;
-        cell.IconHeight.constant=20;
-        cell.IconX.constant=8;
-        cell.ImgLblGap.constant=18;
-        
-    }*/
-    cell.Title_LBL.text=[TitleArr objectAtIndex:indexPath.row];
-    cell.IconIMG.image=[UIImage imageNamed:[ImgArr objectAtIndex:indexPath.row]];
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;
 }
 
-#pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.drawerView.drawerTableView.hidden=YES;
+    self.drawerView.Collectionview.hidden=NO;
     if (indexPath.row==0)
     {
         HomeView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeView"];
         [super pushViewController:vcr animated:YES];
     }
-    else if (indexPath.row==1)
+    else
     {
-        RestaurantMenuView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantMenuView"];
+        SubItemView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SubItemView"];
+        vcr.CategoryId=[[topCategoriesDic valueForKey:@"id"] objectAtIndex:indexPath.row-1];
+        vcr.categoryName=[[topCategoriesDic valueForKey:@"categoryName"] objectAtIndex:indexPath.row-1];
         [super pushViewController:vcr animated:YES];
     }
-    else if (indexPath.row==2)
-    {
-        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
-        
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-        
-        if (CoustmerID!=nil)
-        {
-            ProfileView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileView"];
-            [super pushViewController:vcr animated:YES];
-            
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
-                                                            message:@""
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Login",nil];
-            alert.tag=51;
-            [alert show];
-        }
-       
-    }
-    else if (indexPath.row==3)
-    {
-        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
-        
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-        
-        if (CoustmerID!=nil)
-        {
-            cartView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cartView"];
-            [super pushViewController:vcr animated:YES];
-            
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
-                                                            message:@""
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Login",nil];
-            alert.tag=51;
-            [alert show];
-        }
-    }
-    else if (indexPath.row==4)
-    {
-        NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
-        
-        NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
-        
-        if (CoustmerID!=nil)
-        {
-            OrderHistryView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderHistryView"];
-            [super pushViewController:vcr animated:YES];
-            
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please First Login"
-                                                            message:@""
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Login",nil];
-            alert.tag=52;
-            [alert show];
-        }
-       
-    }
-    else if (indexPath.row==5)
-    {
-        AboutUS *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AboutUS"];
-        [super pushViewController:vcr animated:YES];
-    }
-    else if (indexPath.row==6)
-    {
-        ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
-        [super pushViewController:vcr animated:YES];
-    }
-    else if (indexPath.row==7)
-    {
-         // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://m-masala.co.uk/shoppingpolicy"]];
-        ShoppingPolicy_View *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ShoppingPolicy_View"];
-        [super pushViewController:vcr animated:YES];
-    }
-    else if (indexPath.row==8)
-    {
-        if ([[TitleArr objectAtIndex:indexPath.row] isEqualToString:@"Login & Signup"])
-        {
-            [self checkLoginAndPresentContainer];
-            
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"Are you sure want to Logout?"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Logout",nil];
-            alert.tag=50;
-            [alert show];
-        }
-        
-    }
+   
     [self closeNavigationDrawer];
 }
--(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    MenuCell *cell = (MenuCell *)[tableView cellForRowAtIndexPath:indexPath];
-    //[cell.Title_LBL setTextColor:[UIColor redColor]];
-    return indexPath;
-}
+
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     // the user clicked Logout
@@ -1030,6 +888,12 @@
 {
     LoginVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginVW"];
     [super  pushViewController:vcr animated:YES];
+}
+
+
+- (void) receiveTestNotification:(NSNotification *) notification
+{
+    [self CategoriesList];
 }
 
 @end

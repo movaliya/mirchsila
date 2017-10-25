@@ -41,6 +41,7 @@
 {
      return NO;
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -72,6 +73,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
      [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
@@ -708,8 +710,7 @@
          {
              BannerImageARR=[[NSMutableArray alloc]init];
              BannerImageARR=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"result"] objectForKey:@"bannerImages"] mutableCopy];
-               [self CallforgetOffers];
-             
+             [self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
          }
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)

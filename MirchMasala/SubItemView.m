@@ -39,9 +39,18 @@
      return NO;
 }
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CallForShowMenu" object:self];
+
+    
     self.rootNav = (CCKFNavDrawer *)self.navigationController;
     [self.rootNav setCCKFNavDrawerDelegate:self];
     [self.rootNav CheckLoginArr];
@@ -90,8 +99,6 @@
     [ItemTableView registerNib:nib forCellReuseIdentifier:@"SubitemCell"];
     CategoryTitleLBL.text=categoryName;
     
-    
-   
     
     //Register Collectionview Cell
     [ItemCollectionView registerClass:[SubitemCellWithIMG class] forCellWithReuseIdentifier:@"SubitemCellWithIMG"];
@@ -827,7 +834,8 @@
 
 - (IBAction)BackBtn_action:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+   // [self.navigationController popViewControllerAnimated:YES];
+    [self.rootNav drawerToggle];
 
 }
 
