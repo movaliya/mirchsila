@@ -17,6 +17,7 @@
 {
     NSMutableArray *ImageNameSection;
     NSMutableArray *TitleNameSection;
+    NSMutableDictionary *topCategoriesDic;
 }
 
 -(void)CheckLoginArr;

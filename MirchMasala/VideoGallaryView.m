@@ -36,7 +36,10 @@
     
     [VideoTBL registerNib:nib forCellReuseIdentifier:@"VideoCell"];
     
-    [self VideoGalleryService];
+  //  [self VideoGalleryService];
+    
+    Thubnil=[self generateThumbImage:@"https://www.youtube.com/watch?v=QoE7HTHDaRk"];
+    [VideoTBL reloadData];
     /*
     NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://youtu.be/wWUzXFG_F4g"]];
     
@@ -46,6 +49,22 @@
     [self presentViewController:_moviePlayer1 animated:YES completion:^{
         [_moviePlayer1.player play];
     }];*/
+    
+}
+-(UIImage *)generateThumbImage : (NSString *)filepath
+{
+    NSURL *url = [NSURL fileURLWithPath:filepath];
+    
+    AVAsset *asset = [AVAsset assetWithURL:url];
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+    imageGenerator.appliesPreferredTrackTransform = YES;
+    CMTime time = [asset duration];
+    time.value = 1000;
+    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
+    
+    return thumbnail;
 }
 
 -(void)setImage:(NSString*)urlResponse
@@ -199,7 +218,8 @@
         
     }
     
-    cell.Thumbimg.image=[UIImage imageNamed:[ImageNameSection objectAtIndex:indexPath.section]];
+    cell.Thumbimg.image=Thubnil;
+    //cell.Thumbimg.image=[UIImage imageNamed:[ImageNameSection objectAtIndex:indexPath.section]];
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;

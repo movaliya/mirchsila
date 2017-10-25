@@ -10,7 +10,7 @@
 
 @interface VideoGallaryView : UIViewController
 {
-    
+    UIImage *Thubnil;
 }
 - (IBAction)Back_click:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *VideoTBL;
