@@ -480,53 +480,67 @@
 
 -(void)CallforgetOffers
 {
-    [KVNProgress show] ;
-    OfferArr=[[NSMutableArray alloc] init];
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"offerText" forKey:@"METHOD"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
+    if (OfferArr==nil)
+    {
+        
+        [KVNProgress show] ;
+        OfferArr=[[NSMutableArray alloc] init];
+        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+        
+        [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+        
+        NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+        [dictSub setObject:@"getitem" forKey:@"MODULE"];
+        [dictSub setObject:@"offerText" forKey:@"METHOD"];
+        
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+        NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+        
+        [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+        [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+        
+        
+        NSError* error = nil;
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+        AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        manager.requestSerializer = serializer;
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
-             OfferArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"result"] objectForKey:@"offerText"] mutableCopy];
+             [KVNProgress dismiss];
+             // Dismiss
+             [KVNProgress dismissWithCompletion:^{
+                 // Things you want to do after the HUD is gone.
+                 NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
+                 {
+                     OfferArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"result"] objectForKey:@"offerText"] mutableCopy];
+                     
+                     [self SetheaderScroll];
+                 }
+             }];
              
-             [self SetheaderScroll];
+             
          }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Fail");
+             // Dismiss
+             [KVNProgress dismissWithCompletion:^{
+                 // Things you want to do after the HUD is gone.
+             }];
+             // [KVNProgress dismiss] ;
+         }];
     }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismiss] ;
-     }];
+    
 }
 
 -(void)CategoriesList
@@ -672,52 +686,64 @@
 }
 -(void)BannerImageService
 {
-    [KVNProgress show] ;
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"bannerImages" forKey:@"METHOD"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
+    if (BannerImageARR==nil)
+    {
+        [KVNProgress show] ;
+        NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+        
+        [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+        
+        NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+        [dictSub setObject:@"getitem" forKey:@"MODULE"];
+        [dictSub setObject:@"bannerImages" forKey:@"METHOD"];
+        
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+        NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+        
+        [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+        [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+        
+        
+        NSError* error = nil;
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+        AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        manager.requestSerializer = serializer;
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
-             BannerImageARR=[[NSMutableArray alloc]init];
-             BannerImageARR=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"result"] objectForKey:@"bannerImages"] mutableCopy];
-             [self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
+             // [KVNProgress dismiss];
+             [KVNProgress dismissWithCompletion:^{
+                 
+                 // Things you want to do after the HUD is gone.
+                 NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
+                 {
+                     BannerImageARR=[[NSMutableArray alloc]init];
+                     BannerImageARR=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"result"] objectForKey:@"bannerImages"] mutableCopy];
+                     [self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
+                 }
+             }];
+             
          }
-     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismiss] ;
-     }];
+              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Fail");
+             [KVNProgress dismissWithCompletion:^{
+                 // Things you want to do after the HUD is gone.
+             }];
+             
+             // [KVNProgress dismiss] ;
+         }];
+    }
 }
 - (void)didReceiveMemoryWarning
 {

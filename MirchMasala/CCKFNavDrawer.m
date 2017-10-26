@@ -168,20 +168,26 @@
         [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
              //NSLog(@"responseObject==%@",responseObject);
-             [KVNProgress dismiss];
-             
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
-                 [self.drawerView.drawerTableView reloadData];
+             //[KVNProgress dismiss];
+             [KVNProgress dismissWithCompletion:^{
                  
-             }
+                 // Things you want to do after the HUD is gone.
+                 NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
+                 {
+                     topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
+                     [self.drawerView.drawerTableView reloadData];
+                 }
+             }];
          }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
-             [KVNProgress dismiss] ;
+             //[KVNProgress dismiss] ;
+             [KVNProgress dismissWithCompletion:^{
+                 
+                 // Things you want to do after the HUD is gone.
+             }];
          }];
     }
 }
