@@ -15,4 +15,7 @@
 - (IBAction)Back_click:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *VideoTBL;
 
+- (IBAction)WebView_Back:(id)sender;
+@property (strong, nonatomic) IBOutlet UIWebView *Web;
+@property (strong, nonatomic) IBOutlet UIView *ShowWebView;
 @end

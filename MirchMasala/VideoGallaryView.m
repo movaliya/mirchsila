@@ -16,19 +16,20 @@
 @interface VideoGallaryView ()
 {
     NSMutableArray *ImageNameSection;
-    NSMutableArray *VideoArr;
+    NSMutableArray *VideoArr,*VideoIdArr;
+
 }
 @end
 
 @implementation VideoGallaryView
 
-@synthesize VideoTBL;
+@synthesize VideoTBL,Web,ShowWebView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"cart.png",@"gallery.png",@"cart.png",@"gallery.png",@"cart.png",@"gallery.png", nil];
+    ShowWebView.hidden=YES;
     
     UINib *nib = [UINib nibWithNibName:@"VideoCell" bundle:nil];
     VideoCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
@@ -36,89 +37,10 @@
     
     [VideoTBL registerNib:nib forCellReuseIdentifier:@"VideoCell"];
     
-  //  [self VideoGalleryService];
+    [self VideoGalleryService];
     
-    Thubnil=[self generateThumbImage:@"https://www.youtube.com/watch?v=QoE7HTHDaRk"];
-    [VideoTBL reloadData];
-    /*
-    NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://youtu.be/wWUzXFG_F4g"]];
-    
-    AVPlayerViewController * _moviePlayer1 = [[AVPlayerViewController alloc] init];
-    _moviePlayer1.player = [AVPlayer playerWithURL:url];
-    
-    [self presentViewController:_moviePlayer1 animated:YES completion:^{
-        [_moviePlayer1.player play];
-    }];*/
-    
-}
--(UIImage *)generateThumbImage : (NSString *)filepath
-{
-    NSURL *url = [NSURL fileURLWithPath:filepath];
-    
-    AVAsset *asset = [AVAsset assetWithURL:url];
-    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
-    imageGenerator.appliesPreferredTrackTransform = YES;
-    CMTime time = [asset duration];
-    time.value = 1000;
-    CGImageRef imageRef = [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
-    UIImage *thumbnail = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);  // CGImageRef won't be released by ARC
-    
-    return thumbnail;
 }
 
--(void)setImage:(NSString*)urlResponse
-{
-    NSString *youtubeUrl = [NSString stringWithFormat:@"%@",[self parseVideoHTMLUrl: urlResponse]];
-    
-    NSString *videoThumbUrl = [self getYoutubeVideoThumbnail: youtubeUrl];
-    
-    NSURL* videoURL =[NSURL URLWithString:videoThumbUrl];
-    NSLog(@"");
-    
-   // [btn_photo sd_setImageWithURL:videoURL forState:UIControlStateNormal];
-}
-
--(NSString*)getYoutubeVideoThumbnail:(NSString*)youTubeUrl
-{
-    NSString* video_id = @"";
-    
-    if (youTubeUrl.length > 0)
-    {
-        NSError *error = NULL;
-        NSRegularExpression *regex =
-        [NSRegularExpression regularExpressionWithPattern:@"(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*"
-                                                  options:NSRegularExpressionCaseInsensitive
-                                                    error:&error];
-        NSTextCheckingResult *match = [regex firstMatchInString:youTubeUrl
-                                                        options:0
-                                                          range:NSMakeRange(0, [youTubeUrl length])];
-        if (match)
-        {
-            NSRange videoIDRange = [match rangeAtIndex:0];
-            video_id = [youTubeUrl substringWithRange:videoIDRange];
-            
-            NSLog(@"%@",video_id);
-        }
-    }
-    
-    NSString* thumbImageUrl = [NSString stringWithFormat:@"http://img.youtube.com/vi/%@/default.jpg",video_id];
-    
-    return thumbImageUrl;
-}
-
--(NSString *)parseVideoHTMLUrl:(NSString *)videoUrl
-{
-    NSRegularExpression *regex = [NSRegularExpression
-                                  regularExpressionWithPattern:@";//(.+?)\\&quot;"
-                                  options:NSRegularExpressionCaseInsensitive
-                                  error:nil];
-    NSTextCheckingResult *textCheckingResult = [regex firstMatchInString:videoUrl options:0 range:NSMakeRange(0, videoUrl.length)];
-    
-    NSString *url = [videoUrl substringWithRange:[textCheckingResult rangeAtIndex:1]];
-    
-    return url;
-}
 
 -(void)VideoGalleryService
 {
@@ -154,12 +76,18 @@
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
          [KVNProgress dismiss];
-         
          NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"SUCCESS"];
          if ([SUCCESS boolValue] ==YES)
          {
              VideoArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"videoGallery"] objectForKey:@"result"] objectForKey:@"videoGallery"] mutableCopy];
-             [self setImage:@"https://www.youtube.com/watch?v=b_J7ByLJw5A"];
+             VideoIdArr=[[NSMutableArray alloc]init];
+             for (int i=0; i<VideoArr.count; i++)
+             {
+                 NSString *VideoID= [self extractYoutubeIdFromLink:[[VideoArr objectAtIndex:i] valueForKey:@"url"]];
+                 [VideoIdArr addObject:VideoID];
+             }
+             
+             
              [VideoTBL reloadData];
          }
      }
@@ -170,24 +98,59 @@
      }];
 }
 
+- (NSString *)extractYoutubeIdFromLink:(NSString *)link
+{
+    NSString *regexString = @"((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)";
+    NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regexString
+                                                                            options:NSRegularExpressionCaseInsensitive
+                                                                              error:nil];
+    
+    NSArray *array = [regExp matchesInString:link options:0 range:NSMakeRange(0,link.length)];
+    if (array.count > 0) {
+        NSTextCheckingResult *result = array.firstObject;
+        return [link substringWithRange:result.range];
+    }
+    return nil;
+}
+
+-(void)PlayYoutubeVideo:(NSString*)url frame:(CGRect)frame
+{
+    NSString* embedHTML = @"\
+    <html><head>\
+    <style type=\"text/css\">\
+    body {\
+    background-color: transparent;\
+    color: white;\
+    }\
+    </style>\
+    </head><body style=\"margin:0\">\
+    <embed id=\"yt\" src=\"%@\" type=\"application/x-shockwave-flash\" \
+    width=\"%0.0f\" height=\"%0.0f\"></embed>\
+    </body></html>";
+    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+    
+    Web.backgroundColor = [UIColor clearColor];
+    Web.opaque = NO;
+    Web.mediaPlaybackRequiresUserAction = NO;
+    
+    [Web loadHTMLString:html baseURL:nil];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
-
-
 
 - (IBAction)Back_click:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return ImageNameSection.count;
+    return VideoIdArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -218,18 +181,47 @@
         
     }
     
-    cell.Thumbimg.image=Thubnil;
-    //cell.Thumbimg.image=[UIImage imageNamed:[ImageNameSection objectAtIndex:indexPath.section]];
+    [cell.Thumbimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img.youtube.com/vi/%@/0.jpg",[VideoIdArr objectAtIndex:indexPath.section]]] placeholderImage:[UIImage imageNamed:@"slider_image_1.png"]];
+    
+    [cell.Thumbimg setShowActivityIndicatorView:YES];
+    
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
-    
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   NSString *ExtLink_Str=[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@",[VideoIdArr objectAtIndex:indexPath.section]];
     
+    ShowWebView.hidden=NO;
+    [self PlayYoutubeVideo:ExtLink_Str frame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT-65)];
+}
+
+- (IBAction)WebView_Back:(id)sender
+{
+    ShowWebView.hidden=YES;
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    if (webView.isLoading)
+    {
+        NSLog(@"YES");
+    }
+    else
+    {
+        NSLog(@"NO");
+    }
+    [KVNProgress dismiss];
+    NSLog(@"finish");
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [KVNProgress dismiss];
+    NSLog(@"Error for WEBVIEW: %@", [error description]);
 }
 
 @end

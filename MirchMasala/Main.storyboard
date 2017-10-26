@@ -5853,25 +5853,60 @@
                                     <outlet property="delegate" destination="IhY-Du-WhG" id="tmI-BL-mx9"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jfT-qV-aVt">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRb-7l-HsW">
+                                        <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </webView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjB-pz-hKd">
+                                        <rect key="frame" x="10" y="20" width="50" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="bYR-ri-mnG"/>
+                                            <constraint firstAttribute="width" constant="50" id="ufe-2H-b1J"/>
+                                        </constraints>
+                                        <state key="normal" title="   " image="WhiteBackBtn"/>
+                                        <connections>
+                                            <action selector="WebView_Back:" destination="IhY-Du-WhG" eventType="touchUpInside" id="d4g-jn-vnO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="NRb-7l-HsW" secondAttribute="bottom" id="HUy-lf-K4f"/>
+                                    <constraint firstAttribute="trailing" secondItem="NRb-7l-HsW" secondAttribute="trailing" id="Lcg-oc-Kxu"/>
+                                    <constraint firstItem="NRb-7l-HsW" firstAttribute="top" secondItem="jfT-qV-aVt" secondAttribute="top" constant="65" id="MKp-8h-qkr"/>
+                                    <constraint firstItem="cjB-pz-hKd" firstAttribute="top" secondItem="jfT-qV-aVt" secondAttribute="top" constant="20" id="ZXs-S5-Q7e"/>
+                                    <constraint firstItem="cjB-pz-hKd" firstAttribute="leading" secondItem="jfT-qV-aVt" secondAttribute="leading" constant="10" id="ZZY-xC-IyK"/>
+                                    <constraint firstItem="NRb-7l-HsW" firstAttribute="leading" secondItem="jfT-qV-aVt" secondAttribute="leading" id="izb-N2-f5c"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gQe-u3-c0Y" firstAttribute="leading" secondItem="0fz-Zj-C0e" secondAttribute="leading" id="2Kf-sJ-aH7"/>
                             <constraint firstItem="gQe-u3-c0Y" firstAttribute="top" secondItem="0fz-Zj-C0e" secondAttribute="top" id="HUo-DA-iR7"/>
                             <constraint firstItem="zZ5-Hk-dAU" firstAttribute="top" secondItem="jFH-9B-fut" secondAttribute="bottom" id="Hhe-30-FUf"/>
+                            <constraint firstAttribute="trailing" secondItem="jfT-qV-aVt" secondAttribute="trailing" id="JtE-Xq-VX2"/>
                             <constraint firstAttribute="trailing" secondItem="jFH-9B-fut" secondAttribute="trailing" id="Jvn-xb-L9B"/>
+                            <constraint firstItem="jfT-qV-aVt" firstAttribute="leading" secondItem="0fz-Zj-C0e" secondAttribute="leading" id="Rw7-VC-Dck"/>
+                            <constraint firstItem="zZ5-Hk-dAU" firstAttribute="top" secondItem="jfT-qV-aVt" secondAttribute="bottom" id="Ulq-J4-8FV"/>
                             <constraint firstAttribute="trailing" secondItem="gQe-u3-c0Y" secondAttribute="trailing" id="VwS-8C-tf1"/>
+                            <constraint firstItem="jfT-qV-aVt" firstAttribute="top" secondItem="0fz-Zj-C0e" secondAttribute="top" id="e4C-ML-kfH"/>
                             <constraint firstItem="jFH-9B-fut" firstAttribute="top" secondItem="gQe-u3-c0Y" secondAttribute="bottom" id="jcV-fq-iG2"/>
                             <constraint firstItem="jFH-9B-fut" firstAttribute="leading" secondItem="0fz-Zj-C0e" secondAttribute="leading" id="zaX-ML-vUm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ShowWebView" destination="jfT-qV-aVt" id="h65-MQ-4bZ"/>
                         <outlet property="VideoTBL" destination="jFH-9B-fut" id="Ji1-Rg-Su4"/>
+                        <outlet property="Web" destination="NRb-7l-HsW" id="Tvb-KB-Edr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sD-l2-ltt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3431" y="1032"/>
+            <point key="canvasLocation" x="3429.375" y="1030.9859154929577"/>
         </scene>
         <!--Gallery Full View-->
         <scene sceneID="pdT-30-vrB">
