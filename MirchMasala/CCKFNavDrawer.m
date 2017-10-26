@@ -151,11 +151,7 @@
         NSError* error = nil;
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-        // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:&error];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
@@ -194,8 +190,8 @@
 
 -(void)CheckLoginArr
 {
-    self.drawerView.drawerTableView.hidden=YES;
-    self.drawerView.Collectionview.hidden=NO;
+    //self.drawerView.drawerTableView.hidden=YES;
+    //self.drawerView.Collectionview.hidden=NO;
     
     self.appDelegate = [AppDelegate sharedInstance];
     
