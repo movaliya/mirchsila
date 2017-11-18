@@ -112,6 +112,18 @@
         cell.OrderDate_LBL.text=orderDate;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.OrderStatus_LBL.text=StatusMsg;
+        
+        NSString *Tempcommentstring=[OrderHistryDetailDic valueForKey:@"comments"];
+        if (Tempcommentstring == nil || Tempcommentstring == (id)[NSNull null])
+        {
+            // nil branch
+            cell.comments_LBL.text=@"";
+        } else
+        {
+            // category name is set
+            cell.comments_LBL.text=[OrderHistryDetailDic valueForKey:@"comments"];
+        }
+        
         return cell;
     }
     else
@@ -201,7 +213,7 @@
 {
     if (indexPath.section == 0)
     {
-        return 130;
+        return 160;
     }
     return 90;
     

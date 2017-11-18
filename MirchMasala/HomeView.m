@@ -128,7 +128,8 @@
     if (internet)
     {
         //[self performSelector:@selector(CategoriesList) withObject:nil afterDelay:0.0f];
-        [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
+        //[self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
+        [self BannerImageService];
       
     }
     else

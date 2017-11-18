@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *Discount_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *OrderAmount_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *OrderDate_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *comments_LBL;
 
 @end
