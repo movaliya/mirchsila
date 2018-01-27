@@ -248,6 +248,18 @@
     cell.OderNumber_LBL.text=[[PendingOrderArr valueForKey:@"id"]objectAtIndex:indexPath.section];
     cell.OrderAmount_LBL.text=[NSString stringWithFormat:@"£%@",[[PendingOrderArr valueForKey:@"total"]objectAtIndex:indexPath.section]];
     cell.OderDate_LBL.text=orderDate;
+    NSString *Tempcommentstring=[[PendingOrderArr valueForKey:@"comments"]objectAtIndex:indexPath.section];
+    if (Tempcommentstring == nil || Tempcommentstring == (id)[NSNull null])
+    {
+        // nil comment
+        cell.Comment_LBL.text=@"---";
+    } else
+    {
+        // comment name is set
+        cell.Comment_LBL.text=[[PendingOrderArr valueForKey:@"comments"]objectAtIndex:indexPath.section];
+    }
+    
+   
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
     

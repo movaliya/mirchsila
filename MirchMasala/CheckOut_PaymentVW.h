@@ -28,6 +28,7 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     NSString *OrderType;
     NSString *PAIDAMOUNT;
     NSString *PAYMENTTYPE;
+    NSString *getAcceptedOrderTypes;
 }
 @property (strong, nonatomic) NSString *Comment3View;
 @property (strong, nonatomic) NSString *Discount;
