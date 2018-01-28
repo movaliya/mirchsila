@@ -11,6 +11,8 @@
 @interface CheckOut_AddressVIEW : UIViewController
 {
     NSString *CartTotalAmout;
+    NSMutableDictionary *MinMaxDic;
+
 }
 @property (strong, nonatomic) NSString *Comment1View;
 

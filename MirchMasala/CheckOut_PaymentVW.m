@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
 
-    
+    //NSLog(@"AddressDic2=%@",self.AddressDic2);
     if (self.Comment3View.length>0)
     {
         NSLog(@"if comment==%@",_Comment3View);
@@ -83,7 +83,9 @@
     float disct=[Discount floatValue];
     Discount_LBL.text=[NSString stringWithFormat:@"£%.02f",disct];;
     OrderAmount_LBL.text=[NSString stringWithFormat:@"£%.02f",[OrderAmount floatValue]-disct];
+    totalOrderAmount=[OrderAmount floatValue];
     OrderAmount=[NSString stringWithFormat:@"£%.02f",[OrderAmount floatValue]-disct];
+  
 }
 -(void)checkStripKey
 {
@@ -463,7 +465,50 @@
 
 - (IBAction)ProcessOrder_Action:(id)sender
 {
-    
+    NSLog(@"MINRespose==%@",self.MINDelveryCollectioDic2);
+    minimumDeliveryAmount=0;
+    if ([OrderType isEqualToString:@"Delivery"])
+    {
+        minimumDeliveryAmount=[[self.MINDelveryCollectioDic2 valueForKey:@"minimumDeliveryAmount"] floatValue];
+        
+        float grandtot=totalOrderAmount;
+        if (minimumDeliveryAmount >grandtot)
+        {
+            if (minimumDeliveryAmount==grandtot)
+            {
+                checkMIN=YES;
+            }
+            else
+            {
+                checkMIN=NO;
+            }
+        }
+        else
+        {
+            checkMIN=YES;
+        }
+    }
+    else
+    {
+        minimumDeliveryAmount=[[self.MINDelveryCollectioDic2 valueForKey:@"minimumCollectionAmount"] floatValue];
+        float grandtot=totalOrderAmount;
+        if (minimumDeliveryAmount >grandtot)
+        {
+            if (minimumDeliveryAmount==grandtot)
+            {
+                checkMIN=YES;
+            }
+            else
+            {
+                checkMIN=NO;
+            }
+        }
+        else
+        {
+            checkMIN=YES;
+        }
+    }
+
     if ([PAYMENTTYPE isEqualToString:@""])
     {
          [AppDelegate showErrorMessageWithTitle:@"" message:@"Please select Payment Type." delegate:nil];
@@ -478,7 +523,16 @@
             BOOL internet=[AppDelegate connectedToNetwork];
             if (internet)
             {
-                [self PlaceOrderServiceCall];
+                if (checkMIN==NO)
+                {
+                    NSString *alterMessage=[NSString stringWithFormat:@"You need to order minimum amount of £%.02f",minimumDeliveryAmount];
+                    [AppDelegate showErrorMessageWithTitle:@"Minimum Requirement not meet." message:alterMessage delegate:nil];
+                }
+                else
+                {
+                    [self PlaceOrderServiceCall];
+                }
+                
             }
             else
                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
@@ -492,39 +546,44 @@
         BOOL internet=[AppDelegate connectedToNetwork];
         if (internet)
         {
-            OrderAmount = [OrderAmount stringByReplacingOccurrencesOfString:@"£"
-                                                                 withString:@""];
-            
-            AddCreditCardView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddCreditCardView"];
-            vcr.delegate = self;
-            vcr.amount=[NSDecimalNumber decimalNumberWithString:OrderAmount];
-            [self.navigationController pushViewController:vcr animated:YES];
+            if (checkMIN==NO)
+            {
+                NSString *alterMessage=[NSString stringWithFormat:@"You need to order minimum amount of £%.02f",minimumDeliveryAmount];
+                [AppDelegate showErrorMessageWithTitle:@"Minimum Requirement not meet." message:alterMessage delegate:nil];
+            }
+            else
+            {
+                OrderAmount = [OrderAmount stringByReplacingOccurrencesOfString:@"£"
+                                                                     withString:@""];
+                
+                AddCreditCardView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddCreditCardView"];
+                vcr.delegate = self;
+                vcr.amount=[NSDecimalNumber decimalNumberWithString:OrderAmount];
+                [self.navigationController pushViewController:vcr animated:YES];
+            }
+           
         }
         else
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
-       
-        
-        /*
-        AddCreditCardView *addCardViewController = [[AddCreditCardView alloc] init];
-       addCardViewController.delegate = self;
-         addCardViewController.amount=OrderAmount;
-        // STPAddCardViewController must be shown inside a UINavigationController.
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addCardViewController];
-        [self presentViewController:navigationController animated:YES completion:nil];*/
     }
     else
     {
         BOOL internet=[AppDelegate connectedToNetwork];
         if (internet)
         {
-            [self PlaceOrderServiceCall];
+            if (checkMIN==NO)
+            {
+                NSString *alterMessage=[NSString stringWithFormat:@"You need to order minimum amount of £%.02f",minimumDeliveryAmount];
+                [AppDelegate showErrorMessageWithTitle:@"Minimum Requirement not meet." message:alterMessage delegate:nil];
+            }
+            else
+            {
+                 [self PlaceOrderServiceCall];
+            }
         }
         else
             [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     }
-    
-   // successMessageVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"successMessageVW"];
-   // [self.navigationController pushViewController:vcr animated:YES];
 }
 
 #pragma mark STPAddCardViewControllerDelegate

@@ -12,6 +12,8 @@
 {
     NSInteger cellcount;
 }
+@property (strong, nonatomic) NSMutableDictionary *MINDelveryCollectioDic1;
+
 @property (strong, nonatomic) NSString *Comment2View;
 @property (strong, nonatomic) NSString *deliveryCharge1;
 @property (weak, nonatomic) IBOutlet UITableView *TableVW;

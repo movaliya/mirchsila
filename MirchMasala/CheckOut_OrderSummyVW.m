@@ -414,6 +414,7 @@
         vcr.OrderAmount=[NSString stringWithFormat:@"%.02f",GetMainTotal];
         vcr.deliveryCharge=deliveryCharge1;
         vcr.Comment3View=cell.Comment_TXT.text;
+        vcr.MINDelveryCollectioDic2=self.MINDelveryCollectioDic1;
         [self.navigationController pushViewController:vcr animated:YES];
     }
     else

@@ -29,11 +29,15 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     NSString *PAIDAMOUNT;
     NSString *PAYMENTTYPE;
     NSString *getAcceptedOrderTypes;
+    BOOL checkMIN;
+    float minimumDeliveryAmount;
+    float totalOrderAmount;
 }
 @property (strong, nonatomic) NSString *Comment3View;
 @property (strong, nonatomic) NSString *Discount;
 @property (strong, nonatomic) NSString *OrderAmount;
 @property (strong, nonatomic) NSString *deliveryCharge;
+@property (strong, nonatomic) NSMutableDictionary *MINDelveryCollectioDic2;
 
 @property (weak, nonatomic) IBOutlet UILabel *Discount_LBL;
 @property (weak, nonatomic) IBOutlet UILabel *OrderAmount_LBL;

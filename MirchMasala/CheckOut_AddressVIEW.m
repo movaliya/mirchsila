@@ -357,8 +357,8 @@
         
         [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
         
-        
         NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
+        dictInner = [[NSMutableDictionary alloc] init];
         
         
         
@@ -413,8 +413,14 @@
              {
                  
                 AddressRespose=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"result"] objectForKey:@"deliveryAddress"];
-                 NSLog(@"AddressRespose==%@",AddressRespose);
                  
+                 MinMaxDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"result"] objectForKey:@"deliveryAddress"];
+                 //NSLog(@"AddressRespose==%@",AddressRespose);
+                 
+                 [KVNProgress dismiss] ;
+                 [self performSelector:@selector(Pushtoordersummryview) withObject:nil afterDelay:0.1];
+                 
+                 /*
                  float minimumDeliveryAmount=[[AddressRespose valueForKey:@"minimumDeliveryAmount"] floatValue];
                  float grandtot=[CartTotalAmout floatValue];
                  if (minimumDeliveryAmount >grandtot)
@@ -428,7 +434,7 @@
                      // Push Next View
                      [KVNProgress dismiss] ;
                      [self performSelector:@selector(Pushtoordersummryview) withObject:nil afterDelay:0.1];
-                 }
+                 }*/
              }
              else
              {
@@ -457,6 +463,7 @@
     CheckOut_OrderSummyVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOut_OrderSummyVW"];
     vcr.deliveryCharge1=[AddressRespose valueForKey:@"deliveryCharge"];
     vcr.Comment2View=self.Comment1View;
+    vcr.MINDelveryCollectioDic1=MinMaxDic;
     [self.navigationController pushViewController:vcr animated:YES];
 }
 
