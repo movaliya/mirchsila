@@ -73,7 +73,7 @@
 //#define kBaseURL    @"http://tiffintom.com/api/private/request/data/"
 
 //NEW URL
-#define kBaseURL    @"https://tiffintom.com/api/private/request/data"
+#define kBaseURL    @"https://tiffintom.com/api/private/request/data/"
 
 
 //Live Key

@@ -163,8 +163,7 @@
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-        //[self performSelector:@selector(CategoriesList) withObject:nil afterDelay:0.0f];
-        //[self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
+       // [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
         [self BannerImageService];
       
     }
@@ -721,7 +720,6 @@
         
         [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
-             [KVNProgress dismiss];
              // Dismiss
              [KVNProgress dismissWithCompletion:^{
                  // Things you want to do after the HUD is gone.
@@ -747,63 +745,6 @@
          }];
     }
     
-}
-
--(void)CategoriesList
-{
-    
-    [KVNProgress show] ;
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"topCategories" forKey:@"METHOD"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         //NSLog(@"responseObject==%@",responseObject);
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
-             
-             Searchdic =[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"] mutableCopy];
-             if (topCategoriesDic) {
-                 [CategoriesTableView reloadData];
-             }
-         }
-         
-         
-     }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismiss] ;
-     }];
 }
 
 #pragma mark UITableView delegate
@@ -927,7 +868,6 @@
         [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
              [KVNProgress dismissWithCompletion:^{
-                 
                  // Things you want to do after the HUD is gone.
                  NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"bannerImages"] objectForKey:@"SUCCESS"];
                  if ([SUCCESS boolValue] ==YES)
