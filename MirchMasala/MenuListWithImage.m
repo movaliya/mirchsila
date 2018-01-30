@@ -89,18 +89,21 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         [KVNProgress dismiss];
+         [KVNProgress dismissWithCompletion:^{
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
+             }
+         }];
          
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
-         }
+         
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 - (IBAction)backBtn_action:(id)sender

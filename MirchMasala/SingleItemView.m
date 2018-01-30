@@ -80,18 +80,27 @@
     [BannerImageView sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"slider_image_1.png"]];
     [BannerImageView setShowActivityIndicatorView:YES];
     
-    
-    AllProductIngredientsDIC=[[ItemArr valueForKey:@"ingredients"] objectAtIndex:0];
+    NSMutableDictionary *TempProductIngredDic1=[ItemArr valueForKey:@"ingredients"];
     arrayInt = [[NSMutableArray alloc] init];
-    for (int i = 0; i <ItemArr.count; i++)
+    if (TempProductIngredDic1.count!=0)
+    {
+        AllProductIngredientsDIC=[[ItemArr valueForKey:@"ingredients"] objectAtIndex:0];
+        
+        for (int i = 0; i <ItemArr.count; i++)
+        {
+            [arrayInt addObject:@"1"];
+        }
+    }
+    else
     {
         [arrayInt addObject:@"1"];
     }
-    
     dic=[[NSMutableDictionary alloc]init];
     MainCount=[[NSMutableDictionary alloc]init];
     [dic setObject:arrayInt forKey:@"Count"];
     [MainCount setObject:arrayInt forKey:@"MainCount"];
+    
+    
     
     
     CartNotification_LBL.layer.masksToBounds = YES;

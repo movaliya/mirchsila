@@ -164,51 +164,53 @@
         [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
              
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 
-                 NSMutableDictionary *myProfileDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
-                 
-                 User_TXT.text=[myProfileDic valueForKey:@"customerName"];
-                 Email_TXT.text=[myProfileDic valueForKey:@"email"];
-                 
-                 if ([myProfileDic valueForKey:@"street"] != (id)[NSNull null])
+             [KVNProgress dismissWithCompletion:^{
+                 NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
                  {
-                     Street_TXT.text=[myProfileDic valueForKey:@"street"];
+                     
+                     NSMutableDictionary *myProfileDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
+                     
+                     User_TXT.text=[myProfileDic valueForKey:@"customerName"];
+                     Email_TXT.text=[myProfileDic valueForKey:@"email"];
+                     
+                     if ([myProfileDic valueForKey:@"street"] != (id)[NSNull null])
+                     {
+                         Street_TXT.text=[myProfileDic valueForKey:@"street"];
+                     }
+                     if ([myProfileDic valueForKey:@"postCode"] != (id)[NSNull null])
+                     {
+                         PostCode_TXT.text=[myProfileDic valueForKey:@"postCode"];
+                     }
+                     if ([myProfileDic valueForKey:@"mobile"] != (id)[NSNull null])
+                     {
+                         Mobile_TXT.text=[myProfileDic valueForKey:@"mobile"];
+                     }
+                     if ([myProfileDic valueForKey:@"country"] != (id)[NSNull null])
+                     {
+                         Country_TXT.text=[myProfileDic valueForKey:@"country"];
+                     }
+                     if ([myProfileDic valueForKey:@"houseName"] != (id)[NSNull null])
+                     {
+                         HouseName_TXT.text=[myProfileDic valueForKey:@"houseName"];
+                     }
+                     if ([myProfileDic valueForKey:@"houseNo"] != (id)[NSNull null])
+                     {
+                         HouseNo_TXT.text=[myProfileDic valueForKey:@"houseNo"];
+                     }
                  }
-                 if ([myProfileDic valueForKey:@"postCode"] != (id)[NSNull null])
+                 else
                  {
-                     PostCode_TXT.text=[myProfileDic valueForKey:@"postCode"];
+                     [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
                  }
-                 if ([myProfileDic valueForKey:@"mobile"] != (id)[NSNull null])
-                 {
-                     Mobile_TXT.text=[myProfileDic valueForKey:@"mobile"];
-                 }
-                 if ([myProfileDic valueForKey:@"country"] != (id)[NSNull null])
-                 {
-                     Country_TXT.text=[myProfileDic valueForKey:@"country"];
-                 }
-                 if ([myProfileDic valueForKey:@"houseName"] != (id)[NSNull null])
-                 {
-                     HouseName_TXT.text=[myProfileDic valueForKey:@"houseName"];
-                 }
-                 if ([myProfileDic valueForKey:@"houseNo"] != (id)[NSNull null])
-                 {
-                     HouseNo_TXT.text=[myProfileDic valueForKey:@"houseNo"];
-                 }
-             }
-             else
-             {
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
-             }
+             }];
              
-             [KVNProgress dismiss] ;
          }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
-             [KVNProgress dismiss] ;
+             [KVNProgress dismissWithCompletion:^{
+             }];
          }];
         
     }
@@ -313,28 +315,31 @@
         
         [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
+             [KVNProgress dismissWithCompletion:^{
+                 
+                 NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
+                 {
+                     
+                     // NSString *SUCCESS=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
+                     
+                     //[AppDelegate showErrorMessageWithTitle:@"" message:SUCCESS delegate:nil];
+                     [self checkMinimumAmout];
+                     
+                 }
+                 else
+                 {
+                     [AppDelegate showErrorMessageWithTitle:@"" message:@"Your Address is not Update. Please Try After Some Time" delegate:nil];
+                 }
+             }];
              
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 
-                // NSString *SUCCESS=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"myProfile"] objectForKey:@"result"] objectForKey:@"myProfile"];
-                 
-                 //[AppDelegate showErrorMessageWithTitle:@"" message:SUCCESS delegate:nil];
-                 [self checkMinimumAmout];
-                 
-             }
-             else
-             {
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Your Address is not Update. Please Try After Some Time" delegate:nil];
-             }
              
-             [KVNProgress dismiss] ;
          }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
-             [KVNProgress dismiss] ;
+             [KVNProgress dismissWithCompletion:^{
+             }];
          }];
         
     }
@@ -407,46 +412,29 @@
         
         [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
          {
-              [KVNProgress dismiss] ;
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 
-                AddressRespose=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"result"] objectForKey:@"deliveryAddress"];
-                 
-                 MinMaxDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"result"] objectForKey:@"deliveryAddress"];
-                 //NSLog(@"AddressRespose==%@",AddressRespose);
-                 
-                 [KVNProgress dismiss] ;
-                 [self performSelector:@selector(Pushtoordersummryview) withObject:nil afterDelay:0.1];
-                 
-                 /*
-                 float minimumDeliveryAmount=[[AddressRespose valueForKey:@"minimumDeliveryAmount"] floatValue];
-                 float grandtot=[CartTotalAmout floatValue];
-                 if (minimumDeliveryAmount >grandtot)
+             [KVNProgress dismissWithCompletion:^{
+                 NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"SUCCESS"];
+                 if ([SUCCESS boolValue] ==YES)
                  {
-                     // Cart value is lesser then minimum dilvry
-                     NSString *alterMessage=[NSString stringWithFormat:@"You need to order minimum amount of £%.02f",minimumDeliveryAmount];
-                     [AppDelegate showErrorMessageWithTitle:@"Minimum Requirement not meet." message:alterMessage delegate:nil];
-                 }
+                     
+                     AddressRespose=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"result"] objectForKey:@"deliveryAddress"];
+                     
+                     MinMaxDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"putitem"] objectForKey:@"deliveryAddress"] objectForKey:@"result"] objectForKey:@"deliveryAddress"];
+                     //NSLog(@"AddressRespose==%@",AddressRespose);
+                     
+                     [self performSelector:@selector(Pushtoordersummryview) withObject:nil afterDelay:0.1];
+                }
                  else
                  {
-                     // Push Next View
-                     [KVNProgress dismiss] ;
-                     [self performSelector:@selector(Pushtoordersummryview) withObject:nil afterDelay:0.1];
-                 }*/
-             }
-             else
-             {
-                 [AppDelegate showErrorMessageWithTitle:@"" message:@"Please try after some time." delegate:nil];
-             }
-             
-            
+                     [AppDelegate showErrorMessageWithTitle:@"" message:@"Please try after some time." delegate:nil];
+                 }
+             }];
          }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
-             [KVNProgress dismiss] ;
+             [KVNProgress dismissWithCompletion:^{
+             }];
          }];
         
     }
@@ -459,12 +447,14 @@
 
 -(void)Pushtoordersummryview
 {
-    [KVNProgress dismiss] ;
-    CheckOut_OrderSummyVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOut_OrderSummyVW"];
-    vcr.deliveryCharge1=[AddressRespose valueForKey:@"deliveryCharge"];
-    vcr.Comment2View=self.Comment1View;
-    vcr.MINDelveryCollectioDic1=MinMaxDic;
-    [self.navigationController pushViewController:vcr animated:YES];
+    [KVNProgress dismissWithCompletion:^{
+        CheckOut_OrderSummyVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOut_OrderSummyVW"];
+        vcr.deliveryCharge1=[AddressRespose valueForKey:@"deliveryCharge"];
+        vcr.Comment2View=self.Comment1View;
+        vcr.MINDelveryCollectioDic1=MinMaxDic;
+        [self.navigationController pushViewController:vcr animated:YES];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

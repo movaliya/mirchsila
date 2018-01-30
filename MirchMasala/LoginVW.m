@@ -154,30 +154,30 @@
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
     {
          NSLog(@"responseObject==%@",responseObject);
-        //NSLog(@"SUCCESS==%@", [[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"]);
-        NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
-        if ([SUCCESS boolValue] ==YES)
-        {
-             [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
-            
-            HomeView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeView"];
-            [self.navigationController pushViewController:vcr animated:YES];
-            emailTxt.text=@"";
-            passwordTxt.text=@"";
-            [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
-        }
-        else
-        {
-             [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
-        }
-        
-         [KVNProgress dismiss] ;
+        [KVNProgress dismissWithCompletion:^{
+            NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"SUCCESS"];
+            if ([SUCCESS boolValue] ==YES)
+            {
+                [[NSUserDefaults standardUserDefaults]setObject:responseObject forKey:@"LoginUserDic"];
+                
+                HomeView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeView"];
+                [self.navigationController pushViewController:vcr animated:YES];
+                emailTxt.text=@"";
+                passwordTxt.text=@"";
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Login successful" delegate:nil];
+            }
+            else
+            {
+                [AppDelegate showErrorMessageWithTitle:@"" message:@"Email and/or Password did not matched." delegate:nil];
+            }
+        }];
      }
      
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-          [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 

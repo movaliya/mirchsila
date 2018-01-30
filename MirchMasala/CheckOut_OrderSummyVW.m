@@ -382,20 +382,23 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         [KVNProgress dismiss];
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-              NSLog(@"responseObjectjson===%@",responseObject);
-             MainDiscount=[NSString stringWithFormat:@"%@",[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"]  objectForKey:@"result"] objectForKey:@"calculateDiscount"]];
-             [self CalculateGrantTotal];
-             [TableVW reloadData];
-         }
+         [KVNProgress dismissWithCompletion:^{
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 NSLog(@"responseObjectjson===%@",responseObject);
+                 MainDiscount=[NSString stringWithFormat:@"%@",[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"]  objectForKey:@"result"] objectForKey:@"calculateDiscount"]];
+                 [self CalculateGrantTotal];
+                 [TableVW reloadData];
+             }
+         }];
+        
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 

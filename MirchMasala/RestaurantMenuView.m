@@ -126,24 +126,25 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         //NSLog(@"responseObject==%@",responseObject);
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
-             Searchdic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
-             ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
+         [KVNProgress dismissWithCompletion:^{
              
-            // ImageFag=YES;
-             
-             if (topCategoriesDic)
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
              {
-                 [MenuTableView reloadData];
+                 topCategoriesDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
+                 Searchdic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"topCategories"];
+                 ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"topCategories"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
+                 
+                 // ImageFag=YES;
+                 
+                 if (topCategoriesDic)
+                 {
+                     [MenuTableView reloadData];
+                 }
              }
-         }
-     }
+
+         }];
+    }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");

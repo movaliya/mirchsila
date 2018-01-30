@@ -237,53 +237,54 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
-             
-             AllProductIngredientsDIC=[subCategoryDic valueForKey:@"ingredients"];
-             arrayInt = [[NSMutableArray alloc] init];
-             for (int i = 0; i <subCategoryDic.count; i++)
+         [KVNProgress dismissWithCompletion:^{
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
              {
-                 [arrayInt addObject:@"1"];
-             }
-             
-             dic=[[NSMutableDictionary alloc]init];
-             MainCount=[[NSMutableDictionary alloc]init];
-             [dic setObject:arrayInt forKey:@"Count"];
-             [MainCount setObject:arrayInt forKey:@"MainCount"];
-             
-             NSArray *idarr=[subCategoryDic valueForKey:@"id"];
-             NSInteger indx=[idarr indexOfObject:ProductidStr];
-             
-             NSLog(@"==%@",[KmyappDelegate.MainCartArr objectAtIndex:[Selectcredinx integerValue]]);
-             NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:[Selectcredinx integerValue]];
-             if ([ingredientArr isKindOfClass:[NSArray class]])
-             {
-                 if (ingredientArr.count>0)
+                 subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
+                 
+                 AllProductIngredientsDIC=[subCategoryDic valueForKey:@"ingredients"];
+                 arrayInt = [[NSMutableArray alloc] init];
+                 for (int i = 0; i <subCategoryDic.count; i++)
                  {
-                     [self OptionClick:[NSString stringWithFormat:@"%ld",(long)indx] :ingredientArr];
+                     [arrayInt addObject:@"1"];
+                 }
+                 
+                 dic=[[NSMutableDictionary alloc]init];
+                 MainCount=[[NSMutableDictionary alloc]init];
+                 [dic setObject:arrayInt forKey:@"Count"];
+                 [MainCount setObject:arrayInt forKey:@"MainCount"];
+                 
+                 NSArray *idarr=[subCategoryDic valueForKey:@"id"];
+                 NSInteger indx=[idarr indexOfObject:ProductidStr];
+                 
+                 NSLog(@"==%@",[KmyappDelegate.MainCartArr objectAtIndex:[Selectcredinx integerValue]]);
+                 NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:[Selectcredinx integerValue]];
+                 if ([ingredientArr isKindOfClass:[NSArray class]])
+                 {
+                     if (ingredientArr.count>0)
+                     {
+                         [self OptionClick:[NSString stringWithFormat:@"%ld",(long)indx] :ingredientArr];
+                     }
+                     else
+                     {
+                         [self OptionClick:[NSString stringWithFormat:@"%ld",(long)indx] :@""];
+                     }
                  }
                  else
                  {
                      [self OptionClick:[NSString stringWithFormat:@"%ld",(long)indx] :@""];
                  }
+                 
+                 
              }
-             else
-             {
-                 [self OptionClick:[NSString stringWithFormat:@"%ld",(long)indx] :@""];
-             }
-             
-             
-         }
+         }];
      }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 
@@ -491,20 +492,24 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         [KVNProgress dismiss];
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             MainDiscount=[NSString stringWithFormat:@"%@",[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"]  objectForKey:@"result"] objectForKey:@"calculateDiscount"]];
-            [self CalculateGrantTotal];
-             [cartTable reloadData];
-         }
+         [KVNProgress dismissWithCompletion:^{
+             
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 MainDiscount=[NSString stringWithFormat:@"%@",[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"calculateDiscount"]  objectForKey:@"result"] objectForKey:@"calculateDiscount"]];
+                 [self CalculateGrantTotal];
+                 [cartTable reloadData];
+             }
+         }];
+         
          
      }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 

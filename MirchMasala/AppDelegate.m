@@ -99,7 +99,8 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 
@@ -168,7 +169,8 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 
@@ -207,32 +209,34 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             NSArray *NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"result"] objectForKey:@"news"] mutableCopy];
-             
-             if (NewsDataArr.count==0)
+         [KVNProgress dismissWithCompletion:^{
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 NSArray *NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"result"] objectForKey:@"news"] mutableCopy];
+                 
+                 if (NewsDataArr.count==0)
+                 {
+                     NSString *valueToSave = @"NO";
+                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
+                     [[NSUserDefaults standardUserDefaults] synchronize];
+                 }
+                 else
+                 {
+                     NSString *valueToSave = @"YES";
+                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
+                     [[NSUserDefaults standardUserDefaults] synchronize];
+                 }
+             }
+             else
              {
                  NSString *valueToSave = @"NO";
                  [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
                  [[NSUserDefaults standardUserDefaults] synchronize];
              }
-             else
-             {
-                 NSString *valueToSave = @"YES";
-                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
-                 [[NSUserDefaults standardUserDefaults] synchronize];
-             }
-         }
-         else
-         {
-             NSString *valueToSave = @"NO";
-             [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
-             [[NSUserDefaults standardUserDefaults] synchronize];
-         }
+         }];
+         
+         
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {

@@ -165,49 +165,52 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         [KVNProgress dismiss];
-         
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
-         if ([SUCCESS boolValue] ==YES)
-         {
-             subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
-             PraseArr=[subCategoryDic mutableCopy];
+         [KVNProgress dismissWithCompletion:^{
              
-             Searchdic= subCategoryDic;
-             
-             AllProductIngredientsDIC=[subCategoryDic valueForKey:@"ingredients"];
-             arrayInt = [[NSMutableArray alloc] init];
-             for (int i = 0; i <subCategoryDic.count; i++)
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"SUCCESS"];
+             if ([SUCCESS boolValue] ==YES)
              {
-                 [arrayInt addObject:@"1"];
+                 subCategoryDic=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"products"];
+                 PraseArr=[subCategoryDic mutableCopy];
+                 
+                 Searchdic= subCategoryDic;
+                 
+                 AllProductIngredientsDIC=[subCategoryDic valueForKey:@"ingredients"];
+                 arrayInt = [[NSMutableArray alloc] init];
+                 for (int i = 0; i <subCategoryDic.count; i++)
+                 {
+                     [arrayInt addObject:@"1"];
+                 }
+                 
+                 dic=[[NSMutableDictionary alloc]init];
+                 MainCount=[[NSMutableDictionary alloc]init];
+                 [dic setObject:arrayInt forKey:@"Count"];
+                 [MainCount setObject:arrayInt forKey:@"MainCount"];
+                 
+                 
+                 ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
+                 //ImageFag=YES;
+                 
+                 if (ImageFag==YES)
+                 {
+                     ItemCollectionView.hidden=NO;
+                     [ItemCollectionView reloadData];
+                 }
+                 else
+                 {
+                     ItemCollectionView.hidden=YES;
+                     ItemTableView.hidden=NO;
+                     [ItemTableView reloadData];
+                 }
              }
              
-             dic=[[NSMutableDictionary alloc]init];
-             MainCount=[[NSMutableDictionary alloc]init];
-             [dic setObject:arrayInt forKey:@"Count"];
-             [MainCount setObject:arrayInt forKey:@"MainCount"];
-            
-             
-             ImageFag=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"products"] objectForKey:@"result"] objectForKey:@"containImg"] boolValue];
-             //ImageFag=YES;
-             
-             if (ImageFag==YES)
-             {
-                 ItemCollectionView.hidden=NO;
-                 [ItemCollectionView reloadData];
-             }
-             else
-             {
-                 ItemCollectionView.hidden=YES;
-                 ItemTableView.hidden=NO;
-                 [ItemTableView reloadData];
-             }
-         }
+         }];
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 
@@ -637,7 +640,7 @@
                             NSArray *ingredientArr=[[KmyappDelegate.MainCartArr valueForKey:@"ingredient"] objectAtIndex:i];
                             if (![ingredientArr isKindOfClass:[NSArray class]])
                             {
-                                NSString *addqnt=[NSString stringWithFormat:@"%d",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
+                                NSString *addqnt=[NSString stringWithFormat:@"%ld",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
                                 NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                                 NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
                                 [newDict addEntriesFromDictionary:oldDict];
@@ -971,7 +974,7 @@
                                     
                                     if([set1 isEqualToSet:set2])
                                     {
-                                        NSString *addqnt=[NSString stringWithFormat:@"%d",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
+                                        NSString *addqnt=[NSString stringWithFormat:@"%ld",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
                                         NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                                         NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
                                         [newDict addEntriesFromDictionary:oldDict];
@@ -1063,7 +1066,7 @@
                                 
                                 if([set1 isEqualToSet:set2])
                                 {
-                                    NSString *addqnt=[NSString stringWithFormat:@"%d",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
+                                    NSString *addqnt=[NSString stringWithFormat:@"%ld",[Quatity integerValue]+[[[KmyappDelegate.MainCartArr valueForKey:@"quatity"] objectAtIndex:i] integerValue]];
                                     NSMutableDictionary *newDict = [[NSMutableDictionary alloc] init];
                                     NSDictionary *oldDict = (NSDictionary *)[KmyappDelegate.MainCartArr objectAtIndex:i];
                                     [newDict addEntriesFromDictionary:oldDict];
