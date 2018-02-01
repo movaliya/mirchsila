@@ -69,10 +69,9 @@
 
 #define KmyappDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
-//OLD URL
-//#define kBaseURL    @"http://tiffintom.com/api/private/request/data/"
 
-//NEW URL
+
+//Base URL
 #define kBaseURL    @"https://tiffintom.com/api/private/request/data/"
 
 

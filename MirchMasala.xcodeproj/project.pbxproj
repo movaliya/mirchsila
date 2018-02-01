@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		296C1F3F2022F16B0033121A /* MessageVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C1F3E2022F16B0033121A /* MessageVW.m */; };
+		296C1F432022F2E90033121A /* MessageTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C1F412022F2E90033121A /* MessageTblCell.m */; };
+		296C1F442022F2E90033121A /* MessageTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296C1F422022F2E90033121A /* MessageTblCell.xib */; };
 		5307923F1E6FE124005426ED /* CCKFNavDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 530792381E6FE124005426ED /* CCKFNavDrawer.m */; };
 		530792401E6FE124005426ED /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530792391E6FE124005426ED /* DrawerView.xib */; };
 		530792411E6FE124005426ED /* DrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5307923B1E6FE124005426ED /* DrawerView.m */; };
@@ -30,7 +33,6 @@
 		530BFA561E794B5A00AE5502 /* OrderSummay_Detail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530BFA541E794B5A00AE5502 /* OrderSummay_Detail.xib */; };
 		530BFA5A1E794B7700AE5502 /* OrderSummry_Total.m in Sources */ = {isa = PBXBuildFile; fileRef = 530BFA581E794B7700AE5502 /* OrderSummry_Total.m */; };
 		530BFA5B1E794B7700AE5502 /* OrderSummry_Total.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530BFA591E794B7700AE5502 /* OrderSummry_Total.xib */; };
-		530C39BB1E6BE47C0073AA78 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 530C39BA1E6BE47C0073AA78 /* Logo.png */; };
 		530C39BE1E6BE8040073AA78 /* SignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C39BD1E6BE8040073AA78 /* SignUpView.m */; };
 		530C39C11E6C340A0073AA78 /* ForgotPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530C39C01E6C340A0073AA78 /* ForgotPasswordView.m */; };
 		530D67D11E80E8DA0045EAD7 /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 530D67D01E80E8DA0045EAD7 /* Stripe.framework */; };
@@ -222,6 +224,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		296C1F3D2022F16B0033121A /* MessageVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVW.h; sourceTree = "<group>"; };
+		296C1F3E2022F16B0033121A /* MessageVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVW.m; sourceTree = "<group>"; };
+		296C1F402022F2E90033121A /* MessageTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTblCell.h; sourceTree = "<group>"; };
+		296C1F412022F2E90033121A /* MessageTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTblCell.m; sourceTree = "<group>"; };
+		296C1F422022F2E90033121A /* MessageTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTblCell.xib; sourceTree = "<group>"; };
 		530792371E6FE124005426ED /* CCKFNavDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKFNavDrawer.h; sourceTree = "<group>"; };
 		530792381E6FE124005426ED /* CCKFNavDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCKFNavDrawer.m; sourceTree = "<group>"; };
 		530792391E6FE124005426ED /* DrawerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerView.xib; sourceTree = "<group>"; };
@@ -261,7 +268,6 @@
 		530BFA571E794B7700AE5502 /* OrderSummry_Total.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSummry_Total.h; sourceTree = "<group>"; };
 		530BFA581E794B7700AE5502 /* OrderSummry_Total.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSummry_Total.m; sourceTree = "<group>"; };
 		530BFA591E794B7700AE5502 /* OrderSummry_Total.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderSummry_Total.xib; sourceTree = "<group>"; };
-		530C39BA1E6BE47C0073AA78 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		530C39BC1E6BE8040073AA78 /* SignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpView.h; sourceTree = "<group>"; };
 		530C39BD1E6BE8040073AA78 /* SignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpView.m; sourceTree = "<group>"; };
 		530C39BF1E6C340A0073AA78 /* ForgotPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordView.h; sourceTree = "<group>"; };
@@ -676,6 +682,9 @@
 				536FC00E1F66D610001F3BE4 /* AboutUsCELL.h */,
 				536FC00F1F66D610001F3BE4 /* AboutUsCELL.m */,
 				536FC0101F66D610001F3BE4 /* AboutUsCELL.xib */,
+				296C1F402022F2E90033121A /* MessageTblCell.h */,
+				296C1F412022F2E90033121A /* MessageTblCell.m */,
+				296C1F422022F2E90033121A /* MessageTblCell.xib */,
 				B140C4531F69A1140019B15E /* SocialCell.h */,
 				B140C4541F69A1140019B15E /* SocialCell.m */,
 				B140C4551F69A1140019B15E /* SocialCell.xib */,
@@ -762,6 +771,8 @@
 				530979DA1E73ECBB00385083 /* ContactUsView.m */,
 				530979DC1E7420C900385083 /* AboutUS.h */,
 				530979DD1E7420C900385083 /* AboutUS.m */,
+				296C1F3D2022F16B0033121A /* MessageVW.h */,
+				296C1F3E2022F16B0033121A /* MessageVW.m */,
 				533752B11FC007A7002CB7E0 /* ProfileView.h */,
 				533752B21FC007A8002CB7E0 /* ProfileView.m */,
 				530BA8E11E7C5ACA002FDCA2 /* ShoppingPolicy_View.h */,
@@ -791,7 +802,6 @@
 			children = (
 				537130FF1F63C1B000211643 /* cart.png */,
 				537131001F63C1B000211643 /* gallery.png */,
-				530C39BA1E6BE47C0073AA78 /* Logo.png */,
 				532E5A541F6D3E4500DE8B44 /* SplashScreen.jpg */,
 			);
 			name = Images;
@@ -1177,8 +1187,8 @@
 				530BEF7B1E718D8000614BF8 /* OrderDetailLowerCell.xib in Resources */,
 				530EA8F51E6DA77F00A61A88 /* SubitemCell.xib in Resources */,
 				532E5A741F6D465700DE8B44 /* Icon-App-20x20@1x.png in Resources */,
+				296C1F442022F2E90033121A /* MessageTblCell.xib in Resources */,
 				532E5A8A1F6D465700DE8B44 /* iTunesArtwork@1x.png in Resources */,
-				530C39BB1E6BE47C0073AA78 /* Logo.png in Resources */,
 				532E5A7F1F6D465700DE8B44 /* Icon-App-60x60@1x.png in Resources */,
 				532E5A771F6D465700DE8B44 /* Icon-App-29x29@1x.png in Resources */,
 				B153B3B21F6519A800DE8514 /* CategoriesCellWithIMG.xib in Resources */,
@@ -1258,6 +1268,7 @@
 				B15F7A0D1E6C3665004A4D32 /* IQKeyboardManager.m in Sources */,
 				530979DE1E7420C900385083 /* AboutUS.m in Sources */,
 				B15F7A071E6C3665004A4D32 /* IQNSArray+Sort.m in Sources */,
+				296C1F3F2022F16B0033121A /* MessageVW.m in Sources */,
 				533752B91FC008AC002CB7E0 /* OrderDetailView.m in Sources */,
 				B15F7A801E6C3964004A4D32 /* AFURLSessionManager.m in Sources */,
 				B15F7A181E6C3665004A4D32 /* UIImage+KVNImageEffects.m in Sources */,
@@ -1283,6 +1294,7 @@
 				5350A7891F6C1D0B00140174 /* MyCartUpperCELL.m in Sources */,
 				B15F7A0A1E6C3665004A4D32 /* IQUIView+Hierarchy.m in Sources */,
 				B15F7A331E6C3665004A4D32 /* UIView+WebCacheOperation.m in Sources */,
+				296C1F432022F2E90033121A /* MessageTblCell.m in Sources */,
 				B13A04621E7BBF430048F36D /* RestaurantMenuView.m in Sources */,
 				B15BBB191F6CFB48004FB813 /* MyNotationView.m in Sources */,
 				530ECF411E71392F0004F9AB /* OrderHistryView.m in Sources */,

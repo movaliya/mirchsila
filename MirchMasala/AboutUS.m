@@ -247,7 +247,8 @@
 -(void)CCKFNavDrawerSelection:(NSInteger)selectionIndex
 {
     NSLog(@"CCKFNavDrawerSelection = %li", (long)selectionIndex);
-}- (void)didReceiveMemoryWarning {
+}
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

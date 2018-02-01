@@ -23,7 +23,11 @@
     // Override point for customization after application launch.
     //Kaushik
     //[[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
-    [self GetPublishableKey];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+         [self GetPublishableKey];
+    });
+
     [[STPPaymentConfiguration sharedConfiguration] setSmsAutofillDisabled:NO];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -35,7 +39,7 @@
 }
 -(void)GetPublishableKey
 {
-    [KVNProgress show] ;
+   [KVNProgress show] ;
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     //This for Static DummyKey
@@ -77,22 +81,33 @@
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
          NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"publishableKey"] objectForKey:@"SUCCESS"];
-         
-         if ([SUCCESS boolValue] ==YES)
-         {
-             kstrStripePublishableKey=[[NSString alloc]init];
-             kstrStripePublishableKey=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"publishableKey"] objectForKey:@"result"] objectForKey:@"publishableKey"];
+         [KVNProgress dismissWithCompletion:^{
              
-             [[NSUserDefaults standardUserDefaults] setObject:kstrStripePublishableKey forKey:@"PublishableKey"];
-             [[NSUserDefaults standardUserDefaults] synchronize];
-             
-             NSLog(@"kstrStripePublishableKey==%@",kstrStripePublishableKey);
-             if (kstrStripePublishableKey != nil) {
-                 [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
+             if ([SUCCESS boolValue] ==YES)
+             {
+                 kstrStripePublishableKey=[[NSString alloc]init];
+                 kstrStripePublishableKey=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"publishableKey"] objectForKey:@"result"] objectForKey:@"publishableKey"];
+                 
+                 [[NSUserDefaults standardUserDefaults] setObject:kstrStripePublishableKey forKey:@"PublishableKey"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+                 
+                 NSLog(@"kstrStripePublishableKey==%@",kstrStripePublishableKey);
+                 if (kstrStripePublishableKey != nil) {
+                     [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
+                 }
+                 NSString *CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                                                    stringForKey:@"reservationState"];
+                 
+                 if ([CheckReservationState isEqualToString:@"NO"] || CheckReservationState==nil)
+                 {
+                      [self checkReservationState];
+                 }
+                 
+                
+                 //[self performSelector:@selector(checkReservationState) withObject:nil afterDelay:0.0f];
              }
-             [self checkReservationState];
-             //[self performSelector:@selector(checkReservationState) withObject:nil afterDelay:0.0f];
-         }
+         }];
+        
          
          
      }
@@ -143,30 +158,44 @@
     
     [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
      {
-         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"SUCCESS"];
          
-         if ([SUCCESS boolValue] ==YES)
-         {
-             NSString *checkRevState=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"result"] objectForKey:@"reservationState"];
+         
+         [KVNProgress dismissWithCompletion:^{
              
-             if ([checkRevState boolValue] ==YES)
+             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"SUCCESS"];
+             
+             if ([SUCCESS boolValue] ==YES)
              {
-                 NSString *valueToSave = @"YES";
-                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
-                 [[NSUserDefaults standardUserDefaults] synchronize];
+                 NSString *checkRevState=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"result"] objectForKey:@"reservationState"];
+                 
+                 if ([checkRevState boolValue] ==YES)
+                 {
+                     NSString *valueToSave = @"YES";
+                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
+                     [[NSUserDefaults standardUserDefaults] synchronize];
+                 }
+                 else
+                 {
+                     NSString *valueToSave = @"NO";
+                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
+                     [[NSUserDefaults standardUserDefaults] synchronize];
+                 }
+                 
+                 NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
+                                                stringForKey:@"NEWSNODATAHIDEOPTION"];
+                 
+                 if ([CheckOptionHidden isEqualToString:@"NO"]|| CheckOptionHidden==nil)
+                 {
+                      [self CallNewsService];
+                 }
+                
+                 
+                 
              }
-             else
-             {
-                 NSString *valueToSave = @"NO";
-                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
-                 [[NSUserDefaults standardUserDefaults] synchronize];
-             }
-              [self CallNewsService];
-             
-             
-         }
-     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+
+         }];
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
          [KVNProgress dismissWithCompletion:^{
@@ -180,9 +209,6 @@
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    
-    
     NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
     [dictSub setObject:@"getitem" forKey:@"MODULE"];
     [dictSub setObject:@"news" forKey:@"METHOD"];
@@ -241,7 +267,8 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Fail");
-         [KVNProgress dismiss] ;
+         [KVNProgress dismissWithCompletion:^{
+         }];
      }];
 }
 +(BOOL)IsValidEmail:(NSString *)checkString

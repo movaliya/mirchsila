@@ -2423,12 +2423,16 @@
                     </view>
                     <connections>
                         <outlet property="CartNotification_LBL" destination="NEH-mY-fCi" id="grT-Ic-rZy"/>
+                        <outlet property="Collecction_LBL" destination="OWA-XL-jeW" id="4pS-xq-zOv"/>
                         <outlet property="Collection_Radio_Btn" destination="0vN-9N-u1m" id="6KJ-0u-FTA"/>
                         <outlet property="CreditCard_Radio_Brn" destination="cAe-Vw-8ix" id="Uql-MW-tHG"/>
+                        <outlet property="Credit_DebitCart_LBL" destination="CCf-E2-AK7" id="26X-pa-Yki"/>
+                        <outlet property="Delivery_LBL" destination="0Gi-es-v7x" id="YVc-Dw-WZ3"/>
                         <outlet property="Delivery_Radio_Btn" destination="zNT-6o-QpA" id="s5C-0d-Wew"/>
                         <outlet property="Discount_LBL" destination="rWy-bc-hDy" id="9Zz-si-AGj"/>
                         <outlet property="OrderAmount_LBL" destination="Kiv-dn-s67" id="vr3-0w-ib2"/>
                         <outlet property="PayOnCollection_Radio" destination="Rbe-F1-Go5" id="F3z-JC-IiA"/>
+                        <outlet property="Pay_On_Collction_Delivery_LBL" destination="gCC-0Z-BWU" id="wWD-3h-Y6l"/>
                         <outlet property="ProcessOrder_Btn" destination="i98-bF-TzK" id="RD4-ip-Gz2"/>
                     </connections>
                 </viewController>
@@ -5105,25 +5109,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RB5-og-5JW">
                                 <rect key="frame" x="8" y="265" width="304" height="137"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKe-Cb-dH4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKe-Cb-dH4">
                                         <rect key="frame" x="8" y="15" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-03-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byF-ru-sCd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2017-03-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byF-ru-sCd">
                                         <rect key="frame" x="36" y="56" width="86.5" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITa-QD-79t">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITa-QD-79t">
                                         <rect key="frame" x="8" y="104" width="343" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pjh-Uy-lG1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pjh-Uy-lG1">
                                         <rect key="frame" x="8" y="55.5" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="127-yb-27d"/>
@@ -5975,6 +5979,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2W3-fa-Lhh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="333.75" y="-500.7042253521127"/>
+        </scene>
+        <!--MessageVW-->
+        <scene sceneID="4ao-Np-1Ec">
+            <objects>
+                <viewController storyboardIdentifier="MessageVW" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M25-Oa-6e5" customClass="MessageVW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oaf-ig-G2Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="eao-cF-imz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GEM-5p-f8J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GEO-HH-0cn">
+                                <rect key="frame" x="0.0" y="70" width="320" height="498"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="M25-Oa-6e5" id="5WH-2C-sqq"/>
+                                    <outlet property="delegate" destination="M25-Oa-6e5" id="KoS-1M-bif"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rr-yp-hrl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tar-ij-WCq">
+                                        <rect key="frame" x="0.0" y="20" width="50" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="GIS-LG-306"/>
+                                            <constraint firstAttribute="height" constant="43" id="HFY-cg-hJA"/>
+                                        </constraints>
+                                        <state key="normal" title="   " image="MenuBtn"/>
+                                        <connections>
+                                            <action selector="Menu_Toggle:" destination="M25-Oa-6e5" eventType="touchUpInside" id="WBM-bn-LC7"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MESSAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-rA-Zyz">
+                                        <rect key="frame" x="70" y="30" width="94" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.77647058820000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="GhI-Bk-OWS"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="OO6-0K-sZB"/>
+                                    <constraint firstAttribute="bottom" secondItem="tar-ij-WCq" secondAttribute="bottom" constant="7" id="SzV-Zu-tWH"/>
+                                    <constraint firstItem="4Hc-rA-Zyz" firstAttribute="leading" secondItem="tar-ij-WCq" secondAttribute="trailing" constant="20" id="eaO-WW-wuh"/>
+                                    <constraint firstItem="tar-ij-WCq" firstAttribute="leading" secondItem="3rr-yp-hrl" secondAttribute="leading" id="j4Z-lh-kPV"/>
+                                    <constraint firstItem="tar-ij-WCq" firstAttribute="centerY" secondItem="4Hc-rA-Zyz" secondAttribute="centerY" id="tx6-m1-jzE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eao-cF-imz" firstAttribute="top" secondItem="GEO-HH-0cn" secondAttribute="bottom" id="4In-6R-byZ"/>
+                            <constraint firstItem="3rr-yp-hrl" firstAttribute="top" secondItem="GEM-5p-f8J" secondAttribute="top" id="NIS-0h-Qwh"/>
+                            <constraint firstItem="3rr-yp-hrl" firstAttribute="leading" secondItem="GEM-5p-f8J" secondAttribute="leading" id="Yik-Wo-Gq4"/>
+                            <constraint firstAttribute="trailing" secondItem="3rr-yp-hrl" secondAttribute="trailing" id="b16-El-D0y"/>
+                            <constraint firstItem="GEO-HH-0cn" firstAttribute="leading" secondItem="GEM-5p-f8J" secondAttribute="leading" id="cQc-3F-ibH"/>
+                            <constraint firstAttribute="trailing" secondItem="GEO-HH-0cn" secondAttribute="trailing" id="cRz-FS-OJX"/>
+                            <constraint firstItem="GEO-HH-0cn" firstAttribute="top" secondItem="3rr-yp-hrl" secondAttribute="bottom" id="g26-9X-48z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="TableVW" destination="GEO-HH-0cn" id="Mi6-Uv-ASB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdt-Jo-eaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4110" y="1034"/>
         </scene>
     </scenes>
     <resources>

@@ -64,7 +64,10 @@
     SearchBR.hidden=YES;
     SearchBR.layer.borderWidth = 0.1;
     SearchBR.layer.borderColor = [UIColor colorWithRed:(207/255.0) green:(198/255.0) blue:(143/255.0) alpha:1.0].CGColor;
-    [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses: @[[UISearchBar class]]] setTintColor:[UIColor whiteColor]];
+    
+   
+
     
     CartNotification_LBL.layer.masksToBounds = YES;
     CartNotification_LBL.layer.cornerRadius = 8.0;
@@ -114,13 +117,21 @@
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-         [self SUBCategoriesList];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self SUBCategoriesList];
+        });
+         //[self SUBCategoriesList];
+         //[self performSelector:@selector(SUBCategoriesList) withObject:nil afterDelay:0.0f];
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
    
+    [self performSelector:@selector(dissmissActivityIndicator) withObject:nil afterDelay:3.0f];
 }
-
+-(void)dissmissActivityIndicator
+{
+     [KVNProgress dismiss] ;
+}
 
 -(void)SUBCategoriesList
 {
@@ -261,9 +272,6 @@
      [cell.ItemIMG sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"slider_image_1.png"]];
      [cell.ItemIMG setShowActivityIndicatorView:YES];
     
-   // NSString *imagename=@"slider_image_1.png";
-    //UIImage *imge=[UIImage imageNamed:imagename];
-   // cell.ItemIMG.image=imge;
     
     return cell;
     
@@ -516,7 +524,7 @@
     
     if (TempProductIngredDic.count==0)
     {
-        NSLog(@"Option Btn Hidden");
+        //NSLog(@"Option Btn Hidden");
         cell.optionBtn.hidden=YES;
     }
     else

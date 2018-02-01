@@ -74,15 +74,18 @@
 {
     [super viewDidLoad];
     
-     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    
-    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     NSString *CheckReservationState = [[NSUserDefaults standardUserDefaults]
                             stringForKey:@"reservationState"];
     
     NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
                                        stringForKey:@"NEWSNODATAHIDEOPTION"];
+    
+    if (CheckReservationState==nil)
+    {
+        CheckReservationState=@"YES";
+        CheckOptionHidden=@"YES";
+    }
     
     if ([CheckReservationState isEqualToString:@"YES"])
     {
@@ -156,22 +159,29 @@
     self.MenuView.layer.shadowOffset = CGSizeMake(0, 1);
     self.MenuView.layer.shadowOpacity = 0.5;
     
-   
-    
-    
-    // Call Category List
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
-       // [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
-        [self BannerImageService];
-      
+        // [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self BannerImageService];
+        });
+       
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-   // [self SetheaderScroll];
+    
+   
+    
+    [self performSelector:@selector(dissmissActivityIndicator) withObject:nil afterDelay:5.0f];
 }
+
+-(void)dissmissActivityIndicator
+{
+    [KVNProgress dismiss] ;
+}
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -216,6 +226,11 @@
                                        stringForKey:@"reservationState"];
     NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
                                    stringForKey:@"NEWSNODATAHIDEOPTION"];
+    if (CheckReservationState==nil)
+    {
+        CheckReservationState=@"YES";
+        CheckOptionHidden=@"YES";
+    }
     
     if ([CheckReservationState isEqualToString:@"YES"])
     {
@@ -738,10 +753,7 @@
          {
              NSLog(@"Fail");
              // Dismiss
-             [KVNProgress dismissWithCompletion:^{
-                 // Things you want to do after the HUD is gone.
-             }];
-             // [KVNProgress dismiss] ;
+             [KVNProgress dismiss];
          }];
     }
     
@@ -882,11 +894,8 @@
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
-             [KVNProgress dismissWithCompletion:^{
-                 // Things you want to do after the HUD is gone.
-             }];
+             [KVNProgress dismiss];
              
-             // [KVNProgress dismiss] ;
          }];
     }
 }

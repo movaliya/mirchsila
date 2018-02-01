@@ -50,7 +50,7 @@
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-    OrderType=@"";
+    OrderType=@"Collection";
     PAYMENTTYPE=@"";
     
     NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
@@ -291,19 +291,32 @@
              
              //Collection_Radio_Btn
              //Delivery_Radio_Btn
+             //getAcceptedOrderTypes=@"Collection";
+            
              if ([getAcceptedOrderTypes isEqualToString:@"Collection & Delivery"])
              {
                  self.Collection_Radio_Btn.hidden=NO;
                  self.Delivery_Radio_Btn.hidden=NO;
+                 self.Delivery_LBL.hidden=NO;
+                 self.Collecction_LBL.hidden=NO;
              }
              else if ([getAcceptedOrderTypes isEqualToString:@"Collection"])
              {
+                 [self.Collection_Radio_Btn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
+                 _Pay_On_Collction_Delivery_LBL.text=@"Pay on collection";
+                 OrderType=@"Collection";
                  self.Collection_Radio_Btn.hidden=NO;
                  self.Delivery_Radio_Btn.hidden=YES;
+                 self.Delivery_LBL.hidden=YES;
              }
              else
              {
+                 [self.Delivery_Radio_Btn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
+                 _Pay_On_Collction_Delivery_LBL.text=@"Pay on delivery";
+                 
+                 OrderType=@"Delivery";
                  self.Collection_Radio_Btn.hidden=YES;
+                 self.Collecction_LBL.hidden=YES;
                  self.Delivery_Radio_Btn.hidden=NO;
              }
              
@@ -366,19 +379,24 @@
              
              //CreditCard_Radio_Brn
              //PayOnCollection_Radio
+             //getPaymentTypes=@"Cash";
              if ([getPaymentTypes isEqualToString:@"Cash & Gateway"])
              {
                  self.CreditCard_Radio_Brn.hidden=NO;
                  self.PayOnCollection_Radio.hidden=NO;
+                 self.Pay_On_Collction_Delivery_LBL.hidden=NO;
+                 self.Credit_DebitCart_LBL.hidden=NO;
              }
              else if ([getPaymentTypes isEqualToString:@"Gateway"])
              {
                  self.CreditCard_Radio_Brn.hidden=NO;
                  self.PayOnCollection_Radio.hidden=YES;
+                 self.Pay_On_Collction_Delivery_LBL.hidden=YES;
              }
              else
              {
                  self.CreditCard_Radio_Brn.hidden=YES;
+                 self.Credit_DebitCart_LBL.hidden=YES;
                  self.PayOnCollection_Radio.hidden=NO;
              }
          }
@@ -393,6 +411,11 @@
 }
 - (IBAction)Radio_Coll_Delvry_Action:(id)sender
 {
+   
+    [self.CreditCard_Radio_Brn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
+    [self.PayOnCollection_Radio setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
+     PAYMENTTYPE=@"";
+   
     switch ([sender tag])
     {
         case 0:
@@ -400,13 +423,14 @@
             {
                 [self.Collection_Radio_Btn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
                 [self.Delivery_Radio_Btn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
-                //[self.Collection_CartBTN setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
+                _Pay_On_Collction_Delivery_LBL.text=@"Pay on delivery";
             }
             else{
                 OrderType=@"Collection";
                 [self.Collection_Radio_Btn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
                 [self.Delivery_Radio_Btn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
-                //[self.Collection_CartBTN setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
+                 _Pay_On_Collction_Delivery_LBL.text=@"Pay on collection";
+               
             }
             
             break;
@@ -415,14 +439,14 @@
             {
                  [self.Delivery_Radio_Btn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
                 [self.Collection_Radio_Btn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
-                //[self.Collection_CartBTN setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
+                _Pay_On_Collction_Delivery_LBL.text=@"Pay on collection";
                 
             }
             else{
                  OrderType=@"Delivery";
                 [self.Delivery_Radio_Btn setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
                 [self.Collection_Radio_Btn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
-                //[self.Collection_CartBTN setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
+               _Pay_On_Collction_Delivery_LBL.text=@"Pay on delivery";
             }
             break;
             /*
@@ -457,8 +481,17 @@
 
 - (IBAction)PayOnCollection_action:(id)sender
 {
-    PAIDAMOUNT=@"0";
-    PAYMENTTYPE=@"pay_on_collection";
+    if ([self.Pay_On_Collction_Delivery_LBL.text isEqualToString:@"Pay on collection"])
+    {
+        PAIDAMOUNT=@"0";
+        PAYMENTTYPE=@"pay_on_collection";
+    }
+    else
+    {
+        PAIDAMOUNT=@"0";
+        PAYMENTTYPE=@"pay_on_delivery";
+    }
+    
     [self.CreditCard_Radio_Brn setImage:[UIImage imageNamed:@"RadioOFF"] forState:UIControlStateNormal];
     [self.PayOnCollection_Radio setImage:[UIImage imageNamed:@"RadioON"] forState:UIControlStateNormal];
 }

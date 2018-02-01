@@ -447,13 +447,12 @@
 
 -(void)Pushtoordersummryview
 {
-    [KVNProgress dismissWithCompletion:^{
+   
         CheckOut_OrderSummyVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CheckOut_OrderSummyVW"];
         vcr.deliveryCharge1=[AddressRespose valueForKey:@"deliveryCharge"];
         vcr.Comment2View=self.Comment1View;
         vcr.MINDelveryCollectioDic1=MinMaxDic;
         [self.navigationController pushViewController:vcr animated:YES];
-    }];
     
 }
 

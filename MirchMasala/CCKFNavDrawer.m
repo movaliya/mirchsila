@@ -29,6 +29,7 @@
 #import "LocationView.h"
 #import "VideoGallaryView.h"
 #import "SubItemView.h"
+//#import "MessageVW.h"
 
 #define SHAWDOW_ALPHA 0.5
 #define MENU_DURATION 0.3
@@ -76,6 +77,11 @@
                                        stringForKey:@"reservationState"];
     NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
                                    stringForKey:@"NEWSNODATAHIDEOPTION"];
+    if (CheckReservationState==nil)
+    {
+        CheckReservationState=@"YES";
+        CheckOptionHidden=@"YES";
+    }
     
     if ([self.appDelegate isUserLoggedIn] == NO)
     {
@@ -113,18 +119,18 @@
     }
     else
     {
-        
+        //MessageIcon
         if ([CheckReservationState isEqualToString:@"YES"])
         {
             if ([CheckOptionHidden isEqualToString:@"YES"])
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             else
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
            
         }
@@ -132,13 +138,13 @@
         {
             if ([CheckOptionHidden isEqualToString:@"YES"])
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             else
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             
         }
@@ -296,13 +302,13 @@
         {
             if ([CheckOptionHidden isEqualToString:@"YES"])
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             else
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Reservation",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"ReservationIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             
         }
@@ -310,13 +316,13 @@
         {
             if ([CheckOptionHidden isEqualToString:@"YES"])
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Gallery",@"News",@"Location",@"Profile",@"Order History",@"Information",@"Social",@"Video Gallery",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"GalleryIcon",@"NewsIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"socailIcon",@"videoGalleryIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             else
             {
-                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",@"Logout", nil];
-                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",@"sidemenuLogin", nil];
+                TitleNameSection=[[NSMutableArray alloc]initWithObjects: @"Home",@"Menu",@"Cart",@"Location",@"Profile",@"Order History",@"Information",@"Contact Us",/*@"Message",*/@"Logout", nil];
+                ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"HomeIcon",@"RestaurantIcon",@"CartIcon",@"LocationIcon",@"UserSideIcon",@"OrderHistryIcon",@"AboutusIcon",@"contactUsIcon-1",/*@"MessageIcon",*/@"sidemenuLogin", nil];
             }
             
         }
@@ -898,7 +904,12 @@
                     ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
                     [super pushViewController:vcr animated:YES];
                 }
-                
+                /*
+                else if (indexPath.row==13)
+                {
+                    MessageVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageVW"];
+                    [super pushViewController:vcr animated:YES];
+                }*/
                 else if (indexPath.row==13)
                 {
                     if ([[TitleNameSection objectAtIndex:indexPath.row] isEqualToString:@"Login or Signup"])
@@ -1042,6 +1053,12 @@
                     ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
                     [super pushViewController:vcr animated:YES];
                 }
+                /*
+                else if (indexPath.row==9)
+                {
+                    MessageVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageVW"];
+                    [super pushViewController:vcr animated:YES];
+                }*/
                 
                 else if (indexPath.row==9)
                 {
@@ -1181,7 +1198,12 @@
                  {
                      ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
                      [super pushViewController:vcr animated:YES];
-                 }
+                 }/*
+                 else if (indexPath.row==12)
+                 {
+                     MessageVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageVW"];
+                     [super pushViewController:vcr animated:YES];
+                 }*/
                  else if (indexPath.row==12)
                  {
                      if ([[TitleNameSection objectAtIndex:indexPath.row] isEqualToString:@"Login or Signup"])
@@ -1297,7 +1319,12 @@
                 {
                     ContactUsView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactUsView"];
                     [super pushViewController:vcr animated:YES];
-                }
+                }/*
+                else if (indexPath.row==8)
+                {
+                    MessageVW *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MessageVW"];
+                    [super pushViewController:vcr animated:YES];
+                }*/
                 else if (indexPath.row==8)
                 {
                     if ([[TitleNameSection objectAtIndex:indexPath.row] isEqualToString:@"Login or Signup"])
@@ -1678,7 +1705,11 @@
 
 - (void) receiveTestNotification:(NSNotification *) notification
 {
-    [self CategoriesList];
+   
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+         [self CategoriesList];
+        
+    });
 }
 
 @end

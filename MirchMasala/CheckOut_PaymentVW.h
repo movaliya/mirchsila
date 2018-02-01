@@ -33,6 +33,10 @@ typedef void (^STPSourceSubmissionHandler)(STPBackendChargeResult status, NSErro
     float minimumDeliveryAmount;
     float totalOrderAmount;
 }
+@property (weak, nonatomic) IBOutlet UILabel *Collecction_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *Delivery_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *Credit_DebitCart_LBL;
+@property (weak, nonatomic) IBOutlet UILabel *Pay_On_Collction_Delivery_LBL;
 @property (strong, nonatomic) NSString *Comment3View;
 @property (strong, nonatomic) NSString *Discount;
 @property (strong, nonatomic) NSString *OrderAmount;
