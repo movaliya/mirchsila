@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "Constant.h"
 #import "MirchMasala.pch"
+#import "CCKFNavDrawer.h"
+
 @import Stripe;
 @interface AppDelegate ()
 
@@ -23,16 +25,20 @@
     // Override point for customization after application launch.
     //Kaushik
     //[[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-         [self GetPublishableKey];
-    });
+   
 
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self GetPublishableKey];
+        
+    });
+    
     [[STPPaymentConfiguration sharedConfiguration] setSmsAutofillDisabled:NO];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
+
 + (AppDelegate *)sharedInstance
 {
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -95,16 +101,8 @@
                  if (kstrStripePublishableKey != nil) {
                      [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
                  }
-                 NSString *CheckReservationState = [[NSUserDefaults standardUserDefaults]
-                                                    stringForKey:@"reservationState"];
                  
-                 if ([CheckReservationState isEqualToString:@"NO"] || CheckReservationState==nil)
-                 {
-                      [self checkReservationState];
-                 }
-                 
-                
-                 //[self performSelector:@selector(checkReservationState) withObject:nil afterDelay:0.0f];
+               //  [self checkReservationState];
              }
          }];
         
@@ -184,13 +182,8 @@
                  NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
                                                 stringForKey:@"NEWSNODATAHIDEOPTION"];
                  
-                 if ([CheckOptionHidden isEqualToString:@"NO"]|| CheckOptionHidden==nil)
-                 {
-                      [self CallNewsService];
-                 }
+                  [self CallNewsService];
                 
-                 
-                 
              }
 
          }];
@@ -260,6 +253,7 @@
                  [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
                  [[NSUserDefaults standardUserDefaults] synchronize];
              }
+                          
          }];
          
          

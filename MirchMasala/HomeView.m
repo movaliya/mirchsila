@@ -45,6 +45,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+   
+    
     NSDictionary *UserSaveData=[[NSUserDefaults standardUserDefaults]objectForKey:@"LoginUserDic"];
     NSString *CoustmerID=[[[[[[UserSaveData objectForKey:@"RESPONSE"] objectForKey:@"action"] objectForKey:@"authenticate"] objectForKey:@"result"] objectForKey:@"authenticate"]  objectForKey:@"customerid"];
    
@@ -75,65 +77,24 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    NSString *CheckReservationState = [[NSUserDefaults standardUserDefaults]
-                            stringForKey:@"reservationState"];
+    CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                             stringForKey:@"reservationState"];
     
-    NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
-                                       stringForKey:@"NEWSNODATAHIDEOPTION"];
+    CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
+                         stringForKey:@"NEWSNODATAHIDEOPTION"];
     
     if (CheckReservationState==nil)
     {
-        CheckReservationState=@"YES";
-        CheckOptionHidden=@"YES";
+        [KVNProgress show];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
     }
     
-    if ([CheckReservationState isEqualToString:@"YES"])
-    {
-        if ([CheckOptionHidden isEqualToString:@"YES"])
-        {
-            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
-            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location", nil];
-        }
-        else
-        {
-            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn6", nil];
-            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Location", nil];
-        }
-       
-    }
-    else
-    {
-        if ([CheckOptionHidden isEqualToString:@"YES"])
-        {
-            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
-            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Gallery",@"News",@"Location", nil];
-        }
-        else
-        {
-            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn6", nil];
-            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Location", nil];
-        }
-       
-    }
-    
-    
-    
-    [self.collectionView registerClass:[CVCell class] forCellWithReuseIdentifier:@"cvCell"];
-    // Configure layout collectionView
-    
-    
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(100, 150)];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [self.collectionView setCollectionViewLayout:flowLayout];
-    
-    
-    
+    [self setupCollectionView];
     
     SearhBR.hidden=YES;
     SearhBR.layer.borderWidth = 1;
     SearhBR.layer.borderColor = [UIColor colorWithRed:(247/255.0) green:(96/255.0) blue:(41/255.0) alpha:1.0].CGColor;
-    [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
+   
 
     
     CartNotification_LBL.layer.masksToBounds = YES;
@@ -159,24 +120,73 @@
     self.MenuView.layer.shadowOffset = CGSizeMake(0, 1);
     self.MenuView.layer.shadowOpacity = 0.5;
     
+    
+   
+    
+   // [self performSelector:@selector(dissmissActivityIndicator) withObject:nil afterDelay:5.0f];
+}
+-(void)setupCollectionView
+{
+    CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                             stringForKey:@"reservationState"];
+    
+    CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
+                         stringForKey:@"NEWSNODATAHIDEOPTION"];
+    
+    if ([CheckReservationState isEqualToString:@"YES"])
+    {
+        if ([CheckOptionHidden isEqualToString:@"YES"])
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location", nil];
+        }
+        else
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Location", nil];
+        }
+        
+    }
+    else
+    {
+        if ([CheckOptionHidden isEqualToString:@"YES"])
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Gallery",@"News",@"Location", nil];
+        }
+        else
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Location", nil];
+        }
+        
+    }
+    
+    
+    
+    [self.collectionView registerClass:[CVCell class] forCellWithReuseIdentifier:@"cvCell"];
+    // Configure layout collectionView
+    
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(100, 150)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [self.collectionView setCollectionViewLayout:flowLayout];
+    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
         // [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
         dispatch_async(dispatch_get_main_queue(), ^{
-           [self BannerImageService];
+            [self BannerImageService];
         });
-       
+        
     }
     else
         [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
     
-    
-   
-    
-    [self performSelector:@selector(dissmissActivityIndicator) withObject:nil afterDelay:5.0f];
-}
 
+}
 -(void)dissmissActivityIndicator
 {
     [KVNProgress dismiss] ;
@@ -222,14 +232,13 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *CheckReservationState = [[NSUserDefaults standardUserDefaults]
+  CheckReservationState = [[NSUserDefaults standardUserDefaults]
                                        stringForKey:@"reservationState"];
-    NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
+   CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
                                    stringForKey:@"NEWSNODATAHIDEOPTION"];
     if (CheckReservationState==nil)
     {
-        CheckReservationState=@"YES";
-        CheckOptionHidden=@"YES";
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
     }
     
     if ([CheckReservationState isEqualToString:@"YES"])
@@ -743,7 +752,12 @@
                  {
                      OfferArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"result"] objectForKey:@"offerText"] mutableCopy];
                      
-                     [self SetheaderScroll];
+                    
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                          [self SetheaderScroll];
+                     });
+
+                     
                  }
              }];
              
@@ -758,6 +772,7 @@
     }
     
 }
+
 
 #pragma mark UITableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

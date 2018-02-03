@@ -76,10 +76,11 @@
 
 
 //Live Key
-//#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
+#define KAPIKEY    @"JyxtfV8BnnvQgm5vJCtgOMfH3fJSf3JOs67xR5Y4"
+
 
 //Dummy Key
-#define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
+//#define KAPIKEY    @"DoPUQBErcpKPtRmbjpcFvbb8YCMeBjr4w6OcyjtA"
 
 
 

@@ -18,6 +18,8 @@
     NSMutableArray *ImageNameSection;
     NSMutableArray *TitleNameSection;
     NSMutableArray *BannerImageARR;
+    NSString *CheckReservationState;
+    NSString *CheckOptionHidden;
    
 }
 @property (strong, nonatomic) IBOutlet UIImageView *Back_IMG;
