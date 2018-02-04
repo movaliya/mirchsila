@@ -197,6 +197,7 @@
 		B1BE0CC11F642A0800DD052A /* NewsFullView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BE0CC01F642A0800DD052A /* NewsFullView.m */; };
 		B1C4EBAB1E6B069C00111837 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C4EBAA1E6B069C00111837 /* CoreLocation.framework */; };
 		B1C4EBAD1E6B06CE00111837 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C4EBAC1E6B06CE00111837 /* Accelerate.framework */; };
+		F90D86439C554CBF9ACEC328 /* libPods-MirchMasala.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD4E92729DFC702AF2217AC /* libPods-MirchMasala.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -225,6 +226,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1CD4E92729DFC702AF2217AC /* libPods-MirchMasala.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MirchMasala.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		296C1F3D2022F16B0033121A /* MessageVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVW.h; sourceTree = "<group>"; };
 		296C1F3E2022F16B0033121A /* MessageVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVW.m; sourceTree = "<group>"; };
 		296C1F402022F2E90033121A /* MessageTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTblCell.h; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 		538991C11F6516690054AE66 /* MenuImageCELL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuImageCELL.h; sourceTree = "<group>"; };
 		538991C21F6516690054AE66 /* MenuImageCELL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuImageCELL.m; sourceTree = "<group>"; };
 		538991C31F6516690054AE66 /* MenuImageCELL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuImageCELL.xib; sourceTree = "<group>"; };
+		7A5C065B74A56C2C0C20D2D4 /* Pods-MirchMasala.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirchMasala.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MirchMasala/Pods-MirchMasala.debug.xcconfig"; sourceTree = "<group>"; };
 		B12C94EE1E6C2AE100185A7B /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = MirchMasala/AFNetworking/AFNetworking.framework; sourceTree = "<group>"; };
 		B13A04601E7BBF430048F36D /* RestaurantMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantMenuView.h; sourceTree = "<group>"; };
 		B13A04611E7BBF430048F36D /* RestaurantMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantMenuView.m; sourceTree = "<group>"; };
@@ -536,6 +539,7 @@
 		B1BE0CC01F642A0800DD052A /* NewsFullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFullView.m; sourceTree = "<group>"; };
 		B1C4EBAA1E6B069C00111837 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B1C4EBAC1E6B06CE00111837 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		F1F2C9143305C0D4F595B28D /* Pods-MirchMasala.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirchMasala.release.xcconfig"; path = "Pods/Target Support Files/Pods-MirchMasala/Pods-MirchMasala.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +559,7 @@
 				5310CC6C1E6AB10700091333 /* SystemConfiguration.framework in Frameworks */,
 				530D67D51E80E9BE0045EAD7 /* Stripe.framework in Frameworks */,
 				5310CC6A1E6AB10100091333 /* MobileCoreServices.framework in Frameworks */,
+				F90D86439C554CBF9ACEC328 /* libPods-MirchMasala.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +711,7 @@
 				5310CBDE1E6A957800091333 /* MirchMasala */,
 				5310CBDD1E6A957800091333 /* Products */,
 				5310CC681E6AB10100091333 /* Frameworks */,
+				86297C99F9DF8654237E9C3A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -847,6 +853,7 @@
 				5310CC6D1E6AB11500091333 /* CoreGraphics.framework */,
 				5310CC6B1E6AB10700091333 /* SystemConfiguration.framework */,
 				5310CC691E6AB10100091333 /* MobileCoreServices.framework */,
+				1CD4E92729DFC702AF2217AC /* libPods-MirchMasala.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -891,6 +898,15 @@
 				532E5A6E1F6D465700DE8B44 /* Icon-Small-50x50@2x.png */,
 			);
 			path = AppIcon.appiconset;
+			sourceTree = "<group>";
+		};
+		86297C99F9DF8654237E9C3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7A5C065B74A56C2C0C20D2D4 /* Pods-MirchMasala.debug.xcconfig */,
+				F1F2C9143305C0D4F595B28D /* Pods-MirchMasala.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		B15BBB1F1F6D13CC004FB813 /* MapFile */ = {
@@ -1125,12 +1141,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5310CBF31E6A957800091333 /* Build configuration list for PBXNativeTarget "MirchMasala" */;
 			buildPhases = (
+				EB577EBBD941799D6F6FB3DA /* [CP] Check Pods Manifest.lock */,
 				5310CBD81E6A957800091333 /* Sources */,
 				5310CBD91E6A957800091333 /* Frameworks */,
 				5310CBDA1E6A957800091333 /* Resources */,
 				530D67D71E80E9BF0045EAD7 /* Embed Frameworks */,
 				530D67D91E80E9C80045EAD7 /* Embed PlugIns */,
 				537272571E9B6A800026A591 /* ShellScript */,
+				88837B89671BA911AD475013 /* [CP] Embed Pods Frameworks */,
+				B975D813AAE8CEFC8A2EE6C1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1259,6 +1278,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+		88837B89671BA911AD475013 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MirchMasala/Pods-MirchMasala-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B975D813AAE8CEFC8A2EE6C1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MirchMasala/Pods-MirchMasala-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB577EBBD941799D6F6FB3DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MirchMasala-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1493,6 +1560,7 @@
 		};
 		5310CBF41E6A957800091333 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A5C065B74A56C2C0C20D2D4 /* Pods-MirchMasala.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1520,6 +1588,7 @@
 		};
 		5310CBF51E6A957800091333 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1F2C9143305C0D4F595B28D /* Pods-MirchMasala.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
