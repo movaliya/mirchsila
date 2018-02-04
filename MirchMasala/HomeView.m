@@ -72,22 +72,190 @@
     }
 }
 
+-(void)checkReservationState
+{
+    [KVNProgress show] ;
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"reservationState" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:&error];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    //NSString *baseurl=@"https://tiffintom.com/api/private/request/data/";
+    
+    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+     {
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"SUCCESS"];
+         
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NSString *checkRevState=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"result"] objectForKey:@"reservationState"];
+             
+             if ([checkRevState boolValue] ==YES)
+             {
+                 NSString *valueToSave = @"YES";
+                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+             }
+             else
+             {
+                 NSString *valueToSave = @"NO";
+                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+             }
+             
+             NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
+                                            stringForKey:@"NEWSNODATAHIDEOPTION"];
+             
+             [self CallNewsService];
+             
+         }
+     }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         [KVNProgress dismissWithCompletion:^{
+         }];
+     }];
+}
+
+-(void)CallNewsService
+{
+    //[KVNProgress show] ;
+    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
+    
+    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
+    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
+    [dictSub setObject:@"getitem" forKey:@"MODULE"];
+    [dictSub setObject:@"news" forKey:@"METHOD"];
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
+    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
+    
+    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
+    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
+    
+    
+    NSError* error = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
+    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = serializer;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
+     {
+         NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
+         if ([SUCCESS boolValue] ==YES)
+         {
+             NSArray *NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"result"] objectForKey:@"news"] mutableCopy];
+             
+             if (NewsDataArr.count==0)
+             {
+                 NSString *valueToSave = @"NO";
+                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+             }
+             else
+             {
+                 NSString *valueToSave = @"YES";
+                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+             }
+         }
+         else
+         {
+             NSString *valueToSave = @"NO";
+             [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+         }
+         [self callforsetmenubuttonstatus];
+     }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         [KVNProgress dismissWithCompletion:^{
+         }];
+     }];
+}
+
+-(void)callforsetmenubuttonstatus
+{
+    CheckReservationState = [[NSUserDefaults standardUserDefaults] stringForKey:@"reservationState"];
+    CheckOptionHidden = [[NSUserDefaults standardUserDefaults] stringForKey:@"NEWSNODATAHIDEOPTION"];
+    
+//    if (CheckReservationState==nil)
+//    {
+//        [KVNProgress show];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
+//    }
+    
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.1];
+        });
+    }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        [KVNProgress dismissWithCompletion:^{
+        }];
+    }
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    CheckReservationState = [[NSUserDefaults standardUserDefaults]
-                             stringForKey:@"reservationState"];
     
-    CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
-                         stringForKey:@"NEWSNODATAHIDEOPTION"];
     
-    if (CheckReservationState==nil)
+    BOOL internet=[AppDelegate connectedToNetwork];
+    if (internet)
     {
-        [KVNProgress show];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
+        [self checkReservationState];
     }
+    else
+    {
+        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+        [KVNProgress dismissWithCompletion:^{
+        }];
+    }
+    
     
     [self setupCollectionView];
     
@@ -105,26 +273,16 @@
     [self.rootNav CheckLoginArr];
     [self.rootNav.pan_gr setEnabled:YES];
     
-    
-    UINib *nib = [UINib nibWithNibName:@"CategoriesCell" bundle:nil];
-    CategoriesCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
-    CategoriesTableView.rowHeight = cell.frame.size.height;
-    [CategoriesTableView registerNib:nib forCellReuseIdentifier:@"CategoriesCell"];
-    
     CheckMenuBool=1;
-    
-    [cell.AboutLable setHidden:YES];
     
     
     self.MenuView.layer.masksToBounds = NO;
     self.MenuView.layer.shadowOffset = CGSizeMake(0, 1);
     self.MenuView.layer.shadowOpacity = 0.5;
     
-    
-   
-    
    // [self performSelector:@selector(dissmissActivityIndicator) withObject:nil afterDelay:5.0f];
 }
+
 -(void)setupCollectionView
 {
     CheckReservationState = [[NSUserDefaults standardUserDefaults]
@@ -173,17 +331,13 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self.collectionView setCollectionViewLayout:flowLayout];
     
-    BOOL internet=[AppDelegate connectedToNetwork];
-    if (internet)
-    {
-        // [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0f];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self BannerImageService];
-        });
-        
-    }
-    else
-        [AppDelegate showErrorMessageWithTitle:@"" message:@"Please check your internet connection or try again later." delegate:nil];
+    
+    
+    UINib *nib = [UINib nibWithNibName:@"CategoriesCell" bundle:nil];
+    CategoriesCell *cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    CategoriesTableView.rowHeight = cell.frame.size.height;
+    [CategoriesTableView registerNib:nib forCellReuseIdentifier:@"CategoriesCell"];
+    [cell.AboutLable setHidden:YES];
     
 
 }
@@ -196,6 +350,7 @@
 {
     return 1;
 }
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return TitleNameSection.count;
@@ -711,7 +866,6 @@
 {
     if (OfferArr==nil)
     {
-        
         [KVNProgress show] ;
         OfferArr=[[NSMutableArray alloc] init];
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
@@ -756,14 +910,10 @@
                      dispatch_async(dispatch_get_main_queue(), ^{
                           [self SetheaderScroll];
                      });
-
-                     
                  }
              }];
-             
-             
-         }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+        }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
              // Dismiss
@@ -860,10 +1010,9 @@
 }
 -(void)BannerImageService
 {
-    
     if (BannerImageARR==nil)
     {
-        [KVNProgress show] ;
+       // [KVNProgress show] ;
         NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
         
         [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
@@ -904,14 +1053,18 @@
                      [self performSelector:@selector(CallforgetOffers) withObject:nil afterDelay:0.0f];
                  }
              }];
-             
          }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Fail");
-             [KVNProgress dismiss];
-             
+             [KVNProgress dismissWithCompletion:^{
+             }];
          }];
+    }
+    else
+    {
+        [KVNProgress dismissWithCompletion:^{
+        }];
     }
 }
 - (void)didReceiveMemoryWarning

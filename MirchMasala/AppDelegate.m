@@ -29,7 +29,7 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [self GetPublishableKey];
+        [self performSelector:@selector(GetPublishableKey) withObject:nil afterDelay:5.5f];
         
     });
     
@@ -43,9 +43,10 @@
 {
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
+
 -(void)GetPublishableKey
 {
-   [KVNProgress show] ;
+  // [KVNProgress show] ;
     NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
     
     //This for Static DummyKey
@@ -68,11 +69,7 @@
     NSError* error = nil;
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
@@ -98,15 +95,14 @@
                  [[NSUserDefaults standardUserDefaults] synchronize];
                  
                  NSLog(@"kstrStripePublishableKey==%@",kstrStripePublishableKey);
-                 if (kstrStripePublishableKey != nil) {
+                 if (kstrStripePublishableKey != nil)
+                 {
                      [[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
                  }
                  
                //  [self checkReservationState];
              }
          }];
-        
-         
          
      }
           failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -117,154 +113,6 @@
      }];
 }
 
--(void)checkReservationState
-{
-    [KVNProgress show] ;
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"reservationState" forKey:@"METHOD"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    // NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    //NSString *baseurl=@"https://tiffintom.com/api/private/request/data/";
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         
-         
-         [KVNProgress dismissWithCompletion:^{
-             
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"SUCCESS"];
-             
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 NSString *checkRevState=[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"reservationState"] objectForKey:@"result"] objectForKey:@"reservationState"];
-                 
-                 if ([checkRevState boolValue] ==YES)
-                 {
-                     NSString *valueToSave = @"YES";
-                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
-                     [[NSUserDefaults standardUserDefaults] synchronize];
-                 }
-                 else
-                 {
-                     NSString *valueToSave = @"NO";
-                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"reservationState"];
-                     [[NSUserDefaults standardUserDefaults] synchronize];
-                 }
-                 
-                 NSString *CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
-                                                stringForKey:@"NEWSNODATAHIDEOPTION"];
-                 
-                  [self CallNewsService];
-                
-             }
-
-         }];
-    }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismissWithCompletion:^{
-         }];
-     }];
-}
-
--(void)CallNewsService
-{
-    [KVNProgress show] ;
-    NSMutableDictionary *dict1 = [[NSMutableDictionary alloc] init];
-    
-    [dict1 setValue:KAPIKEY forKey:@"APIKEY"];
-    NSMutableDictionary *dictSub = [[NSMutableDictionary alloc] init];
-    [dictSub setObject:@"getitem" forKey:@"MODULE"];
-    [dictSub setObject:@"news" forKey:@"METHOD"];
-    
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:dictSub, nil];
-    NSMutableDictionary *dictREQUESTPARAM = [[NSMutableDictionary alloc] init];
-    
-    [dictREQUESTPARAM setObject:arr forKey:@"REQUESTPARAM"];
-    [dictREQUESTPARAM setObject:dict1 forKey:@"RESTAURANT"];
-    
-    
-    NSError* error = nil;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictREQUESTPARAM options:NSJSONWritingPrettyPrinted error:&error];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes=[NSSet setWithObjects:@"text/html",@"application/json", nil];
-    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    manager.requestSerializer = serializer;
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [manager POST:kBaseURL parameters:json success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject)
-     {
-         [KVNProgress dismissWithCompletion:^{
-             NSString *SUCCESS=[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"SUCCESS"];
-             if ([SUCCESS boolValue] ==YES)
-             {
-                 NSArray *NewsDataArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"news"] objectForKey:@"result"] objectForKey:@"news"] mutableCopy];
-                 
-                 if (NewsDataArr.count==0)
-                 {
-                     NSString *valueToSave = @"NO";
-                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
-                     [[NSUserDefaults standardUserDefaults] synchronize];
-                 }
-                 else
-                 {
-                     NSString *valueToSave = @"YES";
-                     [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
-                     [[NSUserDefaults standardUserDefaults] synchronize];
-                 }
-             }
-             else
-             {
-                 NSString *valueToSave = @"NO";
-                 [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"NEWSNODATAHIDEOPTION"];
-                 [[NSUserDefaults standardUserDefaults] synchronize];
-             }
-                          
-         }];
-         
-         
-     }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Fail");
-         [KVNProgress dismissWithCompletion:^{
-         }];
-     }];
-}
 +(BOOL)IsValidEmail:(NSString *)checkString
 {
     BOOL stricterFilter = NO;
