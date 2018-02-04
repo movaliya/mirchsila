@@ -220,12 +220,49 @@
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
 //    }
     
+    CheckReservationState = [[NSUserDefaults standardUserDefaults]
+                             stringForKey:@"reservationState"];
+    
+    CheckOptionHidden = [[NSUserDefaults standardUserDefaults]
+                         stringForKey:@"NEWSNODATAHIDEOPTION"];
+    
+    if ([CheckReservationState isEqualToString:@"YES"])
+    {
+        if ([CheckOptionHidden isEqualToString:@"YES"])
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Gallery",@"News",@"Location", nil];
+        }
+        else
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn3",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Reservation",@"Location", nil];
+        }
+        
+    }
+    else
+    {
+        if ([CheckOptionHidden isEqualToString:@"YES"])
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn4",@"MenuBtn5",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Gallery",@"News",@"Location", nil];
+        }
+        else
+        {
+            ImageNameSection=[[NSMutableArray alloc]initWithObjects:@"MenuBtn1",@"MenuBtn2",@"MenuBtn6", nil];
+            TitleNameSection=[[NSMutableArray alloc]initWithObjects:@"Menu",@"Cart",@"Location", nil];
+        }
+        
+    }
+    [self.collectionView reloadData];
+
+    
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.1];
+            [self performSelector:@selector(BannerImageService) withObject:nil afterDelay:0.0];
         });
     }
     else
@@ -319,7 +356,7 @@
         }
         
     }
-    
+
     
     
     [self.collectionView registerClass:[CVCell class] forCellWithReuseIdentifier:@"cvCell"];

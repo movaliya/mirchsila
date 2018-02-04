@@ -29,7 +29,7 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [self performSelector:@selector(GetPublishableKey) withObject:nil afterDelay:5.5f];
+        [self performSelector:@selector(GetPublishableKey) withObject:nil afterDelay:6.5f];
         
     });
     
