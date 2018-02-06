@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import <UserNotifications/UserNotifications.h>
+@import Firebase;
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,FIRMessagingDelegate,UNUserNotificationCenterDelegate>
 {
     NSMutableArray *MainCartArr;
+    
 }
+@property (strong, nonatomic) NSString *strDeviceToken;
+
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray *MainCartArr;
 

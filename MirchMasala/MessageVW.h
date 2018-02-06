@@ -11,8 +11,9 @@
 
 @interface MessageVW : UIViewController<CCKFNavDrawerDelegate>
 {
-    
+    NSMutableDictionary *MessageDic;
 }
+@property (weak, nonatomic) IBOutlet UILabel *NomessageLBL;
 @property (strong, nonatomic) CCKFNavDrawer *rootNav;
 @property (weak, nonatomic) IBOutlet UITableView *TableVW;
 @end

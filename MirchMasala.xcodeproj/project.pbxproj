@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29634ED320296F75002EA149 /* MapCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29634ECF20296F75002EA149 /* MapCellView.m */; };
+		29634ED420296F75002EA149 /* MyNotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29634ED120296F75002EA149 /* MyNotationView.m */; };
+		29634ED520296F75002EA149 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29634ED220296F75002EA149 /* myView.xib */; };
+		29634ED72029C5AB002EA149 /* default.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29634ED62029C5AB002EA149 /* default.mp3 */; };
 		296C1F3F2022F16B0033121A /* MessageVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C1F3E2022F16B0033121A /* MessageVW.m */; };
 		296C1F432022F2E90033121A /* MessageTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C1F412022F2E90033121A /* MessageTblCell.m */; };
 		296C1F442022F2E90033121A /* MessageTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296C1F422022F2E90033121A /* MessageTblCell.xib */; };
+		296E50DF20275BB7003C8136 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 296E50DE20275BB7003C8136 /* GoogleService-Info.plist */; };
 		298840F92025E03600428136 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 298840F82025E03600428136 /* MBProgressHUD.m */; };
 		5307923F1E6FE124005426ED /* CCKFNavDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 530792381E6FE124005426ED /* CCKFNavDrawer.m */; };
 		530792401E6FE124005426ED /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530792391E6FE124005426ED /* DrawerView.xib */; };
@@ -133,9 +138,6 @@
 		B153B3BC1F65A91800DE8514 /* SingleItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = B153B3BB1F65A91800DE8514 /* SingleItemView.m */; };
 		B15BBB111F6CF14D004FB813 /* LocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB101F6CF14D004FB813 /* LocationView.m */; };
 		B15BBB131F6CF234004FB813 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BBB121F6CF234004FB813 /* MapKit.framework */; };
-		B15BBB191F6CFB48004FB813 /* MyNotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB181F6CFB48004FB813 /* MyNotationView.m */; };
-		B15BBB1D1F6D0146004FB813 /* MapCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB1B1F6D0146004FB813 /* MapCellView.m */; };
-		B15BBB1E1F6D0146004FB813 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15BBB1C1F6D0146004FB813 /* myView.xib */; };
 		B15BBB221F6D2335004FB813 /* VideoGallaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB211F6D2335004FB813 /* VideoGallaryView.m */; };
 		B15BBB261F6D3806004FB813 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B15BBB241F6D3806004FB813 /* VideoCell.m */; };
 		B15BBB271F6D3806004FB813 /* VideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15BBB251F6D3806004FB813 /* VideoCell.xib */; };
@@ -227,11 +229,19 @@
 
 /* Begin PBXFileReference section */
 		1CD4E92729DFC702AF2217AC /* libPods-MirchMasala.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MirchMasala.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29634ECE20296F75002EA149 /* MapCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCellView.h; sourceTree = "<group>"; };
+		29634ECF20296F75002EA149 /* MapCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCellView.m; sourceTree = "<group>"; };
+		29634ED020296F75002EA149 /* MyNotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNotationView.h; sourceTree = "<group>"; };
+		29634ED120296F75002EA149 /* MyNotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNotationView.m; sourceTree = "<group>"; };
+		29634ED220296F75002EA149 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
+		29634ED62029C5AB002EA149 /* default.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = default.mp3; sourceTree = "<group>"; };
 		296C1F3D2022F16B0033121A /* MessageVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVW.h; sourceTree = "<group>"; };
 		296C1F3E2022F16B0033121A /* MessageVW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVW.m; sourceTree = "<group>"; };
 		296C1F402022F2E90033121A /* MessageTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTblCell.h; sourceTree = "<group>"; };
 		296C1F412022F2E90033121A /* MessageTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTblCell.m; sourceTree = "<group>"; };
 		296C1F422022F2E90033121A /* MessageTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTblCell.xib; sourceTree = "<group>"; };
+		296E50DD20275ACC003C8136 /* MirchMasala.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MirchMasala.entitlements; sourceTree = "<group>"; };
+		296E50DE20275BB7003C8136 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		298840F72025E03600428136 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		298840F82025E03600428136 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		530792371E6FE124005426ED /* CCKFNavDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKFNavDrawer.h; sourceTree = "<group>"; };
@@ -412,11 +422,6 @@
 		B15BBB0F1F6CF14D004FB813 /* LocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationView.h; sourceTree = "<group>"; };
 		B15BBB101F6CF14D004FB813 /* LocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationView.m; sourceTree = "<group>"; };
 		B15BBB121F6CF234004FB813 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		B15BBB171F6CFB48004FB813 /* MyNotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNotationView.h; sourceTree = "<group>"; };
-		B15BBB181F6CFB48004FB813 /* MyNotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNotationView.m; sourceTree = "<group>"; };
-		B15BBB1A1F6D0146004FB813 /* MapCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapCellView.h; sourceTree = "<group>"; };
-		B15BBB1B1F6D0146004FB813 /* MapCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapCellView.m; sourceTree = "<group>"; };
-		B15BBB1C1F6D0146004FB813 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
 		B15BBB201F6D2335004FB813 /* VideoGallaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGallaryView.h; sourceTree = "<group>"; };
 		B15BBB211F6D2335004FB813 /* VideoGallaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGallaryView.m; sourceTree = "<group>"; };
 		B15BBB231F6D3806004FB813 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
@@ -566,6 +571,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29634ECD20296F66002EA149 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				29634ECE20296F75002EA149 /* MapCellView.h */,
+				29634ECF20296F75002EA149 /* MapCellView.m */,
+				29634ED020296F75002EA149 /* MyNotationView.h */,
+				29634ED120296F75002EA149 /* MyNotationView.m */,
+				29634ED220296F75002EA149 /* myView.xib */,
+			);
+			name = MapView;
+			sourceTree = "<group>";
+		};
 		530792361E6FE104005426ED /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +743,9 @@
 		5310CBDE1E6A957800091333 /* MirchMasala */ = {
 			isa = PBXGroup;
 			children = (
+				29634ED62029C5AB002EA149 /* default.mp3 */,
+				296E50DE20275BB7003C8136 /* GoogleService-Info.plist */,
+				296E50DD20275ACC003C8136 /* MirchMasala.entitlements */,
 				532E5A561F6D465700DE8B44 /* ios */,
 				B153B3B31F6519C500DE8514 /* slider_image_1.png */,
 				530792361E6FE104005426ED /* Side Menu */,
@@ -772,7 +792,7 @@
 				530EA8FD1E6DB64700A61A88 /* cartView.m */,
 				B15BBB0F1F6CF14D004FB813 /* LocationView.h */,
 				B15BBB101F6CF14D004FB813 /* LocationView.m */,
-				B15BBB1F1F6D13CC004FB813 /* MapFile */,
+				29634ECD20296F66002EA149 /* MapView */,
 				530BFA471E791B0800AE5502 /* CheckOut */,
 				530ECF3F1E71392F0004F9AB /* OrderHistryView.h */,
 				530ECF401E71392F0004F9AB /* OrderHistryView.m */,
@@ -907,18 +927,6 @@
 				F1F2C9143305C0D4F595B28D /* Pods-MirchMasala.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		B15BBB1F1F6D13CC004FB813 /* MapFile */ = {
-			isa = PBXGroup;
-			children = (
-				B15BBB1A1F6D0146004FB813 /* MapCellView.h */,
-				B15BBB1B1F6D0146004FB813 /* MapCellView.m */,
-				B15BBB1C1F6D0146004FB813 /* myView.xib */,
-				B15BBB171F6CFB48004FB813 /* MyNotationView.h */,
-				B15BBB181F6CFB48004FB813 /* MyNotationView.m */,
-			);
-			name = MapFile;
 			sourceTree = "<group>";
 		};
 		B15F79971E6C3665004A4D32 /* IQKeyboardManager */ = {
@@ -1173,6 +1181,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7PFD68G63X;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1225,8 +1241,8 @@
 				532E5A8C1F6D465700DE8B44 /* iTunesArtwork@3x.png in Resources */,
 				530BFA561E794B5A00AE5502 /* OrderSummay_Detail.xib in Resources */,
 				532E5A7D1F6D465700DE8B44 /* Icon-App-57x57@1x.png in Resources */,
+				29634ED72029C5AB002EA149 /* default.mp3 in Resources */,
 				532E5A841F6D465700DE8B44 /* Icon-App-76x76@1x.png in Resources */,
-				B15BBB1E1F6D0146004FB813 /* myView.xib in Resources */,
 				536FC0121F66D610001F3BE4 /* AboutUsCELL.xib in Resources */,
 				B153B3B41F6519C500DE8514 /* slider_image_1.png in Resources */,
 				B153B3B91F657DBD00DE8514 /* SubitemCellWithIMG.xib in Resources */,
@@ -1252,6 +1268,7 @@
 				533752B01FC00796002CB7E0 /* Main.storyboard in Resources */,
 				532E5A861F6D465700DE8B44 /* Icon-App-76x76@3x.png in Resources */,
 				532E5A7A1F6D465700DE8B44 /* Icon-App-40x40@1x.png in Resources */,
+				29634ED520296F75002EA149 /* myView.xib in Resources */,
 				530EA9031E6DBB1000A61A88 /* CartTableCell.xib in Resources */,
 				533752AE1FC00730002CB7E0 /* OderDetailUperCell.xib in Resources */,
 				B15F7A1B1E6C3665004A4D32 /* KVNProgressView.xib in Resources */,
@@ -1260,6 +1277,7 @@
 				532E5A551F6D3E4500DE8B44 /* SplashScreen.jpg in Resources */,
 				532E5A821F6D465700DE8B44 /* Icon-App-72x72@1x.png in Resources */,
 				530792401E6FE124005426ED /* DrawerView.xib in Resources */,
+				296E50DF20275BB7003C8136 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1369,7 +1387,6 @@
 				B15F7A331E6C3665004A4D32 /* UIView+WebCacheOperation.m in Sources */,
 				296C1F432022F2E90033121A /* MessageTblCell.m in Sources */,
 				B13A04621E7BBF430048F36D /* RestaurantMenuView.m in Sources */,
-				B15BBB191F6CFB48004FB813 /* MyNotationView.m in Sources */,
 				530ECF411E71392F0004F9AB /* OrderHistryView.m in Sources */,
 				5307924A1E702274005426ED /* CartGrandTotalCell.m in Sources */,
 				B15F7A271E6C3665004A4D32 /* SDImageCache.m in Sources */,
@@ -1394,7 +1411,7 @@
 				B15F7A1C1E6C3665004A4D32 /* Reachability.m in Sources */,
 				B15F7A861E6C3964004A4D32 /* UIRefreshControl+AFNetworking.m in Sources */,
 				530BFA501E791CAC00AE5502 /* CheckOut_PaymentVW.m in Sources */,
-				B15BBB1D1F6D0146004FB813 /* MapCellView.m in Sources */,
+				29634ED320296F75002EA149 /* MapCellView.m in Sources */,
 				B15F7A301E6C3665004A4D32 /* UIImage+MultiFormat.m in Sources */,
 				530BFA5A1E794B7700AE5502 /* OrderSummry_Total.m in Sources */,
 				B15F7A101E6C3665004A4D32 /* IQBarButtonItem.m in Sources */,
@@ -1426,6 +1443,7 @@
 				B15F7A2F1E6C3665004A4D32 /* UIImage+GIF.m in Sources */,
 				B15F7A851E6C3964004A4D32 /* UIProgressView+AFNetworking.m in Sources */,
 				B15BBB221F6D2335004FB813 /* VideoGallaryView.m in Sources */,
+				29634ED420296F75002EA149 /* MyNotationView.m in Sources */,
 				B15F7A831E6C3964004A4D32 /* UIButton+AFNetworking.m in Sources */,
 				530792421E6FE124005426ED /* MenuCell.m in Sources */,
 				538991C01F65156F0054AE66 /* MenuListWithImage.m in Sources */,
@@ -1564,9 +1582,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MirchMasala/MirchMasala.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7PFD68G63X;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MirchMasala/AFNetworking",
@@ -1592,9 +1612,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MirchMasala/MirchMasala.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7PFD68G63X;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MirchMasala/AFNetworking",

@@ -5109,25 +5109,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RB5-og-5JW">
                                 <rect key="frame" x="8" y="265" width="304" height="137"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKe-Cb-dH4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKe-Cb-dH4">
                                         <rect key="frame" x="8" y="15" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-03-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byF-ru-sCd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2017-03-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byF-ru-sCd">
                                         <rect key="frame" x="36" y="56" width="86.5" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITa-QD-79t">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Good Morning Update" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITa-QD-79t">
                                         <rect key="frame" x="8" y="104" width="343" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pjh-Uy-lG1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pjh-Uy-lG1">
                                         <rect key="frame" x="8" y="55.5" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="127-yb-27d"/>
@@ -6002,6 +6002,12 @@
                                     <outlet property="delegate" destination="M25-Oa-6e5" id="KoS-1M-bif"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Message." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6s-iR-kV2">
+                                <rect key="frame" x="110" y="308" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rr-yp-hrl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                 <subviews>
@@ -6037,21 +6043,24 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="eao-cF-imz" firstAttribute="top" secondItem="GEO-HH-0cn" secondAttribute="bottom" id="4In-6R-byZ"/>
+                            <constraint firstItem="v6s-iR-kV2" firstAttribute="centerY" secondItem="GEM-5p-f8J" secondAttribute="centerY" constant="34.5" id="8LF-rl-u9u"/>
                             <constraint firstItem="3rr-yp-hrl" firstAttribute="top" secondItem="GEM-5p-f8J" secondAttribute="top" id="NIS-0h-Qwh"/>
                             <constraint firstItem="3rr-yp-hrl" firstAttribute="leading" secondItem="GEM-5p-f8J" secondAttribute="leading" id="Yik-Wo-Gq4"/>
                             <constraint firstAttribute="trailing" secondItem="3rr-yp-hrl" secondAttribute="trailing" id="b16-El-D0y"/>
                             <constraint firstItem="GEO-HH-0cn" firstAttribute="leading" secondItem="GEM-5p-f8J" secondAttribute="leading" id="cQc-3F-ibH"/>
                             <constraint firstAttribute="trailing" secondItem="GEO-HH-0cn" secondAttribute="trailing" id="cRz-FS-OJX"/>
                             <constraint firstItem="GEO-HH-0cn" firstAttribute="top" secondItem="3rr-yp-hrl" secondAttribute="bottom" id="g26-9X-48z"/>
+                            <constraint firstItem="v6s-iR-kV2" firstAttribute="centerX" secondItem="GEM-5p-f8J" secondAttribute="centerX" id="rcW-ns-9yJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="NomessageLBL" destination="v6s-iR-kV2" id="9ay-KQ-Tf4"/>
                         <outlet property="TableVW" destination="GEO-HH-0cn" id="Mi6-Uv-ASB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdt-Jo-eaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4110" y="1034"/>
+            <point key="canvasLocation" x="4110" y="1033.0985915492959"/>
         </scene>
     </scenes>
     <resources>
