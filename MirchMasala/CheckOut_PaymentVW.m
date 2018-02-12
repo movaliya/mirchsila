@@ -175,11 +175,16 @@
     NSMutableDictionary *dictInner = [[NSMutableDictionary alloc] init];
     [dictInner setObject:CoustmerID forKey:@"CUSTOMERID"];
     [dictInner setObject:OrderType forKey:@"ORDERTYPE"];
-    [dictInner setObject:@"0" forKey:@"USEALTERNATEADDRESS"];
+   
     [dictInner setObject:PAYMENTTYPE forKey:@"PAYMENTTYPE"];
     [dictInner setObject:PAIDAMOUNT forKey:@"PAIDAMOUNT"];
     if ([OrderType isEqualToString:@"Delivery"]) {
           [dictInner setObject:deliveryCharge forKey:@"DELIVERYCHARGE"];
+         [dictInner setObject:@"1" forKey:@"USEALTERNATEADDRESS"];
+    }
+    else
+    {
+         [dictInner setObject:@"0" forKey:@"USEALTERNATEADDRESS"];
     }
   
     [dictInner setObject:ProdArr forKey:@"PRODUCTS"];

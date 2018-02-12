@@ -1179,7 +1179,7 @@
 				TargetAttributes = {
 					5310CBDB1E6A957800091333 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7PFD68G63X;
+						DevelopmentTeam = C98G6TC2DT;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -1583,8 +1583,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MirchMasala/MirchMasala.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = C98G6TC2DT;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1598,10 +1598,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				OTHER_CFLAGS = "-fembed-bitcode";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tiffintom.silsila;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiffintom.silsilaapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "827532a1-30ee-459a-a83e-f59ccb6dcacc";
-				PROVISIONING_PROFILE_SPECIFIER = Silsila_dev;
+				PROVISIONING_PROFILE = "7e987902-1547-4eb7-a8fd-36c229a2093d";
+				PROVISIONING_PROFILE_SPECIFIER = Silsila_distribute;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1613,8 +1613,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MirchMasala/MirchMasala.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7PFD68G63X;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = C98G6TC2DT;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1628,10 +1628,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				OTHER_CFLAGS = "-fembed-bitcode";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tiffintom.silsila;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tiffintom.silsilaapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "827532a1-30ee-459a-a83e-f59ccb6dcacc";
-				PROVISIONING_PROFILE_SPECIFIER = Silsila_dev;
+				PROVISIONING_PROFILE = "7e987902-1547-4eb7-a8fd-36c229a2093d";
+				PROVISIONING_PROFILE_SPECIFIER = Silsila_distribute;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
