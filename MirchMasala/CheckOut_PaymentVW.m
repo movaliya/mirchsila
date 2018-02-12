@@ -178,6 +178,10 @@
     [dictInner setObject:@"0" forKey:@"USEALTERNATEADDRESS"];
     [dictInner setObject:PAYMENTTYPE forKey:@"PAYMENTTYPE"];
     [dictInner setObject:PAIDAMOUNT forKey:@"PAIDAMOUNT"];
+    if ([OrderType isEqualToString:@"Delivery"]) {
+          [dictInner setObject:deliveryCharge forKey:@"DELIVERYCHARGE"];
+    }
+  
     [dictInner setObject:ProdArr forKey:@"PRODUCTS"];
     
     if (self.Comment3View.length>0)
@@ -563,7 +567,21 @@
                 }
                 else
                 {
-                    [self PlaceOrderServiceCall];
+                    if ([PAYMENTTYPE isEqualToString:@"stripe"])
+                    {
+                        OrderAmount = [OrderAmount stringByReplacingOccurrencesOfString:@"£"
+                                                                             withString:@""];
+                        
+                        AddCreditCardView *vcr = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddCreditCardView"];
+                        vcr.delegate = self;
+                        vcr.amount=[NSDecimalNumber decimalNumberWithString:OrderAmount];
+                        [self.navigationController pushViewController:vcr animated:YES];
+                    }
+                    else
+                    {
+                         [self PlaceOrderServiceCall];
+                    }
+                   
                 }
                 
             }

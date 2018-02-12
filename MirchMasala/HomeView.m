@@ -766,8 +766,14 @@
     for (int i=0; i<OfferArr.count; i++)
     {
         Headerimg=[[UIImageView alloc]initWithFrame:CGRectMake(x, 0, SCREEN_WIDTH, 260)];
+        NSString *Urlstr;
         
-        NSString *Urlstr=[[BannerImageARR valueForKey:@"image_path"] objectAtIndex:i];
+        if (BannerImageARR.count>i)
+        {
+             Urlstr=[[BannerImageARR valueForKey:@"image_path"] objectAtIndex:i];
+        }
+        
+       
         [Headerimg sd_setImageWithURL:[NSURL URLWithString:Urlstr] placeholderImage:[UIImage imageNamed:@"HomeLogo"]];
         [Headerimg setShowActivityIndicatorView:YES];
         //Headerimg.image=[UIImage imageNamed:@"HomeLogo"];
@@ -943,9 +949,10 @@
                  {
                      OfferArr=[[[[[[responseObject objectForKey:@"RESPONSE"] objectForKey:@"getitem"] objectForKey:@"offerText"] objectForKey:@"result"] objectForKey:@"offerText"] mutableCopy];
                      
+                        [self SetheaderScroll];
                     
                      dispatch_async(dispatch_get_main_queue(), ^{
-                          [self SetheaderScroll];
+                         
                      });
                  }
              }];

@@ -14,7 +14,7 @@
 		296C1F3F2022F16B0033121A /* MessageVW.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C1F3E2022F16B0033121A /* MessageVW.m */; };
 		296C1F432022F2E90033121A /* MessageTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C1F412022F2E90033121A /* MessageTblCell.m */; };
 		296C1F442022F2E90033121A /* MessageTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296C1F422022F2E90033121A /* MessageTblCell.xib */; };
-		296E50DF20275BB7003C8136 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 296E50DE20275BB7003C8136 /* GoogleService-Info.plist */; };
+		2977E1B5202B62740002EC2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2977E1B4202B62740002EC2C /* GoogleService-Info.plist */; };
 		298840F92025E03600428136 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 298840F82025E03600428136 /* MBProgressHUD.m */; };
 		5307923F1E6FE124005426ED /* CCKFNavDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 530792381E6FE124005426ED /* CCKFNavDrawer.m */; };
 		530792401E6FE124005426ED /* DrawerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530792391E6FE124005426ED /* DrawerView.xib */; };
@@ -241,7 +241,7 @@
 		296C1F412022F2E90033121A /* MessageTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTblCell.m; sourceTree = "<group>"; };
 		296C1F422022F2E90033121A /* MessageTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTblCell.xib; sourceTree = "<group>"; };
 		296E50DD20275ACC003C8136 /* MirchMasala.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MirchMasala.entitlements; sourceTree = "<group>"; };
-		296E50DE20275BB7003C8136 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2977E1B4202B62740002EC2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		298840F72025E03600428136 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		298840F82025E03600428136 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		530792371E6FE124005426ED /* CCKFNavDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKFNavDrawer.h; sourceTree = "<group>"; };
@@ -744,7 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				29634ED62029C5AB002EA149 /* default.mp3 */,
-				296E50DE20275BB7003C8136 /* GoogleService-Info.plist */,
+				2977E1B4202B62740002EC2C /* GoogleService-Info.plist */,
 				296E50DD20275ACC003C8136 /* MirchMasala.entitlements */,
 				532E5A561F6D465700DE8B44 /* ios */,
 				B153B3B31F6519C500DE8514 /* slider_image_1.png */,
@@ -1180,7 +1180,7 @@
 					5310CBDB1E6A957800091333 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7PFD68G63X;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
@@ -1215,6 +1215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2977E1B5202B62740002EC2C /* GoogleService-Info.plist in Resources */,
 				532E5A881F6D465700DE8B44 /* Icon-Small-50x50@1x.png in Resources */,
 				532E5A781F6D465700DE8B44 /* Icon-App-29x29@2x.png in Resources */,
 				532E5A731F6D465700DE8B44 /* Contents.json in Resources */,
@@ -1277,7 +1278,6 @@
 				532E5A551F6D3E4500DE8B44 /* SplashScreen.jpg in Resources */,
 				532E5A821F6D465700DE8B44 /* Icon-App-72x72@1x.png in Resources */,
 				530792401E6FE124005426ED /* DrawerView.xib in Resources */,
-				296E50DF20275BB7003C8136 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1600,8 +1600,8 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiffintom.silsila;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "827532a1-30ee-459a-a83e-f59ccb6dcacc";
+				PROVISIONING_PROFILE_SPECIFIER = Silsila_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1630,8 +1630,8 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tiffintom.silsila;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "827532a1-30ee-459a-a83e-f59ccb6dcacc";
+				PROVISIONING_PROFILE_SPECIFIER = Silsila_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
