@@ -10,58 +10,91 @@
 #import "Constant.h"
 #import "MirchMasala.pch"
 #import "CCKFNavDrawer.h"
+
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+@import UserNotifications;
+#endif
+
+@import Firebase;
+@import FirebaseMessaging;
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+
 @import Stripe;
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate, FIRMessagingDelegate>
 
 @end
+#endif
+
+// Copied from Apple's header in case it is missing in some cases (e.g. pre-Xcode 8 builds).
+#ifndef NSFoundationVersionNumber_iOS_9_x_Max
+#define NSFoundationVersionNumber_iOS_9_x_Max 1299
+#endif
 
 @implementation AppDelegate
 @synthesize MainCartArr;
+NSString *const kGCMMessageIDKey = @"gcm.message_id";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [FIRApp configure];
+    //Mobile App Topic Name: SilsilaRugeley
     
+
+     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+   // [FIRApp configure];
     [FIRMessaging messaging].delegate = self;
+   
+#ifdef DEBUG
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"GoogleService-Info" ofType:@"plist"];
+#else
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"GoogleService-Info" ofType:@"plist"];
+#endif
+    FIROptions *options = [[FIROptions alloc] initWithContentsOfFile:filePath];
+    [FIRApp configureWithOptions:options];
     
-#define SYSTEM_VERSION_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+    // [START set_messaging_delegate]
+    [FIRMessaging messaging].delegate = self;
+    // [END set_messaging_delegate]
     
-    
-    if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")){
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        center.delegate = self;
-        [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
-            if(!error){
-                [[UIApplication sharedApplication] registerForRemoteNotifications];
-            }
-        }];
-    }
-    else {
-        // Code for old versions
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
-    }
-    
-  //com.tiffintom.silsilaapp   Live bundle
-    
-    /*
-    // Override point for customization after application launch.
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-    {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
-    else
-    {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
-    }*/
-    
-    // Override point for customization after application launch.
-    //Kaushik
-    //[[STPPaymentConfiguration sharedConfiguration] setPublishableKey:kstrStripePublishableKey];
+    // Register for remote notifications. This shows a permission dialog on first run, to
+    // show the dialog at a more appropriate time move this registration accordingly.
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+        // iOS 7.1 or earlier. Disable the deprecation warnings.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        UIRemoteNotificationType allNotificationTypes =
+        (UIRemoteNotificationTypeSound |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeBadge);
+        [application registerForRemoteNotificationTypes:allNotificationTypes];
+#pragma clang diagnostic pop
+    } else {
+        // iOS 8 or later
+        // [START register_for_notifications]
+        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
+            UIUserNotificationType allNotificationTypes =
+            (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+            UIUserNotificationSettings *settings =
+            [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+            [application registerUserNotificationSettings:settings];
+        } else {
+            // iOS 10 or later
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+            // For iOS 10 display notification (sent via APNS)
+            [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+            UNAuthorizationOptions authOptions =
+            UNAuthorizationOptionAlert
+            | UNAuthorizationOptionSound
+            | UNAuthorizationOptionBadge;
+            [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            }];
+#endif
+        }
+        
+        [FIRMessaging messaging].shouldEstablishDirectChannel = TRUE;
+        [application registerForRemoteNotifications];
+        // [END register_for_notifications]
    
 
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -69,24 +102,34 @@
         [self performSelector:@selector(GetPublishableKey) withObject:nil afterDelay:6.5f];
         
     });
-    
+    }
     [[STPPaymentConfiguration sharedConfiguration] setSmsAutofillDisabled:NO];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
+    
 - (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
     NSLog(@"FCM registration token: %@", fcmToken);
     
     // TODO: If necessary send token to application server.
     // Note: This callback is fired at each app startup and whenever a new token is generated.
 }
+- (void)messaging:(FIRMessaging *)messaging didReceiveMessage:(FIRMessagingRemoteMessage *)remoteMessage {
 
-#pragma mark - Remote Notification Delegate // <= iOS 9.x
-
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
-    [application registerForRemoteNotifications];
+    NSLog(@"Received data message: %@", remoteMessage.appData);
 }
+#pragma mark - Remote Notification Delegate // <= iOS 9.x
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    
+    NSLog(@"Hooray! I'm registered!");
+    // [[FIRMessaging messaging] subscribeToTopic:@"silsilatest"];
+    [[FIRMessaging messaging] subscribeToTopic:@"SilsilaRugeley"];
+
+    
+    
+}
+
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
@@ -94,6 +137,8 @@
     NSString *strDevicetoken = [[NSString alloc]initWithFormat:@"%@",[[[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""]];
     NSLog(@"Device Token = %@",strDevicetoken);
     self.strDeviceToken = strDevicetoken;
+
+    [FIRMessaging messaging].APNSToken = deviceToken;
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -284,6 +329,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
 }
 
 

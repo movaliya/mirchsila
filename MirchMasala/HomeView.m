@@ -213,11 +213,12 @@
 {
     CheckReservationState = [[NSUserDefaults standardUserDefaults] stringForKey:@"reservationState"];
     CheckOptionHidden = [[NSUserDefaults standardUserDefaults] stringForKey:@"NEWSNODATAHIDEOPTION"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
     
 //    if (CheckReservationState==nil)
 //    {
 //        [KVNProgress show];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckHideNshow" object:self];
+//
 //    }
     
     CheckReservationState = [[NSUserDefaults standardUserDefaults]
@@ -280,6 +281,8 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    //[[FIRMessaging messaging] subscribeToTopic:@"silsilatest"];
+    [[FIRMessaging messaging] subscribeToTopic:@"SilsilaRugeley"];
     
     BOOL internet=[AppDelegate connectedToNetwork];
     if (internet)
